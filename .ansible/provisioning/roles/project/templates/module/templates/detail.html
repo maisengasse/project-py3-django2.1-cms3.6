@@ -1,0 +1,26 @@
+{% extends "default.html" %}
+{% load imagesize_tags i18n cms_tags project_tags %}
+
+{% block title %}{{ item.title }}{% endblock title %}
+{% block main %}
+    <article class="module-item">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <figure>
+                    <img {{ item.images.image|srcset:'module-detail' }} alt="{{ item.title }}" />
+                </figure>
+                {% render_model_block item %}
+                <h2>{{ item.title }}</h2>
+                {% endrender_model_block %}
+                <div class="richtext hyphenate">
+                    {{ item.description|richtext }}
+                </div>
+            </div>
+        </div>
+        </div>
+    </article>
+
+    {% render_placeholder item.details %}
+
+{% endblock main %}

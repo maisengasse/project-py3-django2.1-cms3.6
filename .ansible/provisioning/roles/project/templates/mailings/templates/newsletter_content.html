@@ -1,0 +1,167 @@
+{% load zweiletter_tags cms_tags sekizai_tags %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="margin: 0px; padding: 0px">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>IG Passivhaus Newsletter</title>
+        {% render_block "css" %}
+        {% render_block "js" %}
+
+      <style type="text/css">
+            @font-face {
+                font-family: 'MetaWebW15Book';
+                src:url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401247/57e3033a-3ecd-4102-a14f-39a568122b93.eot?#iefix");
+                src:url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401247/57e3033a-3ecd-4102-a14f-39a568122b93.eot?#iefix") format("eot"),url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401247/ab763ecc-2c66-4081-b8ec-9b3b623e1db5.woff2") format("woff2"),url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401247/914f1c15-117a-404c-976f-b4df921331b5.woff") format("woff"),url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401247/92000cd2-18ad-4fa2-a9cd-618d37ad8ab4.ttf") format("truetype");
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'MetaWebW15Book';
+                src:url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401219/d6798af5-4658-4179-a7a9-bd169d18076f.eot?#iefix");
+                src:url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401219/d6798af5-4658-4179-a7a9-bd169d18076f.eot?#iefix") format("eot"),url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401219/4789e889-fa0e-4fb1-b550-69c1f3a3b256.woff2") format("woff2"),url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401219/86cd7f40-60da-4825-9ba3-7249c45a4b37.woff") format("woff"),url("{{ NEWSLETTER_PORTAL_URL }}/static/passivhaus/fonts/meta/1401219/e84a35ac-57b7-4017-9aa0-586414fc25e4.ttf") format("truetype");
+                font-weight: bold;
+                font-style: normal;
+            }
+
+        [style*="MetaWebW15Book"] {
+            font-family: 'MetaWebW15Book', Arial, sans-serif !important
+        }
+
+      </style>
+
+    </head>
+
+    <body style="margin: 0px; padding: 0px; background-color: white;">
+    {% cms_toolbar %}
+
+    <table style="padding: 0px; margin:0px" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+    <td background="{{ NEWSLETTER_MEDIA_URL }}images/bg_passivhaus.gif">
+
+    <!-- Streifen -->
+    <table style="padding: 0px; width: 605px;" cellpadding="0" cellspacing="0" align="center">
+        <!-- Header -->
+        <tr>
+            <td id="inhaltbg" style="margin: 0px; padding: 0px; background-color: #FFF" background="{{ NEWSLETTER_MEDIA_URL }}images/inhalt_bg_passivhaus.gif">
+                <!-- HTML Variante -->
+
+                <!-- HTML Newsletter -->
+                <table cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px; width: 605px;">
+                    <tr>
+                        <td colspan="4" width="605" height="142">
+                            <a href="{{ PORTAL_URL }}" style="display:block; width:605px; height:142px" target="_blank">
+                                <img src="{{ NEWSLETTER_MEDIA_URL }}images/header_passivhaus.gif" width="605" height="142" border="0" style="display: block" alt="IG Passivhaus Tirol" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
+                <table cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px; background-color: white">
+                    <tr>
+                        <td width="40"></td>
+                        <td width="565" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 11px; color: black; line-height: 16px; text-align: right">
+                            Wenn der Newsletter nicht korrekt angezeigt wird, bitte <a href="{{ object.props.get_absolute_url }}?contact={{ contact.get_hashid }}" target="_blank" style="color: black; text-decoration: underline">hier</a> klicken.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="5"></td>
+                    </tr>
+                </table>
+
+                <table cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px; width: 605px;">
+                    <tr>
+                        <td rowspan="2" width="27" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; text-transform: uppercase; color: #FFF; text-align: center; background-color: black">
+                            <img src="{{ NEWSLETTER_MEDIA_URL }}images/header_infos_news.gif" width="27" border="0" style="display: block" alt="Infos &amp; News" />
+                        </td>
+                        <td width="23" height="30" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; text-transform: uppercase; color: #FFF; text-align: center; background-color: #0069B8"></td>
+                        <td width="358" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; text-transform: uppercase; color: #FFF; background-color: #0069B8">
+                            Newsletter / {% now "d.m.Y" %}
+                        </td>
+                        <td width="110" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; text-transform: uppercase; color: #FFF; border-left: 1px solid #0069B8; text-align: center; background-color: #0069B8"></td>
+                        <td width="85" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; text-transform: uppercase; color: #FFF; text-align: center; background-color: #0069B8"></td>
+                        <td width="1" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; text-transform: uppercase; color: #FFF; text-align: center; background-color: black"></td>
+                    </tr>
+                    <tr>
+                        <td width="23" height="30" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; text-transform: uppercase; color: white; text-align: center; background-color: white"></td>
+                        <td colspan="5" valign="bottom" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 16px; font-weight:bold; color: #000; line-height: 18px;">
+                            {% if contact.salutation %}
+                                Sehr geehrte(r)
+                                {% firstof contact.salutation %} {% firstof contact.last_name %}!
+                            {% else %}
+                                Sehr geehrte Damen und Herren!
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+
+
+                <!-- Begrüssung -->
+                <table cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px;">
+                    <tr>
+                        <td width="50" valign="top">
+                            <img alt="IG Passivhaus" src="{{ NEWSLETTER_MEDIA_URL }}images/header_passivhaus_c3.gif" width="27" height="24" border="0" />
+                        </td>
+                        <td valign="top" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 14px; color: #000; line-height: 20px">
+                            <br />
+                            {% render_placeholder object.props.header "igpassivhaus" %}
+                        </td>
+                        <td width="50"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="25"></td>
+                    </tr>
+                </table>
+
+                {% render_placeholder object.props.contents "igpassivhaus" %}
+
+                <!-- INHALTE ENDE -->
+            </td>
+        </tr>
+        <!-- Footer -->
+        <tr>
+            <td>
+                <table cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px; background-color: #141215">
+                    <tr>
+                        <td colspan="2" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td width="235" valign="top" align="center">
+                            <a href="http://www.igpassivhaus.tirol" target="_blank">
+                                <img alt="Bildtext" src="{{ NEWSLETTER_MEDIA_URL }}images/logo_ig_passivhaus.gif" width="170" height="63" border="0" />
+                            </a>
+                        </td>
+                        <td valign="top" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; color: #FFF; line-height: 20px">
+                            Energiehauspark 1 / Bleichenweg 15 d | 6020 Innsbruck<br/>
+Tel. +43 (0)720 / 595 222 - Fax: DW 40<br/>
+<a href="mailto:info@igpassivhaus.tirol" target="_blank" style="color: #FFF">info@igpassivhaus.tirol</a><br/><br/>
+<a href="http://www.igpassivhaus.tirol" target="_blank" style="color: #FFF; font-size: 18px; text-decoration: none">
+www.igpassivhaus.tirol</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px; width: 605px; background-color: #0069B8">
+                                <tr>
+                                    <td width="15" height="30"></td>
+                                    <td width="165" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; color: #FFF;">&raquo; <a href="{% url 'newsletter:unsubscription_form' %}?email={{ contact.email }}&list={{ newsletter.mailing_list.id }}" style="color: #FFF; text-decoration:none;" target="_blank">Newsletter abmelden</a></td>
+                                    <td width="175" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 13px; color: #FFF; text-align: center"></td>
+                                    {# <td width="175" style="font-family:Arial, sans-serif, MetaWebW15Book; font-size: 11px; color: #FFF; border-left: 1px solid #DDD; border-right: 1px solid #DDD; text-align: center">&raquo; <a href="#" style="color: #FFF; text-decoration:none;" target="_blank">Newsletter weiterempfehlen</a></td> #}
+                                    <td width="250"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    </td>
+    </tr>
+    </table>
+    </body>
+</html>

@@ -1,0 +1,10 @@
+{% load zweiletter_tags %}
+Sie betrachten die Textvariante des Newsletters.
+Verwenden Sie diesen Link um die vollständige Version zu betrachten:
+{{ PORTAL_URL }}{{ object.props.get_absolute_url}}
+
+
+================================================================================
+
+Wenn Sie keine weiteren Informationen von uns erhalten möchten, klicken Sie bitte hier:
+{{ contact.content_object.unsubscription_link }} 

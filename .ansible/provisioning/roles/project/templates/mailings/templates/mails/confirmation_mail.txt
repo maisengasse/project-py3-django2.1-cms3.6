@@ -1,0 +1,3 @@
+Vielen Dank für Ihre Newsletteranmeldung.
+Klicken Sie die diesen Link um ihr Interesse zu bestätigen und die Anmeldung abzuschliessen:
+{{ NEWSLETTER_PORTAL_URL }}{% url "newsletter:confirm_subscription" %}?contact={{ contact.get_hashid }}

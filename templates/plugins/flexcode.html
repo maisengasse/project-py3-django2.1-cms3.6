@@ -1,0 +1,74 @@
+{% extends 'plugins/flexpluginbase.html' %}
+{% load project_tags sekizai_tags %}
+{% block as_section %}
+    {% if instance.title or instance.subtitle %}
+    <div class="row hyphenate">
+        <h2>
+            {{ instance.title }}<br/>
+            {% if instance.subtitle %}<span class="gray">{{ instance.subtitle }}</span>{% endif %}
+        </h2>
+    </div>
+    {% endif %}
+    <div class="row">
+        {{ instance.code|sourcecode }}
+    </div>
+{% endblock as_section %}
+
+{% block as_column %}
+    <div>
+        {% if instance.title %}
+            <h4>{{ instance.title }}</h4>
+        {% endif %}
+        {% if instance.subtitle %}
+            <h5>{{ instance.subtitle }}</h5>
+        {% endif %}
+
+        {{ instance.code|sourcecode:instance }}
+        {% if instance.code|is_youtube_ad %}
+            {% addtoblock 'js' %}
+            <script>
+                var tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            </script>
+            {% endaddtoblock %}
+            {% addtoblock 'js' %}
+            <script>
+                function onYouTubeIframeAPIReady() {
+                   $('[data-youtube-video]').each(function() {
+                        var node = $(this);
+                        var wrapper = node.parent();
+                        var id = node.attr('id');
+
+                        var player = new YT.Player(id, {
+                            videoId : node.attr('data-youtube-video'),
+                            playerVars: { 'autoplay': 1, 'controls': 0, 'showinfo' : 0, 'loop' : 1 },
+                            events: {
+                              onReady: function(event) {
+                                  event.target.setVolume(30);
+                                  event.target.mute()
+                              },
+                              onStateChange: function(e) {
+                                if (e.data === YT.PlayerState.ENDED) {
+                                    player.playVideo();
+                                }
+                              }
+                            }
+                        });
+
+                        wrapper.on('mouseenter', function() {
+                            player.unMute();
+                        });
+                        wrapper.on('mouseleave', function() {
+                            player.mute();
+                        });
+
+                   });
+                }
+            </script>
+            {% endaddtoblock %}
+        {% endif %}
+    </div>
+{% endblock as_column %}
+

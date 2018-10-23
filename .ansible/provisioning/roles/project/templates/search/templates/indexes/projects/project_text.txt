@@ -1,0 +1,4 @@
+{% load cmstools_tags cms_tags search_tags %}
+{{ object.title }}
+{{ object.author }}
+{{ object.description|striptags2|unescape }}

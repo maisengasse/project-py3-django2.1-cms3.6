@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block main %}
+    {% block preform %}
+    {% endblock preform %}
+    <article>
+        <div class="row">
+            <div class="col-lg-12">
+    {% block outerform %}
+    <form action="{% block action %}{{ request.path }}{% endblock action %}"
+          method="{% block method %}post{% endblock method %}"
+          enctype="multipart/form-data"
+          data-toggle="{% block validate%}validator{% endblock %}"
+          {% if PREVIEW %}data-preview="formpreview"{% endif %}
+          class="{% if PREVIEW %}form-preview {% endif %}{% block form-class %}{% endblock form-class %}">{% csrf_token %}
+
+        {% block confirm-modal %}
+        {% for a in ACTIONS %}
+            {% if a.confirm %}
+            <div class="modal" id="confirm-{{ a.id }}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button aria-label="Schliessen" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+                      <h4 class="modal-title"><span class="icon icon-{{ a.icon }}"></span> {{ a.modal_title }}</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>{{ a.confirm|safe }}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button data-dismiss="modal" class="btn btn-default" type="button">Abbrechen</button>
+                      <button class="btn btn-primary" type="submit" name="action" value="{{ a.id }}">{% if a.icon %}<span class="icon icon-{{ a.icon }}"></span> {% endif %}{{ a.modal_title }}</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+        {% endblock %}
+
+        <div class="dashhead">
+            {% block outertitles %}
+                <div class="dashhead-titles">
+                    <h6 class="dashhead-subtitle">{% block subtitle %}{% endblock %}</h6>
+                    <h2 class="dashhead-title">{% block title %}{% endblock title %}</h2>
+                </div>
+            {% endblock outertitles %}
+
+            {% block headbar %}
+            {% if BACK or ABORT or ACTIONS %}
+            <div class="dashhead-toolbar">
+                {% if ABORT or BACK %}
+                <div class="dashhead-toolbar-item">
+                    <a class="btn btn-sm btn-default-outline" href="{{ ABORT|default:'javascript:history.back();' }}"><span class="icon icon-chevron-left"></span> zurück</a>
+                </div>
+                {% endif %}
+                {% if BACK or ABORT %}
+                    {% if ACTIONS %}
+                    <span class="dashhead-toolbar-divider hidden-xs"></span>
+                    {% endif %}
+                {% endif %}
+
+                {% if ACTIONS %}
+                <div class="dashhead-toolbar-item btn-group">
+                    {% for a in ACTIONS %}{{ a.render }}{% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endblock headbar %}
+        </div>
+
+        {% block form %}
+        {% endblock form %}
+
+        {% block footerbar %}
+        {% if ACTIONS %}
+        <div class="dashhead dashfoot">
+            <div class="dashhead-toolbar">
+                <div class="dashhead-toolbar-item btn-group">
+                    {% for a in ACTIONS %}{{ a.render }}{% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endblock footerbar %}
+    </form>
+    {% endblock outerform %}
+            </div>
+        </div>
+    </article>
+
+    {% block postform %}
+    {% endblock postform %}
+{% endblock main %}

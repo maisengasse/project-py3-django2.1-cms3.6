@@ -1,0 +1,66 @@
+---
+
+- name: Install Python packages
+  pip: "name={{ item.name }} version={{ item.version }} virtualenv={{ home_dir }}/python-{{ project_name }}"
+  become: "{{ app_user }}"
+  with_items:
+    # django
+    - { name: pytz, version: 2018.4 }
+
+
+- name: Install PIP
+  pip:
+      virtualenv={{ home_dir }}/python-{{ project_name }}
+      requirements={{ home_dir}}/{{ project_name }}/requirements.txt
+  become: "{{ app_user }}"
+
+- name: Copy manage.py template
+  template: "src=manage.py.j2 dest={{ home_dir}}/{{ project_name }}/manage.py owner={{ app_user }} group={{ app_grp }} mode=0755"
+
+- name: Copy fabric template
+  template: "src=fabric.j2 dest={{ home_dir}}/{{ project_name }}/fabric owner={{ app_user }} group={{ app_grp }} mode=0755"
+
+- name: Copy Production django settings.py template
+  template: "src=production.py.j2 dest={{ project_dir }}/{{ project_name }}/settings/production.py owner={{ app_user }} group={{ app_grp }} mode=0644"
+
+- name: Create wsgi directory
+  file: "path={{ home_dir }}/wsgi owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+
+- name: Copy wsgi.py template
+  template: "src=wsgi.py.j2 dest={{ home_dir }}/wsgi/{{ project_name }}.wsgi owner={{ app_user }} group={{ app_grp }} mode=0664"
+
+- name: Create static directory
+  file: "path={{ home_dir }}/static owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+
+- name: Link Project static directory
+  file: "src={{ project_dir }}/static dest={{ home_dir }}/static/{{ project_name }} owner={{ app_user }} group={{ app_grp }} state=link"
+  when: not deployment
+
+- name: Link Project media directory
+  file: "src={{ project_dir }}/media dest={{ home_dir }}/media owner={{ app_user }} group={{ app_grp }} state=link"
+  when: not deployment
+
+- name: Collect static files
+  django_manage: "command=collectstatic app_path={{ project_dir }}"
+
+
+# create database
+- name: Create Database user
+  mysql_user:
+      name: "{{ db_user }}"
+      password: "{{ db_password }}"
+      host: "localhost"
+      login_user: root
+      login_password: "{{ db_root_password }}"
+      priv: "{{ db_name }}.*:ALL,GRANT"
+
+- name: Copy the credentials as .my.cnf file
+  template: "src=my.cnf.j2 dest={{ home_dir }}/.my.cnf owner={{ app_user }} group={{ app_grp }} mode=0664"
+
+- name: Create Database
+  mysql_db:
+    name: "{{ db_name }}"
+    login_user: "root"
+    login_password: "{{ db_root_password }}"
+    state: "present"
+

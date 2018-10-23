@@ -1,0 +1,13 @@
+---
+# These are the Wordpress database settings
+wp_db_name: wordpress 
+wp_db_user: wordpress
+wp_db_password: w0rdPr3ss
+
+# You shouldn't need to change this.
+mysql_port: 3306
+
+########## these settings are overwritten by Vagrantfile:
+### for use without vagrant, set this variables here!
+wp_version: 3.8.1
+plugins: []

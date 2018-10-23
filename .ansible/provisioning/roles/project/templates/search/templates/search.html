@@ -1,0 +1,44 @@
+{% extends 'default.html' %}
+{% load cmstools_tags cms_tags maisenform_tags search_tags highlight i18n %}
+{% block title %}{% trans "Suche" %}{% endblock title %}
+{% block pageheader %}{% trans "Suche" %}{% endblock pageheader %}
+{% block bodyclass %}suche{% endblock %}
+{% block main %}
+    <div class="wrapper">
+        <article class="searchform">
+            <form method="get" action="{{ request.path }}#formular" class="clearfix">
+                <fieldset class="row left">
+                    {% maisen_fieldrow form.q %}
+                </fieldset>
+                <button type="submit" class="submit btn left">{% trans "Suche starten" %}</button>
+            </form>
+        </article>
+        
+        <article class="searchresult">
+        {% if query %}
+            <h2>{{ paginator.object_list|length }} {% trans "Ergebnisse für" %} <b>&raquo;{{ request.GET.q }}&laquo;</b></h2>
+            <br/>
+            {% for result in page.object_list %}
+                {% if result.text %}
+                <p class="searchresult">
+                    <a href="{{ result|result_url }}">{{ result|result_title }}</a><br />
+                    {% highlight result.text with request.GET.q %}
+                </p>
+                {% endif %}
+            {% empty %}
+                <p>{% trans "Keine Ergebnisse gefunden." %}</p>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; {% trans "zurück" %}{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}{% trans "weiter" %} &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+        </article>
+    </div>
+{% endblock %}

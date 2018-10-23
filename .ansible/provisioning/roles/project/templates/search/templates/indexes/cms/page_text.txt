@@ -1,0 +1,5 @@
+{% load cms_tags cmstools_tags search_tags %}
+{% page_attribute 'page_title' object %}
+{% for placeholder in object.placeholders.all %}
+    {% index_plugins placeholder %}
+{% endfor %}

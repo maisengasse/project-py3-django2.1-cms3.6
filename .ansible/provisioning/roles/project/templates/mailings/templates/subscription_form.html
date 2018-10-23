@@ -1,0 +1,27 @@
+{% extends 'default.html' %}
+{% load bootstrap3 i18n %}
+{% block main %}
+    <article>
+        <div class="container">
+        <form action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Zum Newsletter anmelden</h2>
+                     {% bootstrap_field form.ok %}
+                     {% bootstrap_field form.email %}
+                     {% bootstrap_field form.first_name %}
+                     {% bootstrap_field form.last_name %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <br />
+                    <button class="btn btn-primary">{% trans "Newsletter bestellen" %}</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </article>
+{% endblock %}
+

@@ -1,0 +1,18 @@
+{% load search_tags highlight i18n %}
+<div id="liveSearchBox">
+    <div class="inner">
+    {% if query %}
+        {% for result in page.object_list %}
+            <p class="searchresult">
+                <a href="{{ result|result_url }}">{{ result|result_title }}</a><br />
+                {# {% highlight result.text with request.GET.q %} #}
+                {# {{ result|result_description|striptags2 }} #}
+            </p>
+        {% empty %}
+            <p>{% trans "Keine Ergebnisse gefunden." %}</p>
+        {% endfor %}
+    {% else %}
+        <h3>{% trans "Keine Ergebnisse gefunden." %}</h3>
+    {% endif %}
+</div>
+</div>

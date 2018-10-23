@@ -1,0 +1,169 @@
+---
+
+ - name: Link django project directory (backend)
+   file: "src=/vagrant dest={{ project_dir }} owner={{ app_user }} group={{ app_grp }} state=link"
+   when: not deployment
+
+ - name: Create Media directory
+   file: "path={{ project_dir }}/media owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+   when: not deployment
+
+ - name: Copy all src directories recursively
+   file: "dest={{ project_dir }}/{{ project_name }}/{{ item }} owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+   with_items:
+     - management
+     - management/commands
+     - settings
+     - templatetags
+   when: create_project
+
+ - name: Copying the templated src files
+   template: "src={{ item }} dest={{ project_dir }}/{{ project_name }}{{ item | regex_replace(role_path+'/templates/src','') }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_items: "{{ lookup('pipe','find {{ role_path }}/templates/src -type f').split('\n') }}"
+   when: create_project
+
+ - name: Create Fabfile
+   template: "src='fabfile.py' dest={{ project_dir }}/fabfile.py owner={{ app_user }} group={{ app_grp }} mode=0664"
+   when: create_project
+
+ - name: Create README
+   template: "src='README.md' dest={{ project_dir }}/README.md owner={{ app_user }} group={{ app_grp }} mode=0664"
+   when: create_project
+
+
+# Search Module
+ - name: Install Python packages
+   pip: "name={{ item.name }} version={{ item.version }} virtualenv={{ home_dir }}/python-{{ project_name }}"
+   become: "{{ app_user }}"
+   with_items:
+     - { name: Whoosh, version: 2.7.4 }
+     - { name: django-haystack, version: 2.4.1 }
+   when: create_project_search
+
+
+ - name: Create Search directories
+   file: "dest={{ project_dir }}/{{ project_name }}/{{ item }} owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+   with_items:
+     - search
+     - search/templatetags
+     - search/templates
+   when: create_project_search
+
+ - name: Copying the templated Search source
+   template: "src=search/{{ item }} dest={{ project_dir }}/{{ project_name }}/search/{{ item }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_items:
+     - __init__.py
+     - models.py
+     - search_indexes.py
+     - urls.py
+     - views.py
+     - templatetags/__init__.py
+     - templatetags/search_tags.py
+   when: create_project_search
+
+ - name: Copying the Search templates
+   copy: "src={{ role_path }}/templates/search/{{ item }} dest={{ project_dir }}/templates/search owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_items:
+     - templates/
+   when: create_project_search
+
+
+# Mailing Module
+ - name: Install Python packages
+   pip: "name={{ item.name }} version={{ item.version }} virtualenv={{ home_dir }}/python-{{ project_name }}"
+   become: "{{ app_user }}"
+   with_items:
+    - { name: hashids, version: 1.1.0 }
+   when: create_project_mailings
+
+ - name: Install Custom Python packages
+   pip: "name={{ item.name }} virtualenv={{ home_dir }}/python-{{ project_name }}"
+   become: "{{ app_user }}"
+   with_items:
+    - { name: "http://download.maisengasse.at/eggs/emencia.django.newsletter-0.5.17-maisen.tar.gz" }
+   when: create_project_mailings
+
+
+ - name: Create Mailings directories
+   file: "dest={{ project_dir }}/{{ project_name }}/{{ item }} owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+   with_items:
+     - mailings
+     - mailings/templatetags
+     - mailings/management
+     - mailings/management/commands
+   when: create_project_mailings
+
+ - name: Copying the templated Mailings source
+   template: "src=mailings/{{ item }} dest={{ project_dir }}/{{ project_name }}/mailings/{{ item }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_items:
+     - __init__.py
+     - admin.py
+     - cms_plugins.py
+     - cms_toolbar.py
+     - forms.py
+     - models.py
+     - urls.py
+     - views.py
+     - templatetags/__init__.py
+     - templatetags/mailings_tags.py
+     - management/__init__.py
+     - management/commands/__init__.py
+     - management/commands/handle_bounces.py
+     - management/commands/import_newsletter_contacts.py
+   when: create_project_mailings
+
+ - name: Copying the Mailings templates
+   copy: "src={{ role_path }}/templates/mailings/{{ item }} dest={{ project_dir }}/templates/mailings owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_items:
+     - templates/
+   when: create_project_mailings
+
+
+# Create Modules
+ - name: Config Modules
+   set_fact:
+     modules:
+       - { module_name: 'news', model_class: 'Newsitem', model_name: 'Newseintrag', model_name_plural: 'Newseinträge', categorized: true, publish_workflows: true, detailpage: true, previewpage: true, plugin: false }
+       - { module_name: 'xes', model_class: 'Xes', model_name: 'Xes', model_name_plural: 'Xesen', categorized: false, publish_workflows: true, detailpage: true, previewpage: true, plugin: true }
+       - { module_name: 'yes', model_class: 'Yes', model_name: 'Yes', model_name_plural: 'Yesen', categorized: false, publish_workflows: false, detailpage: true, previewpage: false, plugin: false }
+       - { module_name: 'zes', model_class: 'Zes', model_name: 'Zes', model_name_plural: 'Zesen', categorized: false, publish_workflows: false, detailpage: false, previewpage: false, plugin: true }
+
+ - name: Create Modules Directories
+   file: "dest={{ project_dir }}/{{ project_name }}/{{ item.module_name }} owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+   with_items: '{{ modules }}'
+   when: create_project_modules
+
+ - name: Copying the templated Module source
+   template: "src=module/{{ item[1] }} dest={{ project_dir }}/{{ project_name }}/{{ item[0].module_name }}/{{ item[1] }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_nested:
+     - '{{ modules }}'
+     -
+       - __init__.py
+       - admin.py
+       - cms_apps.py
+       - cms_toolbars.py
+       - cms_plugins.py
+       - models.py
+       - search_indexes.py
+       - sitemaps.py
+       - urls.py
+       - views.py
+   when: create_project_modules
+
+ - name: Copying the Module View templates
+   copy: "src={{ role_path }}/templates/module/templates/{{ item[1] }} dest={{ project_dir }}/templates/views/{{ item[0].module_name }}_{{ item[1] }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_nested:
+     - '{{ modules }}'
+     -
+       - detail.html
+       - list.html
+   when: create_project_modules
+
+
+ - name: Copying the Module Plugin templates
+   copy: "src={{ role_path }}/templates/module/templates/{{ item[1] }} dest={{ project_dir }}/templates/plugins/{{ item[0].module_name }}_{{ item[1] }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_nested:
+     - '{{ modules }}'
+     -
+       - teaser.html
+   when: create_project_modules

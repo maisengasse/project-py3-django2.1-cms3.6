@@ -1,0 +1,28 @@
+{% extends "default.html" %}
+{% load imagesize_tags i18n cms_tags project_tags %}
+
+{% block main %}
+    <article class="module-teaser {{ instance.col_css }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        {% for item in items %}
+                        <li>
+                            {% render_model_block item %}
+                            <h3>{{ item.title }}</h3>
+                            <img {{ item.images.image|srcset:'module-teaser' }} alt="{{ item.title }}" />
+                            <a href="{{ item.get_absolute_url }}">mehr</a>
+                            {% endrender_model_block %}
+                        </li>
+                        {% empty %}
+                        <li>
+                            Es wurden keine Objekte gefunden.
+                        </li> 
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock main %}

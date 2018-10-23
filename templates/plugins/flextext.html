@@ -1,0 +1,35 @@
+{% extends 'plugins/flexpluginbase.html' %}
+{% load i18n project_tags %}
+{% block as_section %}
+<div class="{{ instance.display|default:'' }}">
+    {% if instance.title or instance.subtitle %}
+    <div class="row" data-hyphenate>
+        <div class="col-md-12">
+        {% if instance.title %}
+            <h2>{{ instance.title }}</h2>
+        {% endif %}
+        {% if instance.subtitle %}
+            <h3>{{ instance.subtitle }}</h3>
+        {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="row columns" data-hyphenate>
+        <div class="col-md-12 richtext text-{{ instance.columns }}-columns">
+            {{ instance.body|richtext }}
+        </div>
+    </div>
+</div>
+{% endblock as_section %}
+
+{% block as_column %}
+    <div class="richtext text-{{ instance.columns }}-columns {{ instance.display }}" data-hyphenate>
+        {% if instance.title %}
+            <h4>{{ instance.title }}</h4>
+        {% endif %}
+        {% if instance.subtitle %}
+            <h5>{{ instance.subtitle }}</h5>
+        {% endif %}
+        {{ instance.body|richtext }}
+    </div>
+{% endblock as_column %}

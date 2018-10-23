@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+// Import Variables and Specials
+@import "main-variables";
+@import "hamburgers";
+
+// Import all Bootstrap styles
+@import "../bootstrap/scss/bootstrap";
+
+// –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
+html {
+	/* Adjust font size */
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    /* Font varient */
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none;
+    /* Smoothing */
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+    /* Fix Scrollbar Jumping */
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+	font-family: "FFDin", "Ubuntu", Helvetica, Arial, sans-serif;
+	color: $text-color;
+}
+
+// Bootstrap Navbar Padding-Fix
+@media (max-width: 991.98px) {
+  .navbar-expand-lg > .container,
+  .navbar-expand-lg > .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+
+// –––––––––––––––––––––––––––––– Bootstrap Overrides ––––––––––––––––––––––––––––––
+// in _background.scss auskommentiert
+.bg-white {
+	background-color: transparentize($white, .10);
+}
+
+
+// –––––––––––––––––––––––––––––– Typography ––––––––––––––––––––––––––––––
+	h2 {
+		font-size: $h2-font-size;
+		line-height: 1.14em;
+		color: $primary;
+		font-weight: $font-weight-regular;
+		letter-spacing: -1px;	
+	}
+
+	h3 {
+	  	font-size: $h3-font-size;
+	  	line-height: 0.75;
+		font-weight: $font-weight-regular;
+  		letter-spacing: -0.9px;
+	}
+
+
+	p {
+	  font-size: $font-size-base;
+	  line-height: 1.5;
+	  font-weight: $font-weight-regular;
+		&.medium {
+			font-weight: $font-weight-medium;
+		}
+	}
+	
+
+// –––––––––––––––––––––––––––––– Header ––––––––––––––––––––––––––––––
+header#top {
+
+}
+
+
+// –––––––––––––––––––––––––––––– Content ––––––––––––––––––––––––––––––
+div#content {
+
+	// –––––––––––––––––––– Content-Align ––––––––––––––––––––
+	.all-link {
+		align-self: flex-end;
+	}
+
+
+	// –––––––––––––––––––––––––––––– Flickity Slider ––––––––––––––––––––––––––––––
+	section.sliders {
+		.slider {
+			.slider-item {
+				.panel {
+					border-radius: 0;
+					overflow: hidden;
+
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+

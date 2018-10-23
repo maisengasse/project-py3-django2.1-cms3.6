@@ -1,0 +1,15 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+
+  vars:
+    app_user: theproject
+    project_name: theproject
+    project_domain: theproject.at
+    home_dir: /home/theproject
+    db_name: theproject
+    db_user: theproject
+    db_password: ''
+
+  roles:
+    - mynet

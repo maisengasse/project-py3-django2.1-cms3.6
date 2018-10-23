@@ -1,0 +1,80 @@
+---
+- set_fact: www_dir="/var/www/html" 
+
+- set_fact: apache_user="www-data" 
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' 
+
+- set_fact: apache_grp="www-data" 
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' 
+
+- set_fact: apache_daemon="apache2" 
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' 
+
+# - set_fact: apache_user="apache" 
+#   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' 
+
+# - set_fact: apache_grp="apache" 
+#   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' 
+
+# - set_fact: apache_daemon="httpd" 
+#   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' 
+
+#################################
+############# Debian, Ubuntu, ...
+- name: Install needed packages (apt)
+  apt: pkg={{ item }} state=present
+  with_items:
+    - apache2
+    - libapache2-mod-wsgi
+    - libapache2-mod-xsendfile
+
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+# Apache Modules
+- name: enable modules
+  apache2_module: state=present name={{ item }}
+  with_items:
+    - wsgi
+    - rewrite
+    - expires
+    - deflate
+    - xsendfile
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+
+# Apache Config / Virtualhosts
+- name: copy apache config
+  template: src=default.conf dest=/etc/apache2/sites-available/000-default.conf owner=root group=root mode=0644
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: restart apache (debian*)
+  service: name=apache2 state=restarted enabled=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+
+####################################
+############# Fedora, Redhat, CentOS
+# - name: Install needed packages (yum)
+#   yum: pkg={{ item }} state=present
+#   with_items:
+#     - httpd
+#   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+# # #- name: copy default config
+# # #  copy: src=httpd_conf_centos.conf dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=0644
+# # #  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+# - name: copy default vhost config
+#   template: src=default.conf dest=/etc/httpd/conf.d/000_default_vhost.conf owner=root group=root mode=0644
+#   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+# - name: enable http on firewall
+#   firewalld: service=http permanent=true state=enabled
+#   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+#   notify:
+#     - restart firewalld
+#   ignore_errors: true
+
+# - name: restart httpd (redhat*)
+#   service: name=httpd state=restarted enabled=yes
+#   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

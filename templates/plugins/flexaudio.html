@@ -1,0 +1,47 @@
+{% extends 'plugins/flexpluginbase.html' %}
+{% load project_tags sekizai_tags static imagesize_tags %}
+{% block as_section %}
+{% endblock %}
+
+{% block as_column %}
+    {% if instance.title %}
+        <h4>{{ instance.title }}</h4>
+    {% endif %}
+
+    <figure id="audio{{ instance.id }}-image" class="audio" style="cursor:pointer">
+    {% with relation=instance.image.relations.0 image=instance.image.image  %}
+        <img {% if relation.border %}class="border"{% endif %}
+             {{ image|srcset:'fleximage' }} alt="{{ instance.title }}">
+            <span class="icon"></span>
+        {% if relation.caption or instance.caption %}
+            <p class="caption">{{ relation.caption|safe }}</p>
+        {% endif %}
+        {% if instance.subtitle %}
+            <p>{{ instance.subtitle }}</p>
+        {% endif %}
+    {% endwith %}
+    </figure>
+
+    <audio id="audio{{ instance.id }}" src="{{ instance.file.url }}" preload="auto"></audio>
+    {% addtoblock 'js' %}
+        <script src="{% static 'passivhaus/lib/audiojs/audio.js' %}" type="text/javascript"></script>
+        <script>
+          audiojs.events.ready(function() {
+            var audio = $('#audio{{ instance.id }}');
+            var col = audio.closest('.file');
+
+            var image = $('#audio{{ instance.id }}-image');
+            var player = audiojs.create(audio[0]);
+
+            image.on('mouseenter', function() {
+                player.play();
+            });
+            image.on('mouseleave', function() {
+                player.pause();
+            });
+
+            col.find('.audiojs').hide();
+          });
+        </script>
+    {% endaddtoblock %}
+{% endblock %}

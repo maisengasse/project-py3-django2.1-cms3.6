@@ -1,0 +1,40 @@
+{% load i18n static compress rps2_core rps2_waste rps2_accounts %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {% compress css %}
+        <link media="all" rel="stylesheet" type="text/less" href="{{ MEDIA_URL }}v2/bootstrap/less/toolkit-light.less" />
+        <link media="all" rel="stylesheet" type="text/less" href="{{ MEDIA_URL }}v2/css/print.less" />
+    {% endcompress %}
+
+    {% if COMPRESS_PRECOMPILED %}
+        <link media="all" rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}v2/bootstrap/dist/toolkit-light.css?v={{ VERSION }}" />
+        <link media="print" rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}v2/css/print.css?v={{ VERSION }}" />
+    {% endif %}
+
+
+        <style type="text/css" media="print">
+            .noprint { display:none };
+        </style>
+
+        {% block head %}
+        <title>Drucken</title>
+        {% endblock %}
+
+    </head>
+    <body class="printbase">
+        <div class="container-fluid container-fluid-spacious">
+        {% block body %}
+        {% endblock %}
+        </div>
+        {% block autoprint %}
+        <script type="text/javascript">
+            /*window.print();*/
+        </script>
+        {% endblock %}
+    </body>
+</html>

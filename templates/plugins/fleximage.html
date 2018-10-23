@@ -1,0 +1,121 @@
+{% extends 'plugins/flexpluginbase.html' %}
+{% load project_tags imagesize_tags %}
+{% block as_section %}
+    {% if instance.title or instance.subtitle %}
+    <div class="row hyphenate">
+        <div class="col-md-12">
+        {% if instance.title %}
+            <h2>{{ instance.title }}</h2>
+        {% endif %}
+        {% if instance.subtitle %}
+            <h3>{{ instance.subtitle }}</h3>
+        {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            {% if instance.images.count > 1 %}
+                <figure>
+                  <div data-slickslider>
+                    {% for relation in instance.images.relations %}
+                        {% with image=relation.image %}
+                        <div{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
+                            <img {% if relation.border %}class="border"{% endif %}
+                                 {{ image|srcset:'fleximage-one' }} alt="{{ image }}" />
+                            {% if relation.caption or instance.caption %}
+                                <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
+                            {% endif %}
+                        </div>
+                        {% endwith %}
+                    {% endfor %}
+                  </div>
+                </figure>
+            {% else %}
+                {% if instance.link %}
+                    <a href="{{ instance.link }}" title="{{ instance.title|default:"" }}">
+                {% endif %}
+                    <figure>
+                    {% with relation=instance.images.relations.0 image=instance.images.image  %}
+                        <img {% if relation.border %}class="border"{% endif %}
+                             {{ image|srcset:'fleximage-one' }} alt="{{ instance.title }}" />
+                        {% if relation.caption or instance.caption %}
+                            <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
+                        {% endif %}
+                    {% endwith %}
+                    </figure>
+                {% if instance.link %}
+                </a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock as_section %}
+
+{% block as_column %}
+    {% if in_gallery %}
+        {% for relation in instance.images.relations %}
+            {% with image=relation.image %}
+            <li{% if relation.caption or image.caption %} class="captioned"{% endif %}>
+                {% if instance.link %}
+                    <a href="{{ instance.link }}" title="{{ instance.title|default:"" }}">
+                {% endif %}
+                {% if in_ad_gallery %}
+                <img {% if relation.border %}class="border"{% endif %}
+                     {{ image|srcset:'fleximage-hq' }} alt="{{ image }}" />
+                {% else %}
+                <img {% if relation.border %}class="border"{% endif %}
+                     {{ image|srcset:'fleximage-one' }} alt="{{ image }}" />
+                {% endif %}
+                {% if instance.link %}
+                </a>
+                {% endif %}
+                {% if relation.caption or instance.caption %}
+                    <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
+                {% endif %}
+            </li>
+            {% endwith %}
+        {% endfor %}
+    {% else %}
+        {% if instance.title %}
+            <h4>{{ instance.title }}</h4>
+        {% endif %}
+        {% if instance.images.count > 1 %}
+            <figure>
+              <div data-slickslider>
+                {% for relation in instance.images.relations %}
+                    {% with image=relation.image %}
+                    <div{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
+                        <img {% if relation.border %}class="border"{% endif %}
+                             {{ image|srcset:'fleximage' }} alt="{{ image }}" />
+                        {% if relation.caption or instance.caption %}
+                            <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
+                        {% endif %}
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+              </div>
+            </figure>
+        {% else %}
+            {% if instance.link %}
+                <a href="{{ instance.link }}" class="imgHover" title="{{ instance.title|default:"" }}">
+            {% endif %}
+                <figure>
+                {% with relation=instance.images.relations.0 image=instance.images.image  %}
+                    <img {% if relation.border %}class="border"{% endif %}
+                         {{ image|srcset:'fleximage' }} alt="{{ instance.title }}">
+                    {% if relation.caption or instance.caption %}
+                        <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
+                    {% endif %}
+                    {% if instance.subtitle %}
+                        <p>{{ instance.subtitle }}</p>
+                    {% endif %}
+                {% endwith %}
+                </figure>
+            {% if instance.link %}
+            </a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+{% endblock as_column %}

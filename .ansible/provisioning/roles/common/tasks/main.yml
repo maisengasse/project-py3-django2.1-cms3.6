@@ -1,0 +1,50 @@
+---
+###############################################################################
+############# Debian, Ubuntu, ...
+- name: update apt
+  apt: update_cache=yes cache_valid_time=3600
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install needed packages (apt)
+  apt: pkg={{ item }} state=present
+  with_items:
+    # general stuff
+    - git
+    - curl
+    - language-pack-de-base
+    - python-dev
+    - python-pip
+    - python-virtualenv
+    - build-essential
+    - libssl-dev
+    - libjpeg-dev
+    - libtiff-dev
+    - zlib1g-dev
+    - libfreetype6-dev
+    - liblcms2-dev
+    - libldap2-dev
+    - gettext
+    - memcached
+    - unzip
+    - libffi-dev
+    - node-less
+    # - node-stylus
+
+- name: restart memcached
+  service: name=memcached state=restarted
+
+# - name: Add project group
+#   group: "name={{ app_grp }} state=present"
+#   when: not deployment
+
+# - name: Add project user
+#   user: "name={{ app_user }} generate_ssh_key=yes group={{ app_grp }} state=present shell=/bin/bash groups=sudo"
+#   when: not deployment
+
+# - name: Create .ssh directory
+#   file: "path={{ home_dir }}/.ssh owner={{ app_user }} group={{ app_grp }} mode=0700 state=directory"
+#   when: not deployment
+
+# - name: Copy Vagrant Authorized Keys
+#   copy: "src=/home/vagrant/.ssh/authorized_keys dest={{ home_dir }}/.ssh/authorized_keys owner={{ app_user }} group={{ app_grp }} mode=0600"
+#   when: not deployment

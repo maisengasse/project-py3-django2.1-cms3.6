@@ -1,0 +1,38 @@
+{% extends 'plugins/flexpluginbase.html' %}
+{% load project_tags flex_tags cms_tags i18n cmstools_tags %}
+{% block as_section %}
+    <div class="row hyphenate">
+        <div class="col-md-12">
+        {% if instance.title %}
+            <h2>{{ instance.title }}</h2>
+        {% elif request.toolbar.edit_mode %}
+            <p><em style="color:#666;font-style:italic;">(Mehrspalter bearbeiten)</em></p>
+        {% endif %}
+        {% if instance.subtitle %}
+            <h3>{{ instance.subtitle }}</h3>
+        {% endif %}
+        </div>
+    </div>
+    <div class="row matchHeight columns{% if instance.borderless %} noMargin{% endif %}">
+    {% with in_section=1 %}
+        {% for plugin in instance.child_plugin_instances %}
+            {% with gridwidth=instance|flex_gridwidth:forloop.counter0  %}
+            <div class="{% filter reduce_whitespace %}col-md-{{ gridwidth }}
+                        {% if gridwidth <= 6 %}
+                            col-sm-6 col-xs-12
+                        {% else %}
+                            col-sm-12 col-xs-12
+                        {% endif %}
+                        col-xxs-12
+                        {{ plugin.col_css }}{% endfilter %}">
+                {% render_plugin plugin %}
+            </div>
+            {% endwith %}
+        {% endfor %}
+    {% endwith %}
+    </div>
+{% endblock as_section %}
+
+{% block as_column %}
+    Missing Template.
+{% endblock as_column %}

@@ -1,0 +1,13 @@
+---
+ - name: Create Deploy directory
+   file: "path={{ project_dir }}/provider owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+
+ - name: Copying the Config Files
+   template: "src={{ provider }}/{{ item }} dest={{ project_dir }}/provider/{{ item }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_items:
+     - .my.cnf
+     - manage.py
+     - production.py
+     - project.conf
+     - project.wsgi
+   when: setup_provider

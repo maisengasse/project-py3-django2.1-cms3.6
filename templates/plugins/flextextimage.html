@@ -1,0 +1,48 @@
+{% load imagesize_tags project_tags %}
+{% if not in_section %}
+    Missing template for {{ instance }} in {{ placeholder }}.
+{% else %}
+    {% if instance.images.count > 1 %}
+        <figure>
+          <div data-slickslider>
+            {% for relation in instance.images.relations %}
+                {% with image=relation.image %}
+                <div{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
+                    <img {% if relation.border %}class="border"{% endif %}
+                         {{ image|srcset:'fleximage-one' }} alt="{{ image }}" />
+                    {% if relation.caption or instance.caption %}
+                        <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
+                    {% endif %}
+                </div>
+                {% endwith %}
+            {% endfor %}
+          </div>
+        </figure>
+    {% else %}
+        {% if instance.link %}
+            <a href="{{ instance.link }}" title="{{ instance.title|default:"" }}">
+        {% else %}
+            <a data-fancybox href="{{ instance.images.image|sizeurl:'fancybox' }}" title="{{ instance.title|default:"" }}">
+        {% endif %}
+            <figure>
+            {% with relation=instance.images.relations.0 image=instance.images.image  %}
+                <img {% if relation.border %}class="border"{% endif %}
+                     {{ image|srcset:'fleximage-one' }} alt="{{ instance.title }}" />
+                {% if relation.caption or instance.caption %}
+                    <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
+                {% endif %}
+            {% endwith %}
+            </figure>
+        </a>
+    {% endif %}
+
+    <div class="richtext text-{{ instance.columns }}-columns">
+        {% if instance.title %}
+            <h4>{{ instance.title }}</h4>
+        {% endif %}
+        {% if instance.subtitle %}
+            <h5>{{ instance.subtitle }}</h5>
+        {% endif %}
+        {{ instance.body|richtext }}
+    </div>
+{% endif %}

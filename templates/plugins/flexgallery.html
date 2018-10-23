@@ -1,0 +1,65 @@
+{% extends 'plugins/flexpluginbase.html' %}
+{% load project_tags flex_tags cms_tags i18n %}
+{% block as_section %}
+{% if placeholder == "ads" %}
+    <div class="row columns">
+        <div class="col-md-12">
+            <figure>
+                <div data-slickslider
+                     data-slider-randomize="1"
+                     data-slider-nopager="1"
+                     data-slider-nocontrols="1"
+                     data-slider-animation="fade"
+                     data-slider-autoplay="4000">
+                {% with in_gallery=1 in_ad_gallery=1 %}
+                    {% for plugin in instance.child_plugin_instances %}
+                        {% render_plugin plugin %}
+                    {% endfor %}
+                {% endwith %}
+                </div>
+            </figure>
+        </div>
+    </div>
+{% else %}
+    <div class="row hyphenate">
+        <div class="col-md-12">
+        {% if instance.title %}
+            <h2>{{ instance.title }}</h2>
+        {% elif request.toolbar.edit_mode %}
+            <p><em style="color:#666;font-style:italic;">(Galerie bearbeiten)</em></p>
+        {% endif %}
+        {% if instance.subtitle %}
+            <h3>{{ instance.subtitle }}</h3>
+        {% endif %}
+        </div>
+    </div>
+    <div class="row columns{% if instance.borderless %} noMargin{% endif %}">
+        <div class="col-md-12">
+            <figure data-toggle="inplace-projects">
+                <div data-slickslider>
+                {% with in_gallery=1 %}
+                    {% for plugin in instance.child_plugin_instances %}
+                        {% render_plugin plugin %}
+                    {% endfor %}
+                {% endwith %}
+                </div>
+            </figure>
+        </div>
+    </div>
+{% endif %}
+{% endblock as_section %}
+
+{% block as_column %}
+    {% if instance.title %}
+        <h4>{{ instance.title }}</h4>
+    {% endif %}
+    <figure>
+        <div data-slickslider>
+        {% with in_gallery=1 %}
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        {% endwith %}
+        </div>
+    </figure>
+{% endblock as_column %}

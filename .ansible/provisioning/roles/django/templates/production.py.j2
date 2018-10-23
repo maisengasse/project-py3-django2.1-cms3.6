@@ -1,0 +1,45 @@
+from base import *
+
+DEBUG = True
+TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '{{ project_name }}',
+        'USER': '{{ db_user }}',
+        'PASSWORD': '{{ db_password }}',
+        'HOST': '127.0.0.1',
+        'PORT': '',
+        'OPTIONS': {
+           "init_command": "SET storage_engine=INNODB",
+        }
+    },
+}
+
+MEDIA_ROOT = '{{ home_dir }}/media'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = '{{ home_dir }}/static/'
+STATIC_URL = '/static/'
+
+CMS_PAGE_CACHE = False
+CMS_PLACEHOLDER_CACHE = False
+CMS_PLUGIN_CACHE = False
+
+PORTAL_URL = '{{ project_domain }}'
+
+STATICFILES_DIRS = (
+    #os.path.join(BASE_DIR, 'static'),
+)
+
+# NEWSLETTER_PORTAL_URL = PORTAL_URL
+# NEWSLETTER_MEDIA_URL = STATIC_URL + '{{ project_name }}/newsletter/'
+# NEWSLETTER_INCLUDE_UNSUBSCRIPTION = False
+# NEWSLETTER_DEFAULT_HEADER_REPLY = "Newsletter <newsletter@{{ project_domain }}>"
+# NEWSLETTER_DEFAULT_HEADER_SENDER = "Newsletter <newsletter@{{ project_domain }}>"
+# NEWSLETTER_HTML_TEMPLATE = "mailings/newsletter_content.html"
+# NEWSLETTER_TEXT_TEMPLATE = "mailings/newsletter_content_text.txt"
+
+#CSRF_COOKIE_DOMAIN = "mynet.at"
+ALLOWED_HOSTS = '*'
