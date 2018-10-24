@@ -15,9 +15,6 @@
     - git
     - curl
     - language-pack-de-base
-    # - python-dev
-    # - python-pip
-    # - python-virtualenv
     - build-essential
     - libssl-dev
     - libjpeg-dev

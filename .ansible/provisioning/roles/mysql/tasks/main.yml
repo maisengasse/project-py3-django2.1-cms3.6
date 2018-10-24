@@ -6,6 +6,7 @@
   with_items:
     - mariadb-server
     - libmariadb-client-lgpl-dev
+    - python-mysqldb
     - python3-mysqldb
 
 - name: Create mysql_config symlink
