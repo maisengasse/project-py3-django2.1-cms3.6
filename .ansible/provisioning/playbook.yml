@@ -6,4 +6,4 @@
     - apache
     - mysql
     - django
-    - provider
+    # - provider

@@ -5,13 +5,19 @@
   apt: name={{ item }} state=present
   with_items:
     - mariadb-server
-    - libmariadbclient-dev
-    - python-mysqldb
+    - libmariadb-client-lgpl-dev
+    - python3-mysqldb
+
+- name: Create mysql_config symlink
+  file:
+    src: "/usr/bin/mariadb_config"
+    dest: "/usr/bin/mysql_config"
+    state: link
 
 - name: Update MySQL root password for all root accounts
-  mysql_user: 
-      name: root 
-      host: "{{ item }}" 
+  mysql_user:
+      name: root
+      host: "{{ item }}"
       password: "{{ db_root_password }}"
       login_user: root
       login_password: "{{ db_root_password }}"

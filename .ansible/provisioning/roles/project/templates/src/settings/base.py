@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.sites',
 
-    'maisen.cmstools.adminstyle',
+    #'maisen.cmstools.adminstyle',
     'djangocms_admin_style',  # for the admin skin. You **must** add 'djangocms_admin_style' in the list **before** 'django.contrib.admin'.
     'django.contrib.admin',
 
@@ -64,14 +64,14 @@ INSTALLED_APPS = [
     'codemirror2',
     'bootstrap3',
 
-    'maisen.cmstools',
-    'maisen.cmstools.filerpool',
-    # 'maisen.cmstools.downloads',
-    'maisen.cmstools.editables',
+    #'maisen.cmstools',
+    #'maisen.cmstools.filerpool',
+    # #'maisen.cmstools.downloads',
+    #'maisen.cmstools.editables',
 
     #plugins
-    # 'maisen.cmstools.workflows',
-    # 'maisen.cmstools.plugins.flex',
+    # #'maisen.cmstools.workflows',
+    # #'maisen.cmstools.plugins.flex',
 
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
@@ -94,8 +94,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'maisen.cmstools.middleware.ResolveInternalLinksMiddleware',
-    'maisen.cmstools.middleware.FixLinkTargetsMiddleware',
+    #'maisen.cmstools.middleware.ResolveInternalLinksMiddleware',
+    #'maisen.cmstools.middleware.FixLinkTargetsMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
@@ -282,7 +282,7 @@ THUMBNAIL_ALIASES = {
     },
 }
 #retina aliases
-for name, alias in THUMBNAIL_ALIASES[''].items():
+for name, alias in THUMBNAIL_ALIASES[''].copy().items():
     props = alias.copy()
     props['size'] = (alias['size'][0]*2, alias['size'][1]*2)
     props['upscale'] = True
@@ -298,8 +298,8 @@ THUMBNAIL_PROCESSORS = (
 )
 
 CMSTOOLS_INTERNALLINKS_HANDLERS = [
-    'maisen.cmstools.internallinks.InternalPageLinks',
-    'maisen.cmstools.filerpool.models.InternalDownloadLinks',
+    #'maisen.cmstools.internallinks.InternalPageLinks',
+    #'maisen.cmstools.filerpool.models.InternalDownloadLinks',
     '{{ project_name }}.views.InternalActionsLinks',
 ]
 
