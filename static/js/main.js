@@ -22,7 +22,6 @@ maisen.commands = {
         this.cmd('slickSlider', "[data-slickslider]");
         this.cmd('targetBlank', 'a[data-target-blank]');
         this.cmd('scrollToID', 'a[href^=#]');
-        this.cmd('lazyLoadImages', 'img[data-original]');
         this.cmd('clientSideInclude', '*[data-csi]');
         this.runAdditional(this.context);
     },
@@ -57,13 +56,6 @@ maisen.commands = {
             var loaded = node.children();
             loaded.unwrap();
             maisen.commands.run(loaded);
-        });
-    },
-    lazyLoadImages : function(node) {
-        var src = node.attr('data-original');
-        node.attr('data-original', src);
-        node.lazyload({
-            effect : 'fadeIn'
         });
     },
     scrollToID : function(node) {
