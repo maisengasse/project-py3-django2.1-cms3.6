@@ -28,7 +28,7 @@ def search(request, template='search/search.html', results_per_page=20):
 
     try:
         page = paginator.page(int(request.GET.get('page', 1)))
-    except InvalidPage:
+    except (InvalidPage,):
         raise Http404("No such page of results!")
 
     context = {

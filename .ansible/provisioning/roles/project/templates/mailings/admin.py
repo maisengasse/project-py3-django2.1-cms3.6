@@ -64,7 +64,7 @@ class NewsletterAdmin(DefaultNewsletterAdmin):
 
         try:
             mailing = instance.mailing
-        except Mailing.DoesNotExist:
+        except (Mailing.DoesNotExist,):
             mailing = Mailing(newsletter=instance)
             mailing.save()
 

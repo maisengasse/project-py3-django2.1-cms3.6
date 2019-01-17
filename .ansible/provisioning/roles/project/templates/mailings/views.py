@@ -132,7 +132,7 @@ def unsubscription_form(request, template='mailings/unsubscription_form.html'):
                 for mlist in MailingList.objects.all():
                     mlist.subscribers.remove(contact)
                 contact.save()
-            except Contact.DoesNotExist:
+            except (Contact.DoesNotExist,):
                 pass
             return HttpResponseRedirect(reverse('newsletter:unsubscription_thanks'))
 

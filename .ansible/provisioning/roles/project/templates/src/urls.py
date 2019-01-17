@@ -38,7 +38,6 @@ urlpatterns = [
     # url(r'^translate/', include('rosetta.urls')),
     url(r'^admin/linktree/?$', cmstools_views.linktree),
     url(r'^filerpool/', include(filerpool_urls)),
-    url(r'^downloads/', include(downloads_urls)),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^sitemap\.xml$', sitemap_views.sitemap,

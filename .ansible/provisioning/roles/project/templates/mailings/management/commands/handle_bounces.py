@@ -78,7 +78,7 @@ class Command(BaseCommand):
                             sub = NLSubscription.objects.get(email=email)
                             unsubscribe_subscription(sub)
                             print "[DELETE] removed subscription: %s" % email
-                        except NLSubscription.DoesNotExist:
+                        except (NLSubscription.DoesNotExist,):
                             print "[SKIP] subscription does not exist: %s" % email
                     else:
                         print "[FOUND] Bounced %s" % email

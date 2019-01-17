@@ -4,7 +4,8 @@ from django.conf.urls import url
 from cms.apphook_pool import apphook_pool
 from django.utils.translation import ugettext_lazy as _
 
-import views
+from {{ project_name }} import views
+
 class InquiryApphook(CMSApp):
     name = _(u'Anfrageformular')
     urls = [

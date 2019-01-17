@@ -18,7 +18,7 @@ def index_plugins(placeholder):
             out = "\n".join(out)
         else:
             out = ""
-    except NoReverseMatch:
+    except (NoReverseMatch,):
         out = ""
     return mark_safe(unescape(striptags2(out)).strip())
 
@@ -28,7 +28,7 @@ def result_url(result):
     if result:
         try:
             return result.object.get_public_url()
-        except AttributeError:
+        except (AttributeError,):
             return result.object.get_absolute_url()
     return ""
 

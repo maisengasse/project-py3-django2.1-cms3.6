@@ -66,7 +66,7 @@ class Command(BaseCommand):
                 for prop in props:
                     try:
                         c, u, i = self.import_contact(prop, identifier, LOGLEVEL)
-                    except Database.Warning, e:
+                    except (Database.Warning,) as e:
                         if LOGLEVEL <= 2:
                             print "[IGNORE] DB Warning: %s: %s" % (prop.get('import_id', prop['email']), e.message)
                         c, u, i = 0, 0, 1

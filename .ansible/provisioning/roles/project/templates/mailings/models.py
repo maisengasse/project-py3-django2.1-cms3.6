@@ -62,7 +62,7 @@ class Mailing(models.Model):
 #         #         if instance.body:
 #         #             try:
 #         #                 html += richtext(subtitle(maintitle(instance.body, 'h2'), 'h3'))
-#         #             except UnicodeDecodeError, e:
+#         #             except (UnicodeDecodeError,) as e:
 #         #                 html += u"<p><b>Fehler beim Konvertieren von '%s':</b> %s</p>" % (instance, e)
 #         return html
 

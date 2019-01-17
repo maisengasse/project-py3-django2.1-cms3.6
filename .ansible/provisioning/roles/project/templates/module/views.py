@@ -35,7 +35,7 @@ def {{ item[0].module_name }}_list(request):
 
     try:
         current_page = pager.page(page)
-    except EmptyPage:
+    except (EmptyPage,) as e:
         return HttpResponseRedirect(request.path)
 
     return render(request, 'views/{{ item[0].module_name }}_list.html', locals())

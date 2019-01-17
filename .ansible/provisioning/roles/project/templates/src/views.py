@@ -33,7 +33,7 @@ class InternalActionsLinks(InternalLinkHandler):
             if hasattr(url, '__call__'):
                 url = url()
             return url
-        except Exception, e:
+        except (Exception,) as e:
             return '#'
 
     def get_tree(self):
