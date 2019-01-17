@@ -1,0 +1,20 @@
+{% load project_tags %}
+<article class="text">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-12 col-sm-8 col-md-9">
+                {% if instance.title %}
+                    <h2>{{ instance.title }}</h2>
+                {% endif %}
+            </div>
+            {% if instance.link %}
+            <div class="d-none d-sm-flex col-sm-4 col-md-3 justify-content-end">
+                <a class="more" href="{{ instance.link }}" target="_blank">{{ instance.link_label|default:'Mehr erfahren' }}</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="richtext text-{{ instance.display }}">
+            {{ instance.body|richtext }}
+        </div>
+    </div>
+</article>

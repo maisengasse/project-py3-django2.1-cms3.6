@@ -1,0 +1,34 @@
+{% load project_tags imagesize_tags %}
+<article class="imagewithtext" {% if request.current_page.reverse_id != 'rent' %} data-aos="fade-up"{% endif %}>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-6 {% if instance.display == "right" %} order-md-2{% endif %}">
+			    <figure data-slickslider data-slickslider-arrows data-slickslider-dots="0">
+			        {% for relation in instance.images.relations %}
+			            {% with image=relation.image %}
+			            <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
+			                <img data-animate="zoom" {% if relation.border %}class="border"{% endif %}
+			                     {% srcset image 'fleximage' '' sizes='540px' %} alt="{% firstof relation.caption instance.caption image %}" />
+			                {% if relation.caption or instance.caption %}
+                                <figcaption>{% i18ncaption relation default=instance.caption %}</figcaption>
+			                {% endif %}
+			            </figure>
+			            {% endwith %}
+			        {% endfor %}
+			    </figure>
+			</div>
+			<div class="col-12 col-md-6 my-auto">
+                <div class="card">
+                    {% if instance.title %}
+                        <div class="card-header">
+                            <h2>{{ instance.title|safe }}</h2>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        {{ instance.body|richtext }}
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</article>

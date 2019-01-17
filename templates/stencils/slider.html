@@ -1,0 +1,16 @@
+{% load cms_tags %}
+<div class="slider">
+    <div data-slickslider
+         data-finite
+         {% if instance.show != 1 %}data-slickslider-show="{{ instance.show }}"{% endif %}
+         {% if not instance.dots %}data-slickslider-dots="0"{% endif %}
+         {% if instance.arrows %}data-slickslider-arrows{% endif %}>
+        {% for plugin in instance.child_plugin_instances %}
+            <div>
+            {% with in_slider=1 %}
+                {% render_plugin plugin %}
+            {% endwith %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

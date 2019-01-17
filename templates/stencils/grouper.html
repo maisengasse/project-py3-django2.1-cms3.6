@@ -1,0 +1,24 @@
+{% load cms_tags %}
+<div class="grouper">
+    {% if instance.title or instance.link %}
+        <div class="container">
+            <div class="row">
+                {% if instance.title %}
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <h2>{{ instance.title }}</h2>
+                    </div>
+                {% endif %}
+                {% if instance.link %}
+                    <div class="d-none d-sm-flex col-sm-4 col-md-2 justify-content-end">
+                        <a class="more" href="{{ instance.link }}">{{ instance.link_label|default:'mehr erfahren' }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+    {% for plugin in instance.child_plugin_instances %}
+        {% with in_grouper=1 %}
+            {% render_plugin plugin %}
+        {% endwith %}
+    {% endfor %}
+</div>

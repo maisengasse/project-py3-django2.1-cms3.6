@@ -1,0 +1,31 @@
+{% load imagesize_tags i18n project_tags %}
+<div class="col-12 col-sm d-flex">
+    <div class="card card-background flex-fill">
+        <div class="card-body">
+            <figure>
+                {% if instance.link %}
+                	<a href="{{ instance.link }}">
+                {% endif %}
+    	                <img data-animate="zoom" {% srcset instance.images.image 'fleximage-3to2' sizes="450px" %} alt="{{ instance.title }}">
+            	{% if instance.link %}
+                    </a>
+                {% endif %}
+            </figure>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-12">
+                    {% if instance.title %}
+                        <h3>{{ instance.title }}</h3>
+                    {% endif %}
+                    {% if instance.body %}
+                        {{ instance.body|richtext }}
+                    {% endif %}
+                    {% if instance.link %}
+                        <a href="{{ instance.link }}" class="more">{% trans "Mehr erfahren" %}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

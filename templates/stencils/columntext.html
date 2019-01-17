@@ -1,0 +1,13 @@
+{% load project_tags %}
+<div class="col-12 col-sm d-flex">
+    <div class="card {{ instance.cssclass }} flex-fill">
+        {% if instance.title %}
+            <div class="card-header">
+                <h2>{{ instance.title }}</h2>
+            </div>
+        {% endif %}
+        <div class="card-body">
+            {{ instance.body|richtext }}
+        </div>
+    </div>
+</div>

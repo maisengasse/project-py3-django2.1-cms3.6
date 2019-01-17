@@ -1,0 +1,42 @@
+{% load static project_tags imagesize_tags %}
+{% if in_group %}
+    {% if highlight_count > 4 %}
+    <div class="col-6 col-sm-4 col-md-2">
+    {% else %}
+    <div class="col-6 col-sm-6 col-md-3">
+    {% endif %}
+        <div class="inner">
+            <figure>
+                <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
+                {# <img {% srcset instance.images.image 'fleximage' sizes="400px" %} alt="{{ instance.title }}"> #}
+            </figure>
+            {% if instance.title %}
+                <h4>{{ instance.title }}</h4>
+            {% endif %}
+            <div class="richtext">
+                {{ instance.body|richtext }}
+            </div>
+        </div>
+    </div>
+{% else %}
+    <article class="highlight">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6 col-md-2 my-auto">
+                    <figure>
+                        <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
+                        {# <img {% srcset instance.images.image 'fleximage' sizes="400px" %} alt="{{ instance.title }}"> #}
+                    </figure>
+                </div>
+                <div class="col-12 col-md-10 my-auto">
+                    {% if instance.title %}
+                        <h3 class="text-center text-sm-left">{{ instance.title }}</h3>
+                    {% endif %}
+                    <div class="richtext">
+                        {{ instance.body|richtext }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+{% endif %}
