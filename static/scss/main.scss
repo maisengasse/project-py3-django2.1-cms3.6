@@ -5,7 +5,7 @@
 @import "hamburgers";
 
 // Import all Bootstrap styles
-@import "../bootstrap/scss/bootstrap";
+@import "../lib/bootstrap/scss/bootstrap";
 
 // –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
 html {
@@ -54,7 +54,7 @@ body {
 		line-height: 1.14em;
 		color: $primary;
 		font-weight: $font-weight-regular;
-		letter-spacing: -1px;	
+		letter-spacing: -1px;
 	}
 
 	h3 {
@@ -73,7 +73,7 @@ body {
 			font-weight: $font-weight-medium;
 		}
 	}
-	
+
 
 // –––––––––––––––––––––––––––––– Header ––––––––––––––––––––––––––––––
 header#top {
