@@ -26,7 +26,6 @@ from django.contrib.sitemaps import views as sitemap_views
 from cms import urls as cms_urls
 # from ckeditor import urls as ckeditor_urls
 from maisen.cmstools.filerpool import urls as filerpool_urls
-from maisen.cmstools.downloads import urls as downloads_urls
 from maisen.cmstools import views as cmstools_views
 
 from {{ project_name }} import views as {{ project_name }}_views

@@ -131,7 +131,8 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'maisen.cmstools.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.mysql',
         'NAME': '{{ project_name }}',
         'USER': '{{ project_name }}',
         'PASSWORD': '',

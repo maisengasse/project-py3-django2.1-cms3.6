@@ -30,5 +30,8 @@
     - ::1
     - localhost
 
+- name: Global mysql config
+  template: "src=my.cnf.server.j2 dest=/etc/my.cnf owner=root group=root mode=0664"
+
 - name: Start Mysql Service
   service: name=mysql state=started enabled=true

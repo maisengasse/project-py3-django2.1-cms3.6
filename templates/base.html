@@ -1,4 +1,4 @@
-{% load compress static cms_tags menu_tags sekizai_tags editables_tags i18n project_tags %}
+{% load compress static cms_tags menu_tags sekizai_tags i18n project_tags %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
@@ -50,10 +50,10 @@
                 {# <link rel="stylesheet" type="text/css" href="{% static 'platforma/css/main.css' %}" /> #}
                 {# <link rel="stylesheet" type="text/css" href="{% static 'platforma/css/flickity.css' %}" /> #}
                 {# Bootstrap Grid #}
-                <link type="text/x-scss" href="{% static 'appproject/bootstrap/scss/bootstrap.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'project/bootstrap/scss/bootstrap.scss' %}" rel="stylesheet" />
                 {# Slider #}
                 {# Project Styling #}
-                <link type="text/x-scss" href="{% static 'appproject/scss/main.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'project/scss/main.scss' %}" rel="stylesheet" />
             {% endcompress %}
         {% endblock css %}
 
@@ -107,8 +107,8 @@
         {% block js %}
 
             {% compress js %}
-                <script src="{% static 'appproject/bootstrap/js/bootstrap.bundle.js' %}"></script>
-                <script src="{% static 'appproject/js/main.js' %}"></script>
+                <script src="{% static 'project/bootstrap/js/bootstrap.bundle.js' %}"></script>
+                <script src="{% static 'project/js/main.js' %}"></script>
                 {# // <script src="{% static 'platforma/js/flickity.js' %}"></script> #}
             {% endcompress %}
 
