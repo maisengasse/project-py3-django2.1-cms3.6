@@ -5,7 +5,7 @@
             {% with image=relation.image %}
             <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
                 <img {% if relation.border %}class="border"{% endif %}
-                     {{ image|srcset:'fleximage-one-cropped' }} alt="{% firstof relation.caption instance.caption image %}" />
+                     {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
                 {% if relation.caption or instance.caption %}
                     <figcaption>{% i18ncaption relation default=instance.caption %}</figcaption>
                 {% endif %}

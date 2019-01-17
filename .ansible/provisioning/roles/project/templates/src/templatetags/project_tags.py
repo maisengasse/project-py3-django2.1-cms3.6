@@ -84,3 +84,15 @@ def seo_image(context):
     else:
         image = Image.objects.get(id=settings.DEFAULT_SEO_IMAGE)
     return sizeurl(image, 'ogimage')
+
+
+@register.simple_tag(takes_context=True)
+def i18ncaption(context, relation, default="", prop="caption"):
+    i18nprop = prop
+    lang = context['request'].LANGUAGE_CODE
+    if lang != 'de':
+        i18nprop = prop+'_'+lang
+    val = relation.get(i18nprop)
+    if not val:
+        val = relation.get(prop)
+    return mark_safe(val or default)
