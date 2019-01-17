@@ -1,6 +1,6 @@
 {% load static imagesize_tags project_tags %}
 <article class="gallery">
-    <figure{% if not in_slider %} data-slickslider data-slickslider-arrows{% endif %}>
+    <figure{% if not in_slider %} data-slickslider{% endif %}>
         {% for relation in instance.images.relations %}
             {% with image=relation.image %}
             <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>

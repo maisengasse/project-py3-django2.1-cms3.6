@@ -43,7 +43,7 @@
         {% endblock critical-css %}
 
         {% block js-top %}
-            <script src="{% static 'project/js/lib/modernizr/modernizr.js' %}"></script>
+            <script src="{% static 'project/lib/modernizr/modernizr.js' %}"></script>
         {% endblock js-top %}
 
         <title>{% block title %}{% page_attribute 'page_title' %} | Title {% endblock title %}</title>
@@ -93,12 +93,13 @@
             {% compress css %}
                 <link type="text/css" href="{% static 'project/lib/fancybox/jquery.fancybox.css' %}" rel="stylesheet" />
                 <link type="text/x-scss" href="{% static 'project/lib/slick/slick.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'project/lib/slick/slick-theme.scss' %}" rel="stylesheet" />
                 <link type="text/x-scss" href="{% static 'project/scss/main.scss' %}" rel="stylesheet" />
             {% endcompress %}
         {% endblock css %}
 
         {% block js %}
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             {% compress js %}
                 <script src="{% static 'project/lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
                 <script src="{% static 'project/lib/slick/slick.js' %}"></script>

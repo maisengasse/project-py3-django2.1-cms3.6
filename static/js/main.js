@@ -21,7 +21,7 @@ maisen.commands = {
         this.cmd('fancyBox', "[data-fancybox]");
         this.cmd('slickSlider', "[data-slickslider]");
         this.cmd('targetBlank', 'a[data-target-blank]');
-        this.cmd('scrollToID', 'a[href^=#]');
+        this.cmd('scrollToID', 'a[href^="#"]');
         this.cmd('clientSideInclude', '*[data-csi]');
         this.runAdditional(this.context);
     },
@@ -72,13 +72,15 @@ maisen.commands = {
     },
     slickSlider : function(node) {
         var cfg = {
-            arrows : node.is('[data-slickslider-arrows]') != "0",
+            arrows : node.attr('data-slickslider-arrows') != "0",
             dots : node.attr('data-slickslider-dots') != "0",
             infinite : node.attr('data-slickslider-loop') != "0",
             adaptiveHeight : true,
             cssEase: 'ease',
             useTransform: true,
         };
+
+        console.log(cfg)
 
         if ($(window).width() > 767) {
             if (node.is('[data-slickslider-centered]')) {
