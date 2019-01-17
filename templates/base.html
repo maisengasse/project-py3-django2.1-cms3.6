@@ -7,9 +7,6 @@
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-
-            <meta name="keywords" content="{% page_attribute 'meta_keywords' %}">
-            <meta name="description" content="{% page_attribute 'meta_description' %}">
             <meta name="author" content="Author.">
             <meta name="robots" content="all">
             <meta name="revisit-after" content="31days">
@@ -39,26 +36,14 @@
             {# <link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png"> #}
         {% endblock favicon %}
 
-        {% block fonts %}
-                <link rel="stylesheet" type="text/css" href="{% static 'platforma/fonts/ffdin/ffdin.css' %}" />
-        {% endblock fonts %}
-
-        {% block css %}
+        {% block critical-css %}
             {% compress css %}
-                {# Platforma Styling #}
-                {# <link rel="stylesheet" type="text/css" href="{% static 'platforma/css/bootstrap-grid.min.css' %}" /> #}
-                {# <link rel="stylesheet" type="text/css" href="{% static 'platforma/css/main.css' %}" /> #}
-                {# <link rel="stylesheet" type="text/css" href="{% static 'platforma/css/flickity.css' %}" /> #}
-                {# Bootstrap Grid #}
-                <link type="text/x-scss" href="{% static 'project/bootstrap/scss/bootstrap.scss' %}" rel="stylesheet" />
-                {# Slider #}
-                {# Project Styling #}
-                <link type="text/x-scss" href="{% static 'project/scss/main.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'project/scss/critical.scss' %}" rel="stylesheet" />
             {% endcompress %}
-        {% endblock css %}
+        {% endblock critical-css %}
 
         {% block js-top %}
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="{% static 'project/js/lib/modernizr/modernizr.js' %}"></script>
         {% endblock js-top %}
 
         <title>{% block title %}{% page_attribute 'page_title' %} | Title {% endblock title %}</title>
@@ -104,14 +89,22 @@
             {% endblock footer %}
         </footer>
 
-        {% block js %}
-
-            {% compress js %}
-                <script src="{% static 'project/bootstrap/js/bootstrap.bundle.js' %}"></script>
-                <script src="{% static 'project/js/main.js' %}"></script>
-                {# // <script src="{% static 'platforma/js/flickity.js' %}"></script> #}
+        {% block css %}
+            {% compress css %}
+                <link type="text/css" href="{% static 'project/lib/fancybox/jquery.fancybox.css' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'project/lib/slick/slick.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'project/scss/main.scss' %}" rel="stylesheet" />
             {% endcompress %}
+        {% endblock css %}
 
+        {% block js %}
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            {% compress js %}
+                <script src="{% static 'project/lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
+                <script src="{% static 'project/lib/slick/slick.js' %}"></script>
+                <script src="{% static 'project/lib/fancybox/jquery.fancybox.js' %}"></script>
+                <script src="{% static 'project/js/main.js' %}"></script>
+            {% endcompress %}
         {% endblock js %}
         {% render_block "js" %}
 
