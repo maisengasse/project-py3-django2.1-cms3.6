@@ -62,23 +62,25 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'ckeditor',
     'codemirror2',
-    'bootstrap3',
+    'bootstrap4',
 
-    #'maisen.cmstools',
-    #'maisen.cmstools.filerpool',
-    # #'maisen.cmstools.downloads',
-    #'maisen.cmstools.editables',
+    'maisen.cmstools',
+    'maisen.cmstools.filerpool',
+    'maisen.cmstools.editables',
 
     #plugins
-    # #'maisen.cmstools.workflows',
+    'maisen.cmstools.workflows',
     # #'maisen.cmstools.plugins.flex',
+
+    'maisen.cmstools.stencils',
+    # 'maisen.cmstools.stencils.translated',
 
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 
     #newsletter
     # 'emencia.django.newsletter',
-    # '{{ project_name }}.mailings',
+    # 'project.mailings',
 
     '{{ project_name }}',
 ]
@@ -243,6 +245,24 @@ CMS_PLACEHOLDER_CONF = {
     },
 }
 
+STENCILS_ENABLED = [
+    'Slider',
+    'Grouper',
+    'BigText',
+    'BigImage',
+    'BigImageWithText',
+    'ImageWithText',
+    'HighlightGroup',
+    'TeaserGroup',
+    'ImageWithColumnText',
+    'Highlight'
+]
+
+for stencil in STENCILS_ENABLED:
+    CMS_PLACEHOLDER_CONF["content"]["plugins"].append(stencil)
+    CMS_PLACEHOLDER_CONF["content"]["plugin_modules"][stencil] = "Stencils"
+
+
 CMS_SHOW_START_DATE = True
 CMS_SHOW_END_DATE = CMS_SHOW_START_DATE
 CMS_REDIRECTS = True
@@ -274,21 +294,14 @@ CKEDITOR_CONFIGS = {
 THUMBNAIL_ALIASES = {
     '': {
         'photopool'  :     { 'size': (  120,  80), 'crop': False },
-        'fleximage' :      { 'size': (  800,   0), 'crop': False },
-        'fleximage-one' :  { 'size': ( 1200,   0), 'crop': False },
-        'fleximage-hq' :   { 'size': ( 1200,   0), 'crop': False, 'quality' : 100 },
-        'module-detail' :  { 'size': (  800,   0), 'crop': False },
-        'module-list' :    { 'size': (  200,   0), 'crop': False },
-        'module-teaser' :  { 'size': (  600,   0), 'crop': False },
+        'ogimage'  :            { 'size': ( 1200, 630), 'crop': True },
+        'fancybox' :            { 'size': ( 2400,   0), 'crop': False },
+        'fullwidth' :            { 'size': ( 1200,   0), 'crop': False },
     },
 }
-#retina aliases
-for name, alias in THUMBNAIL_ALIASES[''].copy().items():
-    props = alias.copy()
-    props['size'] = (alias['size'][0]*2, alias['size'][1]*2)
-    props['upscale'] = True
-    THUMBNAIL_ALIASES[''][name+'-retina'] = props
 
+PLACEHOLDER_IMAGE_ID = 1
+DEFAULT_SEO_IMAGE = 2
 
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
