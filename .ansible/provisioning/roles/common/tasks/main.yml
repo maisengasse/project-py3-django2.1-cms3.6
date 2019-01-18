@@ -13,6 +13,7 @@
   with_items:
     # general stuff
     - git
+    - subversion
     - curl
     - language-pack-de-base
     - build-essential
