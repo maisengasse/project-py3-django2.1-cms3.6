@@ -110,6 +110,10 @@ p {
 
 }
 
+a {
+    color: $brand-primary;
+}
+
 // –––––––––––––––––––––––––––––– Header ––––––––––––––––––––––––––––––
 header#top {
 
@@ -125,11 +129,33 @@ div#content {
 // –––––––––––––––––––––––––––––– Footer ––––––––––––––––––––––––––––––
 footer#bottom {
 
+    .legal {
+        padding: 15px 0;
+        background-color: $brand-primary;
+        a {
+            color: $white;
+        }
+        .partners {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            text-align: right;
+            li {
+                display: inline-block;
+            }
+            .maisengasse {
+                display: block;
+                width: 43px;
+                height: 30px;
+                background-image: url('../img/maisengasse.svg');
+                background-size: auto 100%;
+                background-repeat: no-repeat;
+                text-indent: 10000px;
+                overflow: hidden;
+                position: relative;
+                top: 3px;
+
+            }
+        }
+    }
 }
-
-
-
-
-
-
-

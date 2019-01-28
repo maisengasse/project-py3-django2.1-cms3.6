@@ -9,6 +9,12 @@ try { maisen = maisen || {};} catch(e){ var maisen = {};}
 maisen.nothing = function() {};
 maisen.init = function() {
     maisen.utils.init();
+
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    
     maisen.commands.run();
 };
 
