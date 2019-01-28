@@ -234,7 +234,7 @@ CMS_TEMPLATES = (
 CMS_PLACEHOLDER_CONF = {
     "content" : {
         "name" : "Inhalt",
-        "plugins" : ('FlexSectionPlugin','FlexTextPlugin', 'FlexCodePlugin', 'FlexImagePlugin', 'FlexTextImagePlugin'),
+        "plugins" : ['FlexSectionPlugin','FlexTextPlugin', 'FlexCodePlugin', 'FlexImagePlugin', 'FlexTextImagePlugin'],
         "plugin_modules" : {
             'FlexDownloadPlugin' : 'Spezial',
             'FlexCodePlugin' : 'Spezial',

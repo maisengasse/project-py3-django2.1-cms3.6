@@ -1,42 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400i");
-@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700");
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i');
 
 body {
-    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
-    color: #000;
+    font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+    color: #404040;
     line-height: 1.55em;
     font-size: 16px;
     background: #fff;
     overflow-x: hidden;
-    text-align: center;
-}
-
-h3 {
-    font-size: 32px;
-    font-family: "Playfair Display", Georgia, "Times New Roman", Times, serif;
-    font-style: italic;
-    text-align: center;
-}
-
-p {
-    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
-    font-size: 1.3em;
-    line-height: 1.5em;
-    text-align: center;
-    font-weight: 400;
-    color: #999999;
-}
-
-.btn-corners {
-  background: #C7AA9C;
-  color: #333;
-  position: relative;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  padding: 14px 17px 13px 15px;
-  text-transform: uppercase;
-  font-size: 1.2em;
-  font-weight: 700;
-  color: #ffffff;
+    text-align: left;
 }

@@ -5,22 +5,12 @@
 // // Variables should follow the `$component-state-property-size` formula for
 // // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
-$brand-secondary-light: #f9423a;
-$brand-secondary: #e30613;
-$brand-secondary-dark: #a6192e;
-$brand-secondary-darker: #76252f;
-$brand-primary-lighter: #009cde;
-$brand-primary-light: #0047b5;
-$brand-primary-dark: #00205b;
-$brand-primary: #164194;
-$white: #ffffff;
-$gray: #e3e3e3;
-$gray-two: #c6c6c6;
-$gray-three: #a8a8a7;
-$gray-four: #878787;
-$gray-five: #646363;
-$text-color: #3c3c3b;
-$gray-blue: #f3f5f9;
+$brand-primary: #297FCA;
+$brand-primary-light: #E4F1FD;
+
+$white: #FFFFFF;
+
+$text-color: #404040;
 
 
 // //
@@ -81,7 +71,7 @@ $gray-blue: #f3f5f9;
 //   "gray-dark":  $gray-800
 // ), $colors);
 
-$primary:       	$brand-primary;
+// $primary:       $brand-primary;
 // $secondary:     $gray-600;
 // $success:       $green;
 // $info:          $cyan;
@@ -230,7 +220,7 @@ $primary:       	$brand-primary;
 // $border-width:                1px;
 // $border-color:                $gray-300;
 
-// $border-radius:               .25rem;
+$border-radius:               		5px;
 // $border-radius-lg:            .3rem;
 // $border-radius-sm:            .2rem;
 

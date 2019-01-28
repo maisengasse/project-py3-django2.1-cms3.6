@@ -5,17 +5,25 @@
     {% else %}
     <div class="col-6 col-sm-6 col-md-3">
     {% endif %}
-        <div class="inner">
-            <figure>
-                <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
-                {# <img {% srcset instance.images.image 'fleximage' sizes="400px" %} alt="{{ instance.title }}"> #}
-            </figure>
-            {% if instance.title %}
-                <h4>{{ instance.title }}</h4>
-            {% endif %}
-            <div class="richtext">
-                {{ instance.body|richtext }}
+        <div class="card">
+            <div class="card-header">
+                <figure>
+                    <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
+                    {# <img {% srcset instance.images.image 'fullwidth' sizes="400px" %} alt="{{ instance.title }}"> #}
+                </figure>
             </div>
+            {% if instance.title or instance.body %}
+                <div class="card-body">
+                    {% if instance.title %}
+                        <h3>{{ instance.title }}</h3>
+                    {% endif %}
+                    {% if instance.body %}
+                        <div class="richtext">
+                            {{ instance.body|richtext }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% else %}
@@ -25,12 +33,12 @@
                 <div class="col-6 col-md-2 my-auto">
                     <figure>
                         <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
-                        {# <img {% srcset instance.images.image 'fleximage' sizes="400px" %} alt="{{ instance.title }}"> #}
+                        {# <img {% srcset instance.images.image 'fullwidth' sizes="400px" %} alt="{{ instance.title }}"> #}
                     </figure>
                 </div>
                 <div class="col-12 col-md-10 my-auto">
                     {% if instance.title %}
-                        <h3 class="text-center text-sm-left">{{ instance.title }}</h3>
+                        <h2 class="text-center text-sm-left">{{ instance.title }}</h2>
                     {% endif %}
                     <div class="richtext">
                         {{ instance.body|richtext }}

@@ -1,13 +1,13 @@
 {% load compress static cms_tags menu_tags sekizai_tags i18n project_tags %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}">
+<html lang="{{ request.LANGUAGE_CODE }}">
     <head>
     {% block head %}
         {% block meta %}
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="author" content="Author.">
+            <meta name="author" content="Project Author">
             <meta name="robots" content="all">
             <meta name="revisit-after" content="31days">
 
@@ -22,9 +22,9 @@
 
             {% block seo_meta %}
                 <meta name="keywords" content="{% page_attribute 'meta_keywords' %}">
-                <meta name="description" content="{% seo_description "" %}">
-                <meta property="og:title" content="{% seo_title ' | '%}" />
-                <meta property="og:description" content="{% seo_description "" %}" />
+                <meta name="description" content="{% seo_description 'Project SEO Description' %}">
+                <meta property="og:title" content="{% seo_title 'Project OG Title'%}" />
+                <meta property="og:description" content="{% seo_description 'Project OG Description' %}" />
             {% endblock seo_meta %}
         {% endblock meta %}
 
@@ -37,6 +37,7 @@
         {% endblock favicon %}
 
         {% block critical-css %}
+            {# <link type="text/css" href="{% static 'project/fonts/fonts.css' %}" rel="stylesheet" /> #}
             {% compress css %}
                 <link type="text/x-scss" href="{% static 'project/scss/critical.scss' %}" rel="stylesheet" />
             {% endcompress %}
@@ -57,16 +58,29 @@
         {% block body %}
             <header id="top">
                 {% block nav %}
-                    <nav class="navbar navbar-expand-lg bg-white">
+                    {% comment %}
+                    <nav class="prenav hidden-sm-down">
                         <div class="container">
-                                <a class="navbar-brand" href="#pablo">Büro Maisengasse</a>
-                                <button class="navbar-toggler navbar-toggler-right hamburger hamburger--collapse" type="button" data-toggle="collapse" data-target="#navbar-platforma" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
-                            <div class="collapse navbar-collapse justify-content-end" id="navbar-platforma">
-                                <ul class="navbar-nav ml-auto">
+                            <div id="prenav-project">
+                                <ul class="prenav-nav justify-content-end">
+                                    {% language_chooser 'navigations/langs.html'%}
+                                    <li><a href="mailto:office@maisengasse.at">office@maisengasse.at</a></li>
+                                    <li><a href="tel:+43544290980‬">+43 5442 90980‬</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    {% endcomment %}
+                    <nav class="navbar navbar-expand-md bg-light">
+                        <div class="container">
+                            <a class="navbar-brand" href="/">Büro Maisengasse</a>
+                            <button class="navbar-toggler navbar-toggler-right hamburger hamburger--collapse" type="button" data-toggle="collapse" data-target="#navbar-project" aria-controls="navbar-project" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbar-project">
+                                <ul class="navbar-nav">
                                     {% show_menu 0 100 100 100 "navigations/main.html" %}
                                 </ul>
                             </div>
@@ -89,6 +103,9 @@
             {% endblock footer %}
         </footer>
 
+        {% block modals %}
+        {% endblock modals %}
+
         {% block css %}
             {% compress css %}
                 <link type="text/css" href="{% static 'project/lib/fancybox/jquery.fancybox.css' %}" rel="stylesheet" />
@@ -104,6 +121,7 @@
                 <script src="{% static 'project/lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
                 <script src="{% static 'project/lib/slick/slick.js' %}"></script>
                 <script src="{% static 'project/lib/fancybox/jquery.fancybox.js' %}"></script>
+                <script src="{% static 'project/lib/objectfit/ofi.js' %}"></script>
                 <script src="{% static 'project/js/main.js' %}"></script>
             {% endcompress %}
         {% endblock js %}

@@ -1,0 +1,171 @@
+// Büro Maisengasse 2019
+
+// –––––––––––––––––––––––––––––– Typography ––––––––––––––––––––––––––––––
+h2 {
+	font-size: 45px;
+	font-weight: $font-weight-medium;
+	color: #297FCA;
+	margin-bottom: 15px;
+}
+
+h3 {
+	font-size: 30px;
+	font-weight: $font-weight-medium;
+}
+
+p {
+	font-size: $font-size-base;
+	line-height: 1.45em;
+}
+
+// –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
+figure.cover-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin-bottom: 0;
+
+	// html.object-fit & {
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+		.slick-list, .slick-track, figure, img {
+			height: 100% !important;
+			margin-bottom: 0;
+		}
+		img {
+			@include object-fit(cover, center);
+			// object-fit: cover;
+		}
+	// }
+}
+
+.card {
+	overflow: hidden;
+	border: none;
+	border-radius: $border-radius;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
+	.card-header,
+	.card-body,
+	.card-footer {
+		padding: 0;
+		background-color: transparent;
+		border: none;
+	}
+	.card-body {
+
+	}
+}
+
+// –––––––––––––––––––––––––––––– All Stencils ––––––––––––––––––––––––––––––
+
+// –––––––––– bigimage / gallery ––––––––––
+article.bigimage {
+	// Imageoverlay
+	// figure {
+	// 	position: relative;
+	// 	&:after {
+	// 		@include pseudo;
+	// 		width: 100%;
+	// 		height: 100%;
+	// 		left: 0;
+	// 		top: 0;
+	// 		background-color: #3C3C3B;
+	// 		opacity: .1;
+	// 	}
+	// }
+}
+
+// –––––––––– bigimage-with-text / fullimage ––––––––––
+article.fullimage {
+	position: relative;
+
+	.card {
+		margin: 200px 0;
+		padding: 60px;
+	}
+	
+	&.sm-image-top {
+		@include media-breakpoint-down(md) {
+			.cover-background {
+				position: static;
+			}
+			.col-sm-6 {
+				flex: 0 0 100%;
+				max-width: 100%;
+				margin-left: 0;
+			}
+			.card {
+				background: transparent !important;
+				padding: 25px 0;
+				margin: 15px 0 60px 0;
+				box-shadow: none;
+			}
+		}
+	}
+}
+
+// –––––––––– bigtext / text ––––––––––
+article.text {
+	margin: 100px 0;
+}
+
+// –––––––––– teaser-group ––––––––––
+article.teaser-group {
+	margin: 100px 0;
+
+	h2 {
+		margin-bottom: 35px;
+	}
+
+	.card {
+		.card-body {
+			padding: 35px;
+		}
+	}
+}
+
+// –––––––––– image-with-columntext / fullimage-with-columns ––––––––––
+article.image-with-columntext {
+
+}
+
+// –––––––––– image-with-text / image-withtext ––––––––––
+article.image-with-text {
+	margin: 100px 0;
+
+	.card {
+		padding: 0 0 0 30px;
+		box-shadow: none;
+		&.right {
+			padding: 0 30px 0 0;
+		}
+	}
+}
+
+// –––––––––– highlight-group ––––––––––
+article.highlight-group {
+	margin: 100px 0;
+	h2 {
+		margin-bottom: 35px;
+	}
+	.card {
+		@include media-breakpoint-down(sm) {
+			margin-bottom: 30px;
+		}
+		// box-shadow: none;	
+		.card-body {
+			padding: 20px;
+		}
+	}
+}
+
+// –––––––––– highlight ––––––––––
+article.highlight {
+	margin: 100px 0;
+}

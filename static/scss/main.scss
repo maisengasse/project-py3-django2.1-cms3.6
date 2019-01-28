@@ -39,6 +39,10 @@
 @import "../lib/bootstrap/scss/utilities";
 @import "../lib/bootstrap/scss/print";
 
+// Import Maisengasse styles
+@import "_main-maisengasse.scss";
+@import "_stencils.scss";
+
 
 // –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
 html {
@@ -66,40 +70,45 @@ body {
 
 // Bootstrap Navbar Padding-Fix
 @media (max-width: 991.98px) {
-  .navbar-expand-lg > .container,
-  .navbar-expand-lg > .container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
+    .navbar-expand-lg > .container,
+    .navbar-expand-lg > .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+
+// Container Fluid on sm
+@include media-breakpoint-down(md) {
+    .container {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+figure {
+    margin: 0;
+    img {
+        width: 100%;
+    }
 }
 
 
 // –––––––––––––––––––––––––––––– Typography ––––––––––––––––––––––––––––––
+h1 {
+
+}
+
 h2 {
-	font-size: $h2-font-size;
-	line-height: 1.14em;
-	color: $primary;
-	font-weight: $font-weight-regular;
-	letter-spacing: -1px;
+
 }
 
 h3 {
-  	font-size: $h3-font-size;
-  	line-height: 0.75;
-	font-weight: $font-weight-regular;
-		letter-spacing: -0.9px;
-}
 
+}
 
 p {
-  font-size: $font-size-base;
-  line-height: 1.5;
-  font-weight: $font-weight-regular;
-	&.medium {
-		font-weight: $font-weight-medium;
-	}
-}
 
+}
 
 // –––––––––––––––––––––––––––––– Header ––––––––––––––––––––––––––––––
 header#top {

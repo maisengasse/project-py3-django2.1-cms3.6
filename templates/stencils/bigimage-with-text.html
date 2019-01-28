@@ -1,13 +1,13 @@
 {% load project_tags imagesize_tags %}
-<article class="fullimage {% if 'nobox' in instance.display %}nobox{% endif %} {% if instance.cssclass == 'product' %}product{% else %}sm-image-top{% endif %}">
+<article class="fullimage sm-image-top{% if 'nobox' in instance.display %} nobox{% endif %}">
     {# {% if instance.images.count > 1 %} #}
-    <figure class="cover-background" data-slickslider data-slickslider-arrows data-slickslider-dots="0" {% if 'nobox' in instance.display %}data-paroller-factor="0.08" data-paroller-type="foreground" data-paroller-direction="horizontal"{% endif %}>
+    <figure class="cover-background" data-slickslider data-slickslider-arrows data-slickslider-dots="0">
     {# {% endif %} #}
         {% for relation in instance.images.relations %}
             {% with image=relation.image %}
             <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
                 <img {% if relation.border %}class="border"{% endif %}
-                    {{ image|srcset:'fleximage-one' }} alt="{% firstof relation.caption instance.caption image %}" />
+                    {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
                 {% if relation.caption or instance.caption %}
                     <figcaption>{% i18ncaption relation default=instance.caption %}</figcaption>
                 {% endif %}
@@ -18,17 +18,19 @@
     </figure>
     {# {% endif %} #}
     <div class="container">
-        <div class="row justify-content">
-            <div class="col-12 col-sm-6{% if 'right' in instance.display %} offset-sm-6{% endif %}" {% if not 'nobox' in instance.display %}data-aos="fade-up"{% endif %}>
-                <div class="card {% if 'nobox' in instance.display %}nobox{% endif %} {% if instance.cssclass == 'product' %}product{% else %}sm-image-top{% endif %}">
+        <div class="row {% if 'right' in instance.display %}justify-content-end{% else %}justify-content-start{% endif %}">
+            <div class="col-12 col-sm-6">
+                <div class="card sm-image-top{% if 'nobox' in instance.display %} nobox{% endif %}">
                     {% if instance.title %}
                         <div class="card-header">
                             <h2>{{ instance.title|safe }}</h2>
                         </div>
                     {% endif %}
-                    <div class="card-body">
-                        {{ instance.body|richtext }}
-                    </div>
+                    {% if instance.body %}
+                        <div class="card-body">
+                            {{ instance.body|richtext }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

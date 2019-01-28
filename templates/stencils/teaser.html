@@ -1,18 +1,18 @@
 {% load imagesize_tags i18n project_tags %}
-<div class="col-12 col-sm d-flex">
-    <div class="card card-background flex-fill">
-        <div class="card-body">
+<div class="col-12 col-md d-flex">
+    <div class="card">
+        <div class="card-header">
             <figure>
                 {% if instance.link %}
                 	<a href="{{ instance.link }}">
                 {% endif %}
-    	                <img data-animate="zoom" {% srcset instance.images.image 'fleximage-3to2' sizes="450px" %} alt="{{ instance.title }}">
+    	                <img data-animate="zoom" {% srcset instance.images.image 'halfwidth' sizes="450px" %} alt="{{ instance.title }}">
             	{% if instance.link %}
                     </a>
                 {% endif %}
             </figure>
         </div>
-        <div class="card-footer">
+        <div class="card-body">
             <div class="row">
                 <div class="col-12">
                     {% if instance.title %}

@@ -6,10 +6,10 @@
             <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
 			{% if instance.cssclass == 'image-top' %}
                 <img {% if relation.border %}class="border"{% endif %}
-                     {{ image|srcset:'fleximage' }} alt="{% firstof relation.caption instance.caption image %}" />
+                     {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
             {% else %}
                 <img {% if relation.border %}class="border"{% endif %}
-                     {{ image|srcset:'fleximage-one' }} alt="{% firstof relation.caption instance.caption image %}" />
+                     {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
 			{% endif %}
                 {% if relation.caption or instance.caption %}
                     <figcaption>{% i18ncaption relation default=instance.caption %}</figcaption>

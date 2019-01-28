@@ -22,7 +22,7 @@
                         {% with image=relation.image %}
                         <div{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
                             <img {% if relation.border %}class="border"{% endif %}
-                                 {{ image|srcset:'fleximage-one' }} alt="{{ image }}" />
+                                 {{ image|srcset:'fullwidth-one' }} alt="{{ image }}" />
                             {% if relation.caption or instance.caption %}
                                 <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
                             {% endif %}
@@ -38,7 +38,7 @@
                     <figure>
                     {% with relation=instance.images.relations.0 image=instance.images.image  %}
                         <img {% if relation.border %}class="border"{% endif %}
-                             {{ image|srcset:'fleximage-one' }} alt="{{ instance.title }}" />
+                             {{ image|srcset:'fullwidth-one' }} alt="{{ instance.title }}" />
                         {% if relation.caption or instance.caption %}
                             <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
                         {% endif %}
@@ -62,10 +62,10 @@
                 {% endif %}
                 {% if in_ad_gallery %}
                 <img {% if relation.border %}class="border"{% endif %}
-                     {{ image|srcset:'fleximage-hq' }} alt="{{ image }}" />
+                     {{ image|srcset:'fullwidth-hq' }} alt="{{ image }}" />
                 {% else %}
                 <img {% if relation.border %}class="border"{% endif %}
-                     {{ image|srcset:'fleximage-one' }} alt="{{ image }}" />
+                     {{ image|srcset:'fullwidth-one' }} alt="{{ image }}" />
                 {% endif %}
                 {% if instance.link %}
                 </a>
@@ -87,7 +87,7 @@
                     {% with image=relation.image %}
                     <div{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
                         <img {% if relation.border %}class="border"{% endif %}
-                             {{ image|srcset:'fleximage' }} alt="{{ image }}" />
+                             {{ image|srcset:'fullwidth' }} alt="{{ image }}" />
                         {% if relation.caption or instance.caption %}
                             <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
                         {% endif %}
@@ -103,7 +103,7 @@
                 <figure>
                 {% with relation=instance.images.relations.0 image=instance.images.image  %}
                     <img {% if relation.border %}class="border"{% endif %}
-                         {{ image|srcset:'fleximage' }} alt="{{ instance.title }}">
+                         {{ image|srcset:'fullwidth' }} alt="{{ instance.title }}">
                     {% if relation.caption or instance.caption %}
                         <p class="caption">{{ relation.caption|default:instance.caption|safe }}</p>
                     {% endif %}
