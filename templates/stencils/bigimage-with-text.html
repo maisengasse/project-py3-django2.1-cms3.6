@@ -1,7 +1,7 @@
 {% load project_tags imagesize_tags %}
 <article class="fullimage sm-image-top{% if 'nobox' in instance.display %} nobox{% endif %}">
     {# {% if instance.images.count > 1 %} #}
-    <figure class="cover-background" data-slickslider data-slickslider-arrows data-slickslider-dots="0">
+    <div class="cover-background" data-slickslider data-slickslider-arrows data-slickslider-dots="0">
     {# {% endif %} #}
         {% for relation in instance.images.relations %}
             {% with image=relation.image %}
@@ -15,7 +15,7 @@
             {% endwith %}
         {% endfor %}
     {# {% if instance.images.count > 1 %} #}
-    </figure>
+    </div>
     {# {% endif %} #}
     <div class="container">
         <div class="row {% if 'right' in instance.display %}justify-content-end{% else %}justify-content-start{% endif %}">

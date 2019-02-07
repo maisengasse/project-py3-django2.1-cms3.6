@@ -1,6 +1,6 @@
 {% load project_tags imagesize_tags cms_tags %}
 <article class="fullimage fullimage-with-columns sm-image-top">
-    <figure class="cover-background" data-slickslider data-slickslider-arrows data-slickslider-dots="0">
+    <div class="cover-background" data-slickslider data-slickslider-arrows data-slickslider-dots="0">
         {% for relation in instance.images.relations %}
             {% with image=relation.image %}
             <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
@@ -17,7 +17,7 @@
             </figure>
             {% endwith %}
         {% endfor %}
-    </figure>
+    </div>
     <div class="container">
         <div class="row justify-content no-gutters">
             {% for plugin in instance.child_plugin_instances %}

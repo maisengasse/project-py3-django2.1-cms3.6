@@ -1,5 +1,18 @@
 // Büro Maisengasse 2019
 
+// 	1.) Typography ––––––––––––––––––––––––––––––
+// 	2.) General Settings ––––––––––––––––––––––––––––––
+//	3.) All Stencils ––––––––––––––––––––––––––––––
+//		3.1.) bigimage / gallery
+// 		3.2.) bigimage-with-text / fullimage
+// 		3.3.) bigtext / text
+// 		3.4.) teaser-group
+// 		3.5.) image-with-columntext / fullimage-with-columns
+// 		3.6.) image-with-text / image-withtext
+// 		3.7.) highlight-group
+// 		3.8.) highlight
+
+
 // –––––––––––––––––––––––––––––– Typography ––––––––––––––––––––––––––––––
 h2 {
 	font-size: 45px;
@@ -19,7 +32,7 @@ p {
 }
 
 // –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
-figure.cover-background {
+.cover-background {
 	position: absolute;
 	top: 0;
 	left: 0;

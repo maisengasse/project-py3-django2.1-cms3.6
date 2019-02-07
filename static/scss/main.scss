@@ -45,52 +45,7 @@
 
 
 // –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
-html {
-	/* Adjust font size */
-    font-size: 100%;
-    -webkit-text-size-adjust: 100%;
-    /* Font varient */
-    font-variant-ligatures: none;
-    -webkit-font-variant-ligatures: none;
-    /* Smoothing */
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-    font-smoothing: antialiased;
-    -webkit-font-smoothing: antialiased;
-    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
-    /* Fix Scrollbar Jumping */
-    width: 100vw;
-    overflow-x: hidden;
-}
-
-body {
-	font-family: "Ubuntu", Helvetica, Arial, sans-serif;
-	color: $text-color;
-}
-
-// Bootstrap Navbar Padding-Fix
-@media (max-width: 991.98px) {
-    .navbar-expand-lg > .container,
-    .navbar-expand-lg > .container-fluid {
-        padding-right: 15px;
-        padding-left: 15px;
-    }
-}
-
-// Container Fluid on sm
-@include media-breakpoint-down(md) {
-    .container {
-        width: 100%;
-        max-width: none;
-    }
-}
-
-figure {
-    margin: 0;
-    img {
-        width: 100%;
-    }
-}
+// --> additional settings in critical.scss
 
 
 // –––––––––––––––––––––––––––––– Typography ––––––––––––––––––––––––––––––
@@ -112,6 +67,9 @@ p {
 
 a {
     color: $brand-primary;
+    &:hover {
+        color: darken($brand-primary, 30%);
+    }
 }
 
 // –––––––––––––––––––––––––––––– Header ––––––––––––––––––––––––––––––
@@ -122,40 +80,65 @@ header#top {
 
 // –––––––––––––––––––––––––––––– Content ––––––––––––––––––––––––––––––
 div#content {
-
+    
+    // Styling Bootstrap Cards
+    .card {
+        border-radius: $border-radius;
+    }
 }
 
 
 // –––––––––––––––––––––––––––––– Footer ––––––––––––––––––––––––––––––
 footer#bottom {
 
-    .legal {
+    // Partner
+    .partners {
         padding: 15px 0;
         background-color: $brand-primary;
+
         a {
             color: $white;
         }
-        .partners {
+        
+        // Partner Listen
+        .partner-list,
+        .link-list {
             padding: 0;
             margin: 0;
             list-style-type: none;
-            text-align: right;
             li {
                 display: inline-block;
             }
-            .maisengasse {
-                display: block;
-                width: 43px;
-                height: 30px;
-                background-image: url('../img/maisengasse.svg');
-                background-size: auto 100%;
-                background-repeat: no-repeat;
-                text-indent: 10000px;
-                overflow: hidden;
-                position: relative;
-                top: 3px;
-
+        }
+        
+        // Partner Links links
+        .link-list {
+            li {
+                margin-right: 15px;
+                &:last-of-type {
+                    margin: 0;
+                } 
             }
+        }
+
+        // Partner Logos rechts
+        .partner-list {
+            text-align: right;  
+        }
+
+        // Partner Logo Maisengasse
+        .maisengasse {
+            display: block;
+            width: 43px;
+            height: 30px;
+            background-image: url('../img/maisengasse.svg');
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            text-indent: 10000px;
+            overflow: hidden;
+            position: relative;
+            top: 3px;
+
         }
     }
 }

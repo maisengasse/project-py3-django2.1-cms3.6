@@ -1,6 +1,6 @@
 {% load static imagesize_tags project_tags %}
 <article class="bigimage">
-    <figure{% if not in_slider %} data-slickslider{% endif %}>
+    <div{% if not in_slider %} data-slickslider data-slickslider-arrows="0" data-slickslider-dots="0"{% endif %}>
         {% for relation in instance.images.relations %}
             {% with image=relation.image %}
             <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
@@ -12,5 +12,5 @@
             </figure>
             {% endwith %}
         {% endfor %}
-    </figure>
+    </div>
 </article>

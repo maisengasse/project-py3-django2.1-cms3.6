@@ -13,3 +13,51 @@
 
 
 // –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
+html {
+	/* Adjust font size */
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    /* Font varient */
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none;
+    /* Smoothing */
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+    /* Fix Scrollbar Jumping */
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+	font-family: $font-family-base;
+	color: $text-color;
+}
+
+// Bootstrap Navbar Padding-Fix
+@media (max-width: 991.98px) {
+    .navbar-expand-lg > .container,
+    .navbar-expand-lg > .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+
+// Container Fluid on sm
+@include media-breakpoint-down(md) {
+    .container {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+figure {
+    margin: 0;
+    img {
+        width: 100%;
+    }
+}
+
+// –––––––––––––––––––––––––––––– Navigation ––––––––––––––––––––––––––––––

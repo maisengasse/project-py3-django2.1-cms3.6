@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-6 {% if instance.display == "right" %} order-md-2{% endif %}">
-			    <figure data-slickslider data-slickslider-arrows data-slickslider-dots="0">
+			    <div data-slickslider data-slickslider-arrows data-slickslider-dots="0">
 			        {% for relation in instance.images.relations %}
 			            {% with image=relation.image %}
 			            <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
@@ -15,7 +15,7 @@
 			            </figure>
 			            {% endwith %}
 			        {% endfor %}
-			    </figure>
+			    </div>
 			</div>
 			<div class="col-12 col-md-6 my-auto">
                 <div class="card{% if instance.display == "right" %} right{% endif %}">
