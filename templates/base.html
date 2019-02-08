@@ -1,8 +1,10 @@
 {% load compress static cms_tags menu_tags sekizai_tags i18n project_tags %}
+{% load robots_index %}
 <!DOCTYPE html>
 <html lang="{{ request.LANGUAGE_CODE }}">
     <head>
     {% block head %}
+        {% page_robots %}
         {% block meta %}
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">

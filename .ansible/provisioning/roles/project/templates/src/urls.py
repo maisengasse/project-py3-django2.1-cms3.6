@@ -22,6 +22,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from cms.sitemaps import CMSSitemap
 
+from djangocms_page_sitemap import sitemap_urls
 from django.contrib.sitemaps import views as sitemap_views
 from cms import urls as cms_urls
 # from ckeditor import urls as ckeditor_urls
@@ -39,6 +40,7 @@ urlpatterns = [
     url(r'^filerpool/', include(filerpool_urls)),
 
     url(r'^admin/', include(admin.site.urls)),
+    # url(r'^', include(sitemap_urls)),
     url(r'^sitemap\.xml$', sitemap_views.sitemap,
                            {'sitemaps': {'cmspages': CMSSitemap }}),
     url(r'^', include(cms_urls)),
