@@ -293,10 +293,13 @@ CKEDITOR_CONFIGS = {
 
 THUMBNAIL_ALIASES = {
     '': {
-        'photopool'  :     { 'size': (  120,  80), 'crop': False },
+        'photopool'  :          { 'size': (  120,  80), 'crop': False },
         'ogimage'  :            { 'size': ( 1200, 630), 'crop': True },
         'fancybox' :            { 'size': ( 2400,   0), 'crop': False },
-        'fullwidth' :            { 'size': ( 1200,   0), 'crop': False },
+        'fullwidth' :           { 'size': ( 1200,   0), 'crop': False },
+        'halfwidth' :           { 'size': (  600,   0), 'crop': False },
+        'quarterwidth' :        { 'size': (  300,   0), 'crop': False },
+        'smallsquare' :         { 'size': (  300, 300), 'crop': True },
     },
 }
 

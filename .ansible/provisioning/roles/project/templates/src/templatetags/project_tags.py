@@ -32,7 +32,7 @@ def richtext(value):
     if not value:
         return ""
 
-    soup = BeautifulSoup(value)
+    soup = BeautifulSoup(value, 'html.parser')
 
     # for table in soup.findAll('table'):
     #     #remove table attrs
@@ -47,7 +47,7 @@ def richtext(value):
         if not a.get('title'):
             a['title'] = a.text
 
-    return mark_safe(soup.renderContents())
+    return mark_safe(str(soup))
 
 
 
