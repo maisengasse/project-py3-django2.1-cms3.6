@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load cms_tags menu_tags %}
+{% load cms_tags menu_tags project_tags imagesize_tags %}
 {% block body-class %}{{ request.current_page.reverse_id|default:'' }}{% endblock body-class %}
 {% block header %}
     {% placeholder "header" %}

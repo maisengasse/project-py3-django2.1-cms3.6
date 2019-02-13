@@ -1,10 +1,13 @@
 {% load compress static cms_tags menu_tags sekizai_tags i18n project_tags %}
-{% load robots_index %}
+
+    {% load robots_index %}
 <!DOCTYPE html>
 <html lang="{{ request.LANGUAGE_CODE }}">
     <head>
     {% block head %}
-        {% page_robots %}
+        
+            {% page_robots %}
+    
         {% block meta %}
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,17 +33,23 @@
             {% endblock seo_meta %}
         {% endblock meta %}
 
+        {% block jsonld %}
+            {% comment %}
+                https://technicalseo.com/seo-tools/schema-markup-generator/
+            {% endcomment %}
+        {% endblock jsonld %}
+
         {% block favicon %}
-            {# <link href="img/favicon.ico" rel="shortcut icon"> #}
-            {# <link rel="apple-touch-icon" href="img/touch-icon-iphone.png"> #}
-            {# <link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png"> #}
-            {# <link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png"> #}
-            {# <link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png"> #}
+            {% comment %}
+                https://realfavicongenerator.net/
+            {% endcomment %}
         {% endblock favicon %}
 
-        {% block critical-css %}
+        {% block fonts %}
             <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-            {# <link type="text/css" href="{% static 'project/fonts/fonts.css' %}" rel="stylesheet" /> #}
+        {% endblock fonts %}
+
+        {% block critical-css %}
             {% compress css %}
                 <link type="text/x-scss" href="{% static 'project/scss/critical.scss' %}" rel="stylesheet" />
             {% endcompress %}
@@ -101,7 +110,7 @@
         {% endblock body %}
 
         {% block footer %}
-            <footer id="bottom" class="bg-light">
+            <footer id="bottom">
                 <div class="partners">
                     <div class="container">
                         <div class="row align-items-center h-100">

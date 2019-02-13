@@ -115,7 +115,8 @@ $text-color: #404040;
 // $enable-gradients:          false;
 // $enable-transitions:        true;
 // $enable-hover-media-query:  false; // Deprecated, no longer affects any compiled CSS
-// $enable-grid-classes:       true;
+$enable-grid-classes:       	true;
+$enable-overlay-classes:       	true;
 // $enable-print-styles:       true;
 
 
@@ -176,13 +177,13 @@ $text-color: #404040;
 // // Define the minimum dimensions at which your layout will change,
 // // adapting to different screen sizes, for use in media queries.
 
-// $grid-breakpoints: (
-//   xs: 0,
-//   sm: 576px,
-//   md: 768px,
-//   lg: 992px,
-//   xl: 1200px
-// );
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
 
 // @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
 // @include _assert-starts-at-zero($grid-breakpoints);
@@ -206,8 +207,8 @@ $text-color: #404040;
 // //
 // // Set the number of columns and specify the width of the gutters.
 
-// $grid-columns:                12;
-// $grid-gutter-width:           30px;
+$grid-columns:                12;
+$grid-gutter-width:           30px;
 
 // // Components
 // //

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sitemaps',
+    'djangocms_page_sitemap',
+    
     'django.contrib.sites',
 
     #'maisen.cmstools.adminstyle',

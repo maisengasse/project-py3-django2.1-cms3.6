@@ -4,6 +4,7 @@
 //  2.) Animation
 //  3.) Tilted Edges
 //  4.) Utils
+//  5.) Grid Tweaks
 
 
 // –––––––––––––––––––––––––––––– 1.) Helpers ––––––––––––––––––––––––––––––
@@ -213,3 +214,28 @@
     display: $display;
     position: $pos;
 }
+
+
+// –––––––––––––––––––––––––––––– 5.) Grid Tweaks ––––––––––––––––––––––––––––––
+// ... grid-framework.scss
+@mixin make-overlay-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
+          .overlay#{$infix}-#{$i} {
+            @include make-col-offset(-$i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+@if $enable-overlay-classes {
+  @include make-overlay-columns();
+}
+
+
+
