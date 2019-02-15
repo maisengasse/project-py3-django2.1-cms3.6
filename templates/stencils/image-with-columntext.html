@@ -18,11 +18,17 @@
             {% endwith %}
         {% endfor %}
     </div>
+{% if instance.container == 2 %}
     <div class="container">
+{% elif instance.container == 3 %}
+    <div class="container-fluid">
+{% endif %}
         <div class="row justify-content no-gutters">
             {% for plugin in instance.child_plugin_instances %}
                {% render_plugin plugin %}
             {% endfor %}
         </div>
+{% if not instance.container == 1 %}
     </div>
+{% endif %}
 </article>

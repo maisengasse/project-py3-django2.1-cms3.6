@@ -17,7 +17,11 @@
     {# {% if instance.images.count > 1 %} #}
     </div>
     {# {% endif %} #}
-    <div class="container">
+    {% if instance.container == 2 %}
+            <div class="container">
+        {% elif instance.container == 3 %}
+            <div class="container-fluid">
+        {% endif %}
         <div class="row {% if 'right' in instance.display %}justify-content-end{% else %}justify-content-start{% endif %}">
             <div class="col-12 col-sm-6">
                 <div class="card sm-image-top{% if 'nobox' in instance.display %} nobox{% endif %}">
@@ -34,5 +38,7 @@
                 </div>
             </div>
         </div>
-    </div>
+     {% if not instance.container == 1 %}
+            </div>
+     {% endif %}
 </article>

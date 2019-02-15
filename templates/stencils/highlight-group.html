@@ -1,19 +1,25 @@
 {% load cms_tags %}
 <article class="highlight-group">
-    <div class="container">
-        {% if instance.title %}
-            <div class="row">
-                <div class="col-12 col-sm">
-                    <h2>{{ instance.title }}</h2>
+   {% if instance.container == 2 %}
+        <div class="container">
+    {% elif instance.container == 3 %}
+        <div class="container-fluid">
+    {% endif %}
+            {% if instance.title %}
+                <div class="row">
+                    <div class="col-12 col-sm">
+                        <h2>{{ instance.title }}</h2>
+                    </div>
                 </div>
+            {% endif %}
+            <div class="row justify-content-center">
+                {% with in_group=1 highlight_count=instance.child_plugin_instances|length %}
+                    {% for plugin in instance.child_plugin_instances %}
+                        {% render_plugin plugin %}
+                    {% endfor %}
+                {% endwith %}
             </div>
-        {% endif %}
-        <div class="row justify-content-center">
-            {% with in_group=1 highlight_count=instance.child_plugin_instances|length %}
-                {% for plugin in instance.child_plugin_instances %}
-                    {% render_plugin plugin %}
-                {% endfor %}
-            {% endwith %}
+    {% if not instance.container == 1 %}
         </div>
-    </div>
+    {% endif %}
 </article>

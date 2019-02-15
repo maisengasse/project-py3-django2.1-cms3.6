@@ -28,7 +28,11 @@
     </div>
 {% else %}
     <article class="highlight">
-        <div class="container">
+        {% if instance.container == 2 %}
+            <div class="container">
+        {% elif instance.container == 3 %}
+            <div class="container-fluid">
+        {% endif %}
             <div class="row justify-content-center">
                 <div class="col-6 col-md-2 my-auto">
                     <figure>
@@ -45,6 +49,8 @@
                     </div>
                 </div>
             </div>
+    {% if not instance.container == 1 %}
         </div>
+    {% endif %}
     </article>
 {% endif %}

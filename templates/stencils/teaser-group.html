@@ -1,24 +1,30 @@
 {% load cms_tags %}
 <article class="teaser-group" data-aos="fade-up">
-    <div class="container">
-    	{% if instance.title or instance.link %}
-            <div class="row">
-                {% if instance.title %}
-                    <div class="col-12 col-sm-8 col-md-10">
-                        <h2>{{ instance.title }}</h2>
-                    </div>
-                {% endif %}
-                {% if instance.link %}
-                    <div class="d-none d-sm-flex col-sm-4 col-md-2 justify-content-end">
-                        <a class="more" href="{{ instance.link }}">{{ instance.link_label|default:'mehr erfahren' }}</a>
-                    </div>
-                {% endif %}
-            </div>
-    	{% endif %}
-    	<div class="row justify-content-center">
-	        {% for plugin in instance.child_plugin_instances %}
-	                {% render_plugin plugin %}
-	        {% endfor %}
-    	</div>
-    </div>
+    {% if instance.container == 2 %}
+        <div class="container">
+    {% elif instance.container == 3 %}
+        <div class="container-fluid">
+    {% endif %}
+        	{% if instance.title or instance.link %}
+                <div class="row">
+                    {% if instance.title %}
+                        <div class="col-12 col-sm-8 col-md-10">
+                            <h2>{{ instance.title }}</h2>
+                        </div>
+                    {% endif %}
+                    {% if instance.link %}
+                        <div class="d-none d-sm-flex col-sm-4 col-md-2 justify-content-end">
+                            <a class="more" href="{{ instance.link }}">{{ instance.link_label|default:'mehr erfahren' }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+        	{% endif %}
+        	<div class="row justify-content-center">
+    	        {% for plugin in instance.child_plugin_instances %}
+    	                {% render_plugin plugin %}
+    	        {% endfor %}
+        	</div>
+    {% if not instance.container == 1 %}
+        </div>
+    {% endif %}
 </article>
