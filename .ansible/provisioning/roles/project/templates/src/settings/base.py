@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'djangocms_page_sitemap',
-    
+
     'django.contrib.sites',
 
     #'maisen.cmstools.adminstyle',
@@ -52,6 +52,9 @@ INSTALLED_APPS = [
 
     'compressor',
     # 'debug_toolbar',
+
+    'maisen.cmstools.stencils',
+    # 'maisen.cmstools.stencils.translated',
 
     # Django CMS
     'cms',  # django CMS itself
@@ -74,8 +77,6 @@ INSTALLED_APPS = [
     'maisen.cmstools.workflows',
     # #'maisen.cmstools.plugins.flex',
 
-    'maisen.cmstools.stencils',
-    # 'maisen.cmstools.stencils.translated',
 
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
@@ -247,6 +248,9 @@ CMS_PLACEHOLDER_CONF = {
     },
 }
 
+CMS_PLACEHOLDER_CONF["header"] = CMS_PLACEHOLDER_CONF["content"].copy()
+CMS_PLACEHOLDER_CONF["header"]["name"] = "Kopfbereich"
+
 STENCILS_ENABLED = [
     'Slider',
     'Grouper',
@@ -261,8 +265,9 @@ STENCILS_ENABLED = [
 ]
 
 for stencil in STENCILS_ENABLED:
-    CMS_PLACEHOLDER_CONF["content"]["plugins"].append(stencil)
-    CMS_PLACEHOLDER_CONF["content"]["plugin_modules"][stencil] = "Stencils"
+    for ph in ("content", "header"):
+        CMS_PLACEHOLDER_CONF[ph]["plugins"].append(stencil)
+        CMS_PLACEHOLDER_CONF[ph]["plugin_modules"][stencil] = "Stencils"
 
 
 CMS_SHOW_START_DATE = True
