@@ -14,7 +14,7 @@ maisen.init = function() {
         $('[data-toggle="tooltip"]').tooltip();
     });
 
-    
+
     maisen.commands.run();
 };
 
@@ -28,6 +28,7 @@ maisen.commands = {
         this.cmd('slickSlider', "[data-slickslider]");
         this.cmd('targetBlank', 'a[data-target-blank]');
         this.cmd('scrollToID', 'a[href^="#"]');
+        this.cmd('maisenDropdownNav', 'body');
         this.cmd('clientSideInclude', '*[data-csi]');
         this.runAdditional(this.context);
     },
@@ -175,7 +176,19 @@ maisen.commands = {
         form.find(".form-group").each(function() {
             $(this).css('z-index', zindex);
             zindex--;
-        })
+        });
+    },
+    maisenDropdownNav : function(node) {
+        node.on('mouseenter mouseleave', '#maisen-dropdown-nav .dropdown', function (e) {
+            var dropdown = $(e.target).closest('.dropdown');
+            var menu = dropdown.children('.dropdown-menu');
+            dropdown.addClass('show');
+            menu.addClass('show');
+            setTimeout(function () {
+                dropdown[dropdown.is(':hover') ? 'addClass' : 'removeClass']('show');
+                menu[dropdown.is(':hover') ? 'addClass' : 'removeClass']('show');
+            }, 200);
+        });
     }
 };
 

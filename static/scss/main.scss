@@ -40,7 +40,8 @@
 @import "../lib/bootstrap/scss/print";
 
 // Import Maisengasse styles
-@import "_main-maisengasse.scss";
+@import "maisengasse/_helpers.scss";
+@import "maisengasse/_navs.scss";
 @import "_stencils.scss";
 
 
@@ -80,7 +81,7 @@ header#top {
 
 // –––––––––––––––––––––––––––––– Content ––––––––––––––––––––––––––––––
 div#content {
-    
+
     // Styling Bootstrap Cards
     .card {
         border-radius: $border-radius;
@@ -99,7 +100,7 @@ footer#bottom {
         a {
             color: $white;
         }
-        
+
         // Partner Listen
         .partner-list,
         .link-list {
@@ -110,20 +111,20 @@ footer#bottom {
                 display: inline-block;
             }
         }
-        
+
         // Partner Links links
         .link-list {
             li {
                 margin-right: 15px;
                 &:last-of-type {
                     margin: 0;
-                } 
+                }
             }
         }
 
         // Partner Logos rechts
         .partner-list {
-            text-align: right;  
+            text-align: right;
         }
 
         // Partner Logo Maisengasse
