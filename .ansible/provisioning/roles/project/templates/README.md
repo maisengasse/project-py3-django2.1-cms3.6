@@ -1,9 +1,9 @@
 Project
 =======
 
-Website based on Django 1.10 / Django CMS 3.4.2
+Website based on Django 1.11 / Django CMS 3.5.3
 
-Copyright (c) 2017 Büro Maisengasse GnbR
+Copyright (c) 2019 Büro Maisengasse OG
 
 Development Environment Requirements
 ---

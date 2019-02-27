@@ -2,16 +2,16 @@ import os
 from invoke import Exit
 from fabric import task
 from fabric import Connection
-
+from patchwork.transfers import rsync
 REMOTE_HOST = 'mgh2.mynet.at'
 REMOTE_USER = '{{ project_name }}'
 REMOTE_PATH = '/web/{{ project_name }}/home/projects/{{ project_name }}'
-REMOTE_DB = 'projectdb1'
+REMOTE_DB = '{{ project_name }}db2'
 REMOTE_MEDIA = [
     REMOTE_PATH + "/media/filer_public/",
     # REMOTE_PATH + "/media/ckeditor/"
 ]
-LOCAL_PATH = os.path.dirname(__file__)
+LOCAL_PATH = '/home/vagrant/{{ project_name }}'
 LOCAL_DB = '{{ project_name }}'
 LOCAL_MEDIA = [
     LOCAL_PATH + '/media/filer_public/',
@@ -25,8 +25,8 @@ CREATE_DUMP = "mysqldump%(v)s %(db)s > %(dump)s"
 CREATE_GZIP_DUMP = "mysqldump%(v)s %(db)s | gzip > %(dump)s.gz"
 LOAD_DUMP = "mysql%(v)s %(db)s < %(dump)s"
 LOAD_GZIP_DUMP = "gunzip -c %(dump)s.gz | mysql%(v)s %(db)s"
-SYNC_MEDIA_DOWN = "rsync -e ssh -azv %(host)s:%(remote)s %(local)s"
-SYNC_MEDIA_UP = "rsync -e ssh -azv %(local)s %(host)s:%(remote)s"
+SYNC_MEDIA_DOWN = "rsync -e ssh -azv %(user)s@%(host)s:%(remote)s %(local)s"
+SYNC_MEDIA_UP = "rsync -e ssh -azv %(local)s %(user)s@%(host)s:%(remote)s"
 INIT_MEDIA_DATA = "rsync -a %(local)s/.ansible/data/filer_public/ %(local)s/media/filer_public/"
 
 local = Connection("localhost", user='vagrant', connect_kwargs={'password': "vagrant"})
@@ -56,23 +56,24 @@ def get_remote_dump(c, dumpfile="{{ project_name }}.sync.sql", gzip=False):
         context = { 'db' : REMOTE_DB, 'dump' : dumpfile, 'v' : REMOTE_MYSQL_VERSION }
         if gzip:
             remote.run(CREATE_GZIP_DUMP % context)
-            local.get("%s/%s.gz" % (REMOTE_PATH, dumpfile),"%s/%s.gz" % (LOCAL_PATH, dumpfile),)
+            remote.get("%s/%s.gz" % (REMOTE_PATH, dumpfile),"%s/%s.gz" % (LOCAL_PATH, dumpfile),)
         else:
             remote.run(CREATE_DUMP % context)
-            local.get("%s/%s" % (REMOTE_PATH, dumpfile),"%s/%s" % (LOCAL_PATH, dumpfile),)
+            remote.get("%s/%s" % (REMOTE_PATH, dumpfile),"%s/%s" % (LOCAL_PATH, dumpfile),)
 
 @task
 def sync_down(c, dumpfile="{{ project_name }}.sync.sql"):
     get_remote_dump(c, dumpfile, gzip=True)
     db_from_dump(c, dumpfile, gzip=True)
-    get_remote_media()
+    get_remote_media(c)
 
 @task
 def get_remote_media(c):
     for index, media in enumerate(REMOTE_MEDIA):
         context = {
+            'user' : REMOTE_USER,
             'host' : REMOTE_HOST,
             'remote' : REMOTE_MEDIA[index],
             'local' : LOCAL_MEDIA[index],
         }
-        local.run(SYNC_MEDIA_DOWN % context)
+        c.run(SYNC_MEDIA_DOWN % context)
