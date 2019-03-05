@@ -33,37 +33,37 @@ class {{ item[0].model_class }}QuerySet(models.QuerySet):
 {% if item[0].categorized %}
 class {{ item[0].model_class }}Category(DublinCore):
     class Meta:
-        verbose_name = _(u'{{ item[0].model_name }}-Kategorie')
-        verbose_name_plural = _(u'{{ item[0].model_name }}-Kategorien')
+        verbose_name = _('{{ item[0].model_name }}-Kategorie')
+        verbose_name_plural = _('{{ item[0].model_name }}-Kategorien')
         ordering = ('sort', 'title')
-    sort = models.IntegerField(verbose_name=_(u'Sortierung'), default=2000)
+    sort = models.IntegerField(verbose_name=_('Sortierung'), default=2000)
 
 
 {% endif %}
 class {{ item[0].model_class }}(DublinCore):
     class Meta:
-        verbose_name = _(u'{{ item[0].model_name }}')
-        verbose_name_plural = _(u'{{ item[0].model_name_plural }}')
+        verbose_name = _('{{ item[0].model_name }}')
+        verbose_name_plural = _('{{ item[0].model_name_plural }}')
         ordering = ('sort', 'title')
 
     objects = {{ item[0].model_class }}QuerySet.as_manager()
     slug = AutoSlugField(populate_from='title', unique=True, editable=False)
-    sort = models.IntegerField(verbose_name=_(u'Sortierung'), default=2000)
+    sort = models.IntegerField(verbose_name=_('Sortierung'), default=2000)
 {% if item[0].publish_workflows %}
-    valid_from = models.DateTimeField(verbose_name=_(u'verfügbar von'), null=True, blank=True)
-    valid_to = models.DateTimeField(verbose_name=_(u'verfügbar bis'), null=True, blank=True)
+    valid_from = models.DateTimeField(verbose_name=_('verfügbar von'), null=True, blank=True)
+    valid_to = models.DateTimeField(verbose_name=_('verfügbar bis'), null=True, blank=True)
 {% else %}
-    published = models.BooleanField(verbose_name=_(u'veröffentlicht'), default=True)
+    published = models.BooleanField(verbose_name=_('veröffentlicht'), default=True)
 {% endif %}
 {% if item[0].categorized %}
 
     category = models.ForeignKey({{ item[0].model_class }}Category, verbose_name=_("{{ item[0].model_name }}-Kategorie"), related_name="{{ item[0].module_name }}")
 {% endif %}
 
-    images = PhotoPoolField(verbose_name=_(u'Bilder'), null=True, blank=True)
+    images = PhotoPoolField(verbose_name=_('Bilder'), null=True, blank=True)
     details = PlaceholderField('details', related_name="{{ item[0].module_name }}_contents")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title or self.description
 
 {% if item[0].publish_workflows %}
@@ -90,13 +90,13 @@ class {{ item[0].model_class }}(DublinCore):
 ### Plugins ###
 class {{ item[0].model_class }}Teaser(CMSPlugin):
     class Meta:
-        verbose_name = _(u'{{ item[0].model_name }}-Teaser')
-        verbose_name_plural = _(u'{{ item[0].model_name }}-Teaser')
+        verbose_name = _('{{ item[0].model_name }}-Teaser')
+        verbose_name_plural = _('{{ item[0].model_name }}-Teaser')
 
     col_css = "{{ item[0].module_name }}-teaser"
     title = models.CharField(verbose_name=_('Titel'), max_length=255, null=True, blank=True)
     count = models.IntegerField(verbose_name=_('Anzahl'), default=3)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title or unicode(self.id)
 {% endif %}

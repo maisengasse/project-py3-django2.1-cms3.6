@@ -55,9 +55,21 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
 	  	project_domain: "project.at",
 	  	project_dir: "/home/vagrant/project",
 	  	create_project: true,
+	  	create_modules: false,
+	  	modules: [
+	  		# {
+	  		# 	module_name: 'news',
+	    #         model_class: 'Newsitem',
+	    #         model_name: 'Newseintrag',
+	    #         model_name_plural: 'Newseinträge',
+	    #         categorized: false,
+	    #         publish_workflows: false,
+	    #         detailpage: true,
+	    #         plugin: true
+	  		# },
+	  	],
 	  	# create_project_search: false,
 	  	# create_project_mailings: false,
-	  	# create_project_modules: false,
 	  	db_name: 'project',
 	  	db_user: 'project',
 	  	db_password: '',

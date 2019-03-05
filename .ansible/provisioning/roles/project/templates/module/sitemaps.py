@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
-from models import {{ item[0].model_class }}
+from {{ project_name }}.{{ item[0].module_name }}.models import {{ item[0].model_class }}
 
 class {{ item[0].model_class }}Sitemap(Sitemap):
     changefreq = "weekly"

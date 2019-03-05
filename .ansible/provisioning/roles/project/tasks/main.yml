@@ -116,52 +116,39 @@
 #      - templates/
 #    when: create_project_mailings
 
+ - name: Create Modules Directories
+   file: "dest={{ project_dir }}/{{ project_name }}/{{ item.module_name }} owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+   with_items: '{{ modules }}'
+   when: create_modules
 
-# # Create Modules
-#  - name: Config Modules
-#    set_fact:
-#      modules:
-#        - { module_name: 'news', model_class: 'Newsitem', model_name: 'Newseintrag', model_name_plural: 'Newseinträge', categorized: true, publish_workflows: true, detailpage: true, previewpage: true, plugin: false }
-#        - { module_name: 'xes', model_class: 'Xes', model_name: 'Xes', model_name_plural: 'Xesen', categorized: false, publish_workflows: true, detailpage: true, previewpage: true, plugin: true }
-#        - { module_name: 'yes', model_class: 'Yes', model_name: 'Yes', model_name_plural: 'Yesen', categorized: false, publish_workflows: false, detailpage: true, previewpage: false, plugin: false }
-#        - { module_name: 'zes', model_class: 'Zes', model_name: 'Zes', model_name_plural: 'Zesen', categorized: false, publish_workflows: false, detailpage: false, previewpage: false, plugin: true }
+ - name: Create Modules Templates Directories
+   file: "dest={{ project_dir }}/templates/{{ item.module_name }} owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
+   with_items: '{{ modules }}'
+   when: create_modules
 
-#  - name: Create Modules Directories
-#    file: "dest={{ project_dir }}/{{ project_name }}/{{ item.module_name }} owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
-#    with_items: '{{ modules }}'
-#    when: create_project_modules
+ - name: Copying the templated Module source
+   template: "src=module/{{ item[1] }} dest={{ project_dir }}/{{ project_name }}/{{ item[0].module_name }}/{{ item[1] }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_nested:
+     - '{{ modules }}'
+     -
+       - __init__.py
+       - admin.py
+       - cms_apps.py
+       - cms_toolbars.py
+       - cms_plugins.py
+       - models.py
+       - search_indexes.py
+       - sitemaps.py
+       - urls.py
+       - views.py
+   when: create_modules
 
-#  - name: Copying the templated Module source
-#    template: "src=module/{{ item[1] }} dest={{ project_dir }}/{{ project_name }}/{{ item[0].module_name }}/{{ item[1] }} owner={{ app_user }} group={{ app_grp }} mode=0664"
-#    with_nested:
-#      - '{{ modules }}'
-#      -
-#        - __init__.py
-#        - admin.py
-#        - cms_apps.py
-#        - cms_toolbars.py
-#        - cms_plugins.py
-#        - models.py
-#        - search_indexes.py
-#        - sitemaps.py
-#        - urls.py
-#        - views.py
-#    when: create_project_modules
-
-#  - name: Copying the Module View templates
-#    copy: "src={{ role_path }}/templates/module/templates/{{ item[1] }} dest={{ project_dir }}/templates/views/{{ item[0].module_name }}_{{ item[1] }} owner={{ app_user }} group={{ app_grp }} mode=0664"
-#    with_nested:
-#      - '{{ modules }}'
-#      -
-#        - detail.html
-#        - list.html
-#    when: create_project_modules
-
-
-#  - name: Copying the Module Plugin templates
-#    copy: "src={{ role_path }}/templates/module/templates/{{ item[1] }} dest={{ project_dir }}/templates/plugins/{{ item[0].module_name }}_{{ item[1] }} owner={{ app_user }} group={{ app_grp }} mode=0664"
-#    with_nested:
-#      - '{{ modules }}'
-#      -
-#        - teaser.html
-#    when: create_project_modules
+ - name: Copying the Module View templates
+   copy: "src={{ role_path }}/templates/module/templates/{{ item[1] }} dest={{ project_dir }}/templates/{{ item[0].module_name }}/{{ item[0].module_name }}_{{ item[1] }} owner={{ app_user }} group={{ app_grp }} mode=0664"
+   with_nested:
+     - '{{ modules }}'
+     -
+       - detail.html
+       - list.html
+       - teaser.html
+   when: create_modules
