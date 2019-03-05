@@ -57,16 +57,16 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
 	  	create_project: true,
 	  	create_modules: false,
 	  	modules: [
-	  		# {
-	  		# 	module_name: 'news',
-	    #         model_class: 'Newsitem',
-	    #         model_name: 'Newseintrag',
-	    #         model_name_plural: 'Newseinträge',
-	    #         categorized: false,
-	    #         publish_workflows: false,
-	    #         detailpage: true,
-	    #         plugin: true
-	  		# },
+	  	# {
+	  	#	 module_name: 'news',
+	    #    model_class: 'Newsitem',
+	    #    model_name: 'Newseintrag',
+	    #    model_name_plural: 'Newseinträge',
+	    #    categorized: false,
+	    #    publish_workflows: false,
+	    #    detailpage: true,
+	    #    plugin: true
+	  	# },
 	  	],
 	  	# create_project_search: false,
 	  	# create_project_mailings: false,
