@@ -5,8 +5,26 @@
   apt: update_cache=yes cache_valid_time=3600
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-- name: Add Repository
+- name: Add Python3.6 Repository
   apt_repository: repo=ppa:jonathonf/python-3.6 state=present
+
+- name: Add NodeJS6 Repository
+  apt_repository: repo={{item}} state=present
+  with_items:
+    deb https://deb.nodesource.com/node_6.x xenial main
+    deb-src https://deb.nodesource.com/node_6.x xenial main
+
+- name: Add NodeJS6 Repository Key
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+  when: create_project
 
 - name: Install needed packages (apt)
   apt: pkg={{ item }} state=present
@@ -39,6 +57,12 @@
 
 - name: restart memcached
   service: name=memcached state=restarted
+
+- name: Install nodejs packages
+  npm: name={{ item }} global=yes state=present
+  with_items:
+    - postcss-cli
+    - autoprefixer
 
 # - name: Add project group
 #   group: "name={{ app_grp }} state=present"

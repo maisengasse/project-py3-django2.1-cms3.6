@@ -65,3 +65,8 @@
     login_user: "root"
     login_password: "{{ db_root_password }}"
     state: "present"
+
+
+- name: restart mysql
+  service: name=mysql state=restarted
+

@@ -99,8 +99,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'maisen.cmstools.middleware.ResolveInternalLinksMiddleware',
-    #'maisen.cmstools.middleware.FixLinkTargetsMiddleware',
+    'maisen.cmstools.middleware.ResolveInternalLinksMiddleware',
+    'maisen.cmstools.middleware.FixLinkTargetsMiddleware',
+    'maisen.cmstools.middleware.RedirectToFirstSubpageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
@@ -270,6 +271,32 @@ for stencil in STENCILS_ENABLED:
         CMS_PLACEHOLDER_CONF[ph]["plugin_modules"][stencil] = "Stencils"
 
 
+STENCILS_CONTAINER_CHOICES = [
+    # ('container-fluid', gettext(u'Normale Breite')),
+    ('container', gettext(u'Normale Breite')),
+    ('', gettext(u'Volle Breite')),
+]
+
+# STENCILS_CONFIG = {
+#     'Example' : dict(
+#         fields = ['field1','field2','field3',],
+#         widgets = {
+#             'field1' : "django.forms.Textarea"
+#         },
+#         display_choices = [
+#             ('display1', gettext('Display 1')),
+#             ('display2', gettext('Display 2')),
+#             ('display3', gettext('Display 3')),
+#         ],
+#         child_config = {
+#             "ExampleChild" : {
+#                 "amount" : 3,
+#             }
+#         }
+#     )
+# }
+
+
 CMS_SHOW_START_DATE = True
 CMS_SHOW_END_DATE = CMS_SHOW_START_DATE
 CMS_REDIRECTS = True
@@ -322,8 +349,8 @@ THUMBNAIL_PROCESSORS = (
 )
 
 CMSTOOLS_INTERNALLINKS_HANDLERS = [
-    #'maisen.cmstools.internallinks.InternalPageLinks',
-    #'maisen.cmstools.filerpool.models.InternalDownloadLinks',
+    'maisen.cmstools.internallinks.InternalPageLinks',
+    'maisen.cmstools.filerpool.models.InternalDownloadLinks',
     '{{ project_name }}.views.InternalActionsLinks',
 ]
 
