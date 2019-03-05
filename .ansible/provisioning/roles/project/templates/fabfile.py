@@ -2,7 +2,6 @@ import os
 from invoke import Exit
 from fabric import task
 from fabric import Connection
-from patchwork.transfers import rsync
 REMOTE_HOST = 'mgh2.mynet.at'
 REMOTE_USER = '{{ project_name }}'
 REMOTE_PATH = '/web/{{ project_name }}/home/projects/{{ project_name }}'
