@@ -131,14 +131,17 @@ article.text {
 // –––––––––– teaser-group ––––––––––
 article.teaser-group {
 	margin: 100px 0;
-
 	h2 {
 		margin-bottom: 35px;
 	}
-
 	.card {
 		.card-body {
 			padding: 35px;
+		}
+	}
+	@include media-breakpoint-down(lg) {
+		.card {
+			margin-bottom: 30px;
 		}
 	}
 }
@@ -167,13 +170,14 @@ article.highlight-group {
 	h2 {
 		margin-bottom: 35px;
 	}
-	.card {
-		@include media-breakpoint-down(sm) {
-			margin-bottom: 30px;
-		}
-		// box-shadow: none;	
+	.card {	
 		.card-body {
 			padding: 20px;
+		}
+	}
+	@include media-breakpoint-down(lg) {
+		.card {
+			margin-bottom: 30px;
 		}
 	}
 }
@@ -181,6 +185,9 @@ article.highlight-group {
 // –––––––––– highlight ––––––––––
 article.highlight {
 	margin: 100px 0;
+	figure {
+		margin-bottom: 20px;
+	}
 }
 
 // –––––––––– testimonial ––––––––––
@@ -192,6 +199,6 @@ article.testimonial {
 		width: 60px;
 		height: 60px;
 		margin: 0 auto;
-		margin-bottom: 40px;
+		margin-bottom: 20px;
 	}
 }
