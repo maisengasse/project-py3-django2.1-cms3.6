@@ -1,12 +1,12 @@
 {% load compress static cms_tags menu_tags sekizai_tags i18n project_tags %}
+{% load robots_index %}
 
-    {% load robots_index %}
 <!DOCTYPE html>
 <html lang="{{ request.LANGUAGE_CODE }}">
     <head>
     {% block head %}
 
-            {% page_robots %}
+        {% page_robots %}
 
         {% block meta %}
             <meta charset="utf-8">
@@ -34,9 +34,7 @@
         {% endblock meta %}
 
         {% block jsonld %}
-            {% comment %}
-                https://technicalseo.com/seo-tools/schema-markup-generator/
-            {% endcomment %}
+            {% include 'jsonld.html' %}
         {% endblock jsonld %}
 
         {% block favicon %}

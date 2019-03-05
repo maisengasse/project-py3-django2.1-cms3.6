@@ -1,28 +1,24 @@
 {% load project_tags %}
 <article class="text">
-    {% if instance.container == 2 %}
-        <div class="container" data-aos="fade-up">
-    {% elif instance.container == 3 %}
-        <div class="container-fluid" data-aos="fade-up">
-    {% endif %}
-            <div class="row">
-                <div class="col-12">
-                    {% if instance.title %}
-                        <h2>{{ instance.title }}</h2>
-                    {% endif %}
-                    {% if instance.link %}
-                    <div class="d-none d-sm-flex col-sm-4 col-md-3 justify-content-end">
-                        <a class="more" href="{{ instance.link }}" target="_blank">{{ instance.link_label|default:'Mehr erfahren' }}</a>
-                    </div>
-                    {% endif %}
-                    {% if instance.body %}
-                        <div class="richtext">
-                            {{ instance.body|richtext }}
-                        </div>
-                    {% endif %}
+    {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
+        <div class="row">
+            <div class="col-12">
+                {% if instance.title %}
+                    <h2>{{ instance.title }}</h2>
+                {% endif %}
+                {% if instance.link %}
+                <div class="d-none d-sm-flex col-sm-4 col-md-3 justify-content-end">
+                    <a class="more" href="{{ instance.link }}" target="_blank">{{ instance.link_label|default:'Mehr erfahren' }}</a>
                 </div>
+                {% endif %}
+                {% if instance.body %}
+                    <div class="richtext">
+                        {{ instance.body|richtext }}
+                    </div>
+                {% endif %}
             </div>
-    {% if not instance.container == 1 %}
-            </div>
-    {% endif %}
+        </div>
+    {% if instance.container %}</div>{% endif %}
 </article>
+
+

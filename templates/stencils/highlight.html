@@ -28,11 +28,7 @@
     </div>
 {% else %}
     <article class="highlight">
-        {% if instance.container == 2 %}
-            <div class="container">
-        {% elif instance.container == 3 %}
-            <div class="container-fluid">
-        {% endif %}
+        {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
             <div class="row justify-content-center">
                 <div class="col-6 col-md-2 my-auto">
                     <figure>
@@ -49,8 +45,8 @@
                     </div>
                 </div>
             </div>
-    {% if not instance.container == 1 %}
-        </div>
-    {% endif %}
+        {% if instance.container %}</div>{% endif %}
     </article>
 {% endif %}
+
+

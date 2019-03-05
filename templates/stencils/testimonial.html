@@ -1,0 +1,27 @@
+{% load project_tags %}
+<article class="testimonial">
+	{% if instance.container %}<div class="{{ instance.container }}">{% endif %}
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-10 col-md-8 col-lg-6">
+				{% if instance.files.files %}
+					<figure class="testimonial-icon">
+	                    <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
+	                    {# <img {% srcset instance.images.image 'fullwidth' sizes="400px" %} alt="{{ instance.title }}"> #}
+	                </figure>
+				{% endif %}
+                {% if instance.title %}
+	                {% if in_slider %}
+	                    <h3>{{ instance.title }}</h3>
+                    {% else %}
+	                    <h2>{{ instance.title }}</h2>
+                    {% endif %}
+                {% endif %}
+                {% if instance.body %}
+                    <div class="richtext">
+                        {{ instance.body|richtext }}
+                    </div>
+                {% endif %}
+			</div>
+		</div>
+    {% if instance.container %}</div>{% endif %}
+</article>
