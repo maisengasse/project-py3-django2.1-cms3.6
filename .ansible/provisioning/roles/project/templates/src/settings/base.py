@@ -213,9 +213,8 @@ STATICFILES_FINDERS = [
 # https://docs.djangoproject.com/en/1.9/topics/files/
 
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+FILE_UPLOAD_PERMISSIONS = 0644
 
 EMAIL_SUBJECT_PREFIX = '[{{ project_domain }}] '
 
