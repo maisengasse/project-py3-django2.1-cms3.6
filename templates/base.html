@@ -28,8 +28,8 @@
             {% block seo_meta %}
                 <meta name="keywords" content="{% page_attribute 'meta_keywords' %}">
                 <meta name="description" content="{% seo_description 'Project SEO Description' %}">
-                <meta property="og:title" content="{% seo_title 'Project OG Title'%}" />
-                <meta property="og:description" content="{% seo_description 'Project OG Description' %}" />
+                <meta property="og:title" content="{% seo_title ' | Project SEO Title'%}" />
+                <meta property="og:description" content="{% seo_description 'Project SEO Description' %}" />
             {% endblock seo_meta %}
         {% endblock meta %}
 
@@ -57,7 +57,7 @@
             <script src="{% static 'project/lib/modernizr/modernizr.js' %}"></script>
         {% endblock js-top %}
 
-        <title>{% block title %}{% page_attribute 'page_title' %} | Title {% endblock title %}</title>
+        <title>{% block title %}{% seo_title ' | Project SEO Title' %}{% endblock title %}</title>
 
     {% endblock head %}
     {% render_block "css" %}
@@ -82,14 +82,11 @@
                     </nav>
                     {% endcomment %}
                     <nav class="navbar navbar-expand-md bg-light">
-                        <div class="container">
+                        <div class="container-fluid">
                             <a class="navbar-brand" href="/">Büro Maisengasse</a>
                             {% include 'navigations/dropdown/dropdown-nav.html' %}
                         </div>
                     </nav>
-
-
-
                 {% endblock nav %}
 
                 {% block header %}
