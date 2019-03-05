@@ -1,11 +1,11 @@
 {% load menu_tags %}
-<button class="navbar-toggler navbar-toggler-right hamburger hamburger--collapse" type="button" data-toggle="collapse" data-target="#maisen-dropdown-nav" aria-controls="navbar-project" aria-expanded="false" aria-label="Toggle navigation">
+<button id="maisen-dropdown-toggler" class="navbar-toggler hamburger hamburger--collapse" type="button" data-toggle="shownav" data-target="#maisen-dropdown-nav" aria-controls="maisen-dropdown-nav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="hamburger-box">
         <span class="hamburger-inner"></span>
     </span>
 </button>
-<div class="collapse navbar-collapse justify-content-end" id="maisen-dropdown-nav">
-    <ul class="navbar-nav">
+<div id="maisen-dropdown-nav">
+    <ul class="navbar-nav justify-content-md-end">
         {% show_menu 0 100 100 100 "navigations/dropdown/main.html" %}
     </ul>
 </div>
