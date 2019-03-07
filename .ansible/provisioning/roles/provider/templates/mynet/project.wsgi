@@ -2,7 +2,7 @@
 import os
 import sys
 import site
-site.addsitedir('/web/{{ project_name }}/home/python-{{ project_name }}/lib/python2.7/site-packages')
+site.addsitedir('/web/{{ project_name }}/home/python-{{ project_name }}/lib/python3.6/site-packages')
 
 paths = [
   '/web/{{ project_name }}/home/projects/{{ project_name }}/{{ project_name }}',
@@ -14,7 +14,7 @@ for path in paths:
 os.environ['DJANGO_SETTINGS_MODULE'] = '{{ project_name }}.settings.production'
 
 UPGRADING = False
-project_dir = "/web/{{ project_name }}/home/{{ project_name }}"
+project_di = "/data/web/{{ project_name }}/home/projects/{{ project_name }}/{{ project_name }}"
 
 def upgrade_in_progress(environ, start_response):
     upgrade_file = os.path.join(project_dir, 'templates', '503.html')
