@@ -139,6 +139,7 @@
        - models.py
        - search_indexes.py
        - sitemaps.py
+       - translation.py
        - urls.py
        - views.py
    when: create_modules
