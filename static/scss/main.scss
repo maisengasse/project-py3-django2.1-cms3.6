@@ -40,8 +40,9 @@
 @import "../lib/bootstrap/scss/print";
 
 // Import Maisengasse styles
-@import "maisengasse/_helpers.scss";
-@import "maisengasse/_navs.scss";
+@import "maisengasse/helpers.scss";
+@import "maisengasse/navs.scss";
+@import "maisengasse/components.scss";
 @import "_stencils.scss";
 
 

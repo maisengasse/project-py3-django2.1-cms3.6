@@ -26,10 +26,12 @@ maisen.commands = {
         this.cmd('hamburger', ".hamburger");
         this.cmd('fancyBox', "[data-fancybox]");
         this.cmd('slickSlider', "[data-slickslider]");
+        this.cmd('slicksliderDot', '[data-toggle="slicksliderdot"]');
         this.cmd('targetBlank', 'a[data-target-blank]');
         this.cmd('scrollToID', 'a[href^="#"]');
         this.cmd('maisenDropdownNav', 'body');
         this.cmd('clientSideInclude', '*[data-csi]');
+        this.cmd('iframeModal', '#iframe-modal');
         this.runAdditional(this.context);
     },
     add : function(cb) {
@@ -77,17 +79,40 @@ maisen.commands = {
     fancyBox : function(node) {
         //selfinit
     },
+    slicksliderDot : function(node) {
+        var target = $(node.data('slicksliderdot-for'));
+        if (target.length) {
+            var allLinks = $('[data-slicksliderdot-for="'+node.data('slicksliderdot-for')+'"]');
+            var index = parseInt(node.data('slicksliderdot-index'), 10);
+
+            //activate on click
+            node.on('click', function(e) {
+                e.preventDefault();
+                target.slick('slickGoTo', index);
+                allLinks.removeClass('active');
+                node.addClass('active');
+            });
+
+            //mark active on change
+            target.on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                if (nextSlide == index) {
+                    allLinks.removeClass('active');
+                    node.addClass('active');
+                };
+            });
+
+        }
+    },
     slickSlider : function(node) {
         var cfg = {
             arrows : node.attr('data-slickslider-arrows') != "0",
             dots : node.attr('data-slickslider-dots') != "0",
             infinite : node.attr('data-slickslider-loop') != "0",
+            fade : node.data('slickslider-fade') == "1",
             adaptiveHeight : true,
             cssEase: 'ease',
             useTransform: true,
         };
-
-        console.log(cfg)
 
         if ($(window).width() > 767) {
             if (node.is('[data-slickslider-centered]')) {
@@ -156,15 +181,35 @@ maisen.commands = {
     targetBlank : function(node) {
         node.attr('target', '_blank');
     },
+    iframeModal : function(node) {
+        var modal = node;
+        var content = modal.find('.modal-body');
+        var iframe = content.find('iframe');
+        modal.on('hidden.bs.modal', function() {
+            iframe.attr('src', 'about:blank');
+        });
+        $('[data-toggle=iframemodal]').each(function() {
+            var opener = $(this);
+            var href = opener.is('a') ? opener.attr('href') : opener.data('iframe');
+
+            opener.on('click', function(e) {
+                e.preventDefault();
+                iframe.attr('src', 'about:blank').attr('src', href);
+                modal.modal('show');
+            });
+        });
+    },
     initForms : function(node) {
-        // node.find('.datepicker-wrap input').each(function() {
-        //     var node = $(this);
-        //     node.datepicker({
-        //         language: 'de',
-        //         format:'dd.mm.yyyy',
-        //         startDate : new Date()
-        //     });
-        // });
+        node.find('.datepicker input').each(function() {
+            var node = $(this);
+            var datepicker = flatpickr(this, {
+                locale: 'de',
+                dateFormat:'d.m.Y',
+                minDate : new Date(),
+                // disableMobile: "true"
+            });
+            node.data("datepicker", datepicker);
+        });
 
         node.find(":input[required]").prev('label').addClass('required')
 
