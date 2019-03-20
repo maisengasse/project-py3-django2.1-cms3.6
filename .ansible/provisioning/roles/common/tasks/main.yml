@@ -22,9 +22,7 @@
 - name: Update and upgrade apt packages
   become: true
   apt:
-    upgrade: yes
     update_cache: yes
-  when: create_project
 
 - name: Install needed packages (apt)
   apt: pkg={{ item }} state=present
