@@ -28,8 +28,8 @@ SYNC_MEDIA_DOWN = "rsync -e ssh -azv %(user)s@%(host)s:%(remote)s %(local)s"
 SYNC_MEDIA_UP = "rsync -e ssh -azv %(local)s %(user)s@%(host)s:%(remote)s"
 INIT_MEDIA_DATA = "rsync -a %(local)s/.ansible/data/filer_public/ %(local)s/media/filer_public/"
 
-local = Connection("localhost", user='vagrant', connect_kwargs={'password': "vagrant"})
-remote = Connection(REMOTE_HOST, user=REMOTE_USER)
+local = Connection("localhost", user='vagrant', connect_kwargs=dict(password="vagrant",allow_agent=False,look_for_keys=False))
+remote = Connection(REMOTE_HOST, user=REMOTE_USER, connect_kwargs=dict(allow_agent=False,look_for_keys=False))
 
 @task
 def initdb(c):
