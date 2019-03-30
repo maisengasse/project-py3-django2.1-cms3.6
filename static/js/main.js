@@ -245,17 +245,23 @@ maisen.commands = {
         });
 
         nav.find('[data-toggle="navlevel"]').each(function() {
-            if ($(window).width() > 768) return;
             var node = $(this);
             var level = node.next();
-            node.on('click', function(e) {
-                e.preventDefault();
-            });
-            level.children('[data-navlevel-back]').on('click', function() {
-                node.removeClass('show');
-                level.removeClass('show');
-            });
+            if ($(window).width() > 768) {
+                node.on('click', function(e) {
+                    e.preventDefault();
+                });
+            } else {
+                node.on('click', function(e) {
+                    e.preventDefault();
+                });
+                level.children('[data-navlevel-back]').on('click', function() {
+                    node.removeClass('show');
+                    level.removeClass('show');
+                });
+            }
         });
+
     }
 };
 
