@@ -23,6 +23,7 @@ maisen.commands = {
 
         //commands
         this.cmd('initForms', "form");
+        this.cmd('inputUnit', '*[data-inputunit]');
         this.cmd('hamburger', ".hamburger");
         this.cmd('fancyBox', "[data-fancybox]");
         this.cmd('slickSlider', "[data-slickslider]");
@@ -218,11 +219,11 @@ maisen.commands = {
         form.preventDoubleSubmission();
 
         //z-index-hack
-        var zindex = 1000;
-        form.find(".form-group").each(function() {
-            $(this).css('z-index', zindex);
-            zindex--;
-        });
+        // var zindex = 1000;
+        // form.find(".form-group").each(function() {
+        //     $(this).css('z-index', zindex);
+        //     zindex--;
+        // });
     },
     maisenDropdownNav : function(body) {
         var nav = body.find('#maisen-dropdown-nav');
@@ -263,7 +264,29 @@ maisen.commands = {
             }
         });
 
-    }
+    },
+    inputUnit : function(node) {
+        var input = node.find(':input');
+        var unit = node.data('inputunit');
+        var form = node.closest('form');
+
+        form.on('submit', function() {
+            var val = input.val();
+            val = val.replace(unit, '').trim();
+            input.val(val);
+        });
+        input.attr('pattern', '\\d+ ' + unit);
+        input.on('focus', function() {
+            var val = input.val();
+            val = val.replace(unit, '').trim();
+            input.val(val);
+        });
+        input.on('blur', function() {
+            var val = input.val();
+            if (val.match(/^\d+$/)) input.val(val + ' ' + unit);
+        });
+        input.trigger('blur');
+    },
 };
 
 maisen.utils = {

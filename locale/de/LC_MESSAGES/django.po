@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-11 16:06+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: project/cms_apps.py:10
+msgid "Anfrageformular"
+msgstr ""
+
+#: project/cms_toolbars.py:20
+msgid "Module"
+msgstr ""
+
+#: project/cms_toolbars.py:23
+msgid "Seitenbaum"
+msgstr ""
+
+#: project/cms_toolbars.py:27
+msgid "Medienpool"
+msgstr ""
+
+#: project/cms_toolbars.py:31
+msgid "Übersetzungskatalog"
+msgstr ""
+
+#: project/settings/base.py:171
+msgid "Deutsch"
+msgstr ""
+
+#: project/settings/base.py:225
+msgid "Standard"
+msgstr ""
+
+#: project/settings/base.py:226
+msgid "Schmaler Header"
+msgstr ""
+
+#: project/settings/base.py:251
+msgid "Kopfbereich"
+msgstr ""
+
+#: project/settings/base.py:274
+msgid "Normale Breite"
+msgstr ""
+
+#: project/settings/base.py:275
+msgid "Volle Breite"
+msgstr ""
+
+#: project/views.py:60
+msgid "Sprache"
+msgstr ""
+
+#: project/views.py:61
+msgid "Anrede"
+msgstr ""
+
+#: project/views.py:62
+msgid "E-Mail"
+msgstr ""
+
+#: project/views.py:63
+msgid "Vorname"
+msgstr ""
+
+#: project/views.py:64
+msgid "Nachname"
+msgstr ""
+
+#: project/views.py:66
+msgid "Anreise"
+msgstr ""
+
+#: project/views.py:67
+msgid "Abreise"
+msgstr ""
+
+#: project/views.py:69 templates/inquiry/inquiry.html:23
+msgid "Erwachsene"
+msgstr ""
+
+#: project/views.py:71 templates/inquiry/inquiry.html:24
+msgid "Kinder"
+msgstr ""
+
+#: project/views.py:73
+msgid "Ihre Wünsche"
+msgstr ""
+
+#: project/views.py:81
+msgid "Das Abreisedatum muss nach dem Anreisedatum liegen."
+msgstr ""
+
+#: templates/404.html:8
+msgid "404"
+msgstr ""
+
+#: templates/404.html:9
+msgid "Seite nicht gefunden"
+msgstr ""
+
+#: templates/404.html:10
+msgid ""
+"Die von Ihnen angeforderte Seite konnte nicht gefunden werden. Vielleicht "
+"haben Sie eine falsche oder veraltete URL aufgerufen. Sie können den von "
+"Ihnen gewünschten Inhalt über unsere Startseite finden."
+msgstr ""
+
+#: templates/404.html:11
+msgid "Zurück zur Startseite"
+msgstr ""
+
+#: templates/inquiry/inquiry.html:8
+msgid "Anfrage"
+msgstr ""
+
+#: templates/inquiry/inquiry.html:9
+msgid "Wir beraten Sie gerne"
+msgstr ""
+
+#: templates/inquiry/inquiry.html:34
+msgid "Anfrage senden"
+msgstr ""
+
+#: templates/inquiry/inquiry_thanks.html:7
+msgid "Vielen Dank"
+msgstr ""
+
+#: templates/inquiry/inquiry_thanks.html:8
+msgid "Ihre Anfrage wurde gesendet.<br/>Wir melden uns in Kürze."
+msgstr ""
+
+#: templates/stencils/teaser.html:25
+msgid "Mehr erfahren"
+msgstr ""

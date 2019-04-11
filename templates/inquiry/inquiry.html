@@ -1,0 +1,44 @@
+{% extends "small-header.html" %}
+{% load cms_tags menu_tags project_tags imagesize_tags bootstrap4 i18n %}
+{% block content %}
+    <article class="inquiry-form">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <p class="title">{% trans "Anfrage" %}</p>
+                    <h2>{% trans "Wir beraten Sie gerne" %}</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8 col-xl-7">
+                    <form action="{% url 'inquiry_form' %}" method="POST" id="inquiry-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="lang" value="{{ request.LANGUAGE_CODE }}" />
+                        <div class="row narrow-gutters">
+                            {% bootstrap_field form.arrival form_group_class="form-group col-12 col-md-6 datepicker" show_label=False %}
+                            {% bootstrap_field form.departure form_group_class="form-group col-12 col-md-6 datepicker" show_label=False %}
+                            {% bootstrap_field form.email form_group_class="form-group col-12 col-md-12" show_label=False %}
+                        </div>
+                        <div class="row narrow-gutters">
+                            <div class="col-6" data-inputunit="{% trans "Erwachsene" %}">{% bootstrap_field form.adults show_label=False %}</div>
+                            <div class="col-6" data-inputunit="{% trans "Kinder" %}">{% bootstrap_field form.children show_label=False %}</div>
+                            {% bootstrap_field form.salutation form_group_class="form-group col-12 col-md-2" show_label=False %}
+                            {% bootstrap_field form.firstname form_group_class="form-group col-12 col-md-5" show_label=False %}
+                            {% bootstrap_field form.lastname form_group_class="form-group col-12 col-md-5" show_label=False %}
+                        </div>
+                        <div class="row narrow-gutters">
+                            {% bootstrap_field form.message form_group_class="form-group col-12" show_label=False %}
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary" name="inquiry" value="1"><span class="mail"></span>{% trans "Anfrage senden" %}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </article>
+    {% placeholder "content" %}
+{% endblock content %}
+{% block footer-inquiry %}{% endblock footer-inquiry %}

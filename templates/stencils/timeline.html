@@ -1,0 +1,47 @@
+{% load static project_tags cms_tags %}
+<article class="timeline">
+    {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
+        <div class="text-center">
+            <h2>{{ instance.title }}</h2>
+            <div class="teaser">
+                {{ instance.body|richtext }}
+            </div>
+        </div>
+        <div class="timeline" data-toggle="timeline">
+            <div class="row justify-content-center">
+                <div class="col-10 col-sm-8 col-md-8">
+                    <div class="events-wrapper">
+                        <div class="events">
+                            <ol id="timeline-nav-{{ instance.id }}">
+                                {% for plugin in instance.child_plugin_instances %}
+                                    {% with date=plugin.title %}
+                                    <li><a data-slickslider-dot="{{ forloop.counter0 }}"
+                                           data-toggle="slicksliderdot"
+                                           data-slicksliderdot-for="#timeline-{{ instance.id }}"
+                                           data-slicksliderdot-index="{{ forloop.counter0 }}"
+                                           href="#" {% if forloop.first %}class="active"{% endif %}>{{ date }}</a></li>
+                                    {% endwith %}
+                                {% endfor %}
+                            </ol>
+                            <span class="filling-line" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="events-content">
+            <div class="row">
+                <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                    <ol id="timeline-{{ instance.id }}"
+                        data-slickslider
+                        data-slickslider-dots="0" data-slickslider-arrows="0"
+                        data-slickslider-autoplay="8000">
+                    {% for plugin in instance.child_plugin_instances %}
+                        {% render_plugin plugin %}
+                    {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    {% if instance.container %}</div>{% endif %}
+</article>

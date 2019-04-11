@@ -8,8 +8,9 @@ from {{ project_name }} import views
 
 class InquiryApphook(CMSApp):
     name = _(u'Anfrageformular')
-    urls = [
-        url(r'^$', views.inquiry_form, name="inquiry_form"),
-        url(r'^danke/$', views.inquiry_form_thanks, name="inquiry_form_thanks"),
-    ]
+    def get_urls(self, page=None, language=None, **kwargs):
+        return [
+            url(r'^$', views.inquiry_form, name="inquiry_form"),
+            url(r'^danke/$', views.inquiry_form_thanks, name="inquiry_form_thanks"),
+        ]
 apphook_pool.register(InquiryApphook)

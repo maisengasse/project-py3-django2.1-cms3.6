@@ -1,0 +1,10 @@
+Hallo,
+ihr habt eine Online-Anfrage von {{ data.email }} erhalten.
+
+Anfrage
+=======
+{% for k, v in data.items %}{{ k }}: {{ v}}
+{% endfor %}
+
+Beste Grüsse,
+Eure Website
