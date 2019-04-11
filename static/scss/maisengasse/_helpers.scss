@@ -30,16 +30,6 @@
     }
 }
 
-@include media-breakpoint-up(lg) {
-    div.two-cols {
-        column-count: 2;
-        column-gap: $grid-gutter-width;
-        p {
-            text-align: left;
-        }
-    }
-}
-
 
 // –––––––––––––––––––––––––––––– 2.) Maisengasse Stylings ––––––––––––––––––––––––––––––
 @include media-breakpoint-up(lg) {
