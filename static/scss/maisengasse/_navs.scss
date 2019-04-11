@@ -118,10 +118,7 @@
                         top: 0;
                         left: 0;
                     }
-
-
                 }
-
                 .dropdown-menu.show {
                     @include translate(0, 0);
                 }
@@ -188,7 +185,7 @@
                     padding: 0;
                     display: block;
                     opacity: 0;
-                    width: 300px;
+                    width: 200px;
                     @include transition(opacity ease-in-out 0.3s, transform ease-in-out 0.3s);
                     @include transform(translate(0px, -15px));
 
@@ -246,12 +243,26 @@
                         height: 1em;
                         opacity: .8;
                     }
-
                 }
+
+                .dropdown-menu.dropdown-menu-right {
+                    &.show {
+                        left: auto;
+                        right: 0;
+                    }
+                    &:before {
+                        left: auto;
+                        right: 20px;
+                    }
+                    .caret {
+                        background-image: url('../img/icons/arrow-left-white.svg');
+                    }
+                }
+
 
                 .dropdown-menu .level-1 {
                     top: 0;
-                    left: 299px;
+                    left: 199px;
                     background-color: darken($brand-primary, 5%);
 
                     &:before {
@@ -261,7 +272,11 @@
                     .dropdown-toggle:after {
                         display: block
                     }
+                }
 
+                .dropdown-menu.dropdown-menu-right .level-1 {
+                    left: auto;
+                    right: 199px;
                 }
 
                 @include media-breakpoint-between(md, lg) {
