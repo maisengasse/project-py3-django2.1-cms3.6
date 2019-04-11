@@ -1,0 +1,1001 @@
+//colors
+$white: #FFFFFF;
+$color_gallery_approx: #FFFFFF;
+$black_8: #322D29;
+$color_mercury_approx: #F7F7F7;
+$color_cape_cod_approx: #322D29;
+$color_sunset_orange_approx: #D9BD90;
+$color_cape_cod_15_approx: #1E181A;
+$color_gray_nurse_approx: #F7F7F7;
+$color_cornflower_blue_approx: #D9BD90;
+$color_black_haze_approx: #D9BD90;
+
+//@extend-elements
+//original selectors
+//.flatpickr-calendar.open, .flatpickr-calendar.inline
+%extend_1 {
+  opacity: 1;
+  max-height: 640px;
+  visibility: visible;
+}
+
+//original selectors
+//.flatpickr-calendar .hasWeeks .dayContainer, .flatpickr-calendar .hasTime .dayContainer
+%extend_2 {
+  border-bottom: 0;
+  //Instead of the line below you could use @include border-bottom-right-radius($radius)
+  border-bottom-right-radius: 0;
+  //Instead of the line below you could use @include border-bottom-left-radius($radius)
+  border-bottom-left-radius: 0;
+}
+
+//original selectors
+//.flatpickr-calendar:before, .flatpickr-calendar:after
+%extend_3 {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  border: solid transparent;
+  content: '';
+  height: 0;
+  width: 0;
+  left: 22px;
+}
+
+//original selectors
+//.flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month
+%extend_4 {
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  line-height: 16px;
+  height: 28px;
+  padding: 10px;
+  z-index: 3;
+  color: $color_cape_cod_approx;
+  fill: $color_cape_cod_approx;
+}
+
+//original selectors
+//.flatpickr-current-month input.cur-year[disabled], .flatpickr-current-month input.cur-year[disabled]:hover
+%extend_5 {
+  font-size: 100%;
+  color: $color_cape_cod_approx;
+  background: transparent;
+  pointer-events: none;
+}
+
+//original selectors
+//.flatpickr-day.inRange, .flatpickr-day.prevMonthDay.inRange, .flatpickr-day.nextMonthDay.inRange, .flatpickr-day.today.inRange, .flatpickr-day.prevMonthDay.today.inRange, .flatpickr-day.nextMonthDay.today.inRange, .flatpickr-day:hover, .flatpickr-day.prevMonthDay:hover, .flatpickr-day.nextMonthDay:hover, .flatpickr-day:focus, .flatpickr-day.prevMonthDay:focus, .flatpickr-day.nextMonthDay:focus
+%extend_6 {
+  cursor: pointer;
+  outline: 0;
+  background: $color_gray_nurse_approx;
+  border-color: $color_gray_nurse_approx;
+}
+
+//original selectors
+//.flatpickr-day.today:hover, .flatpickr-day.today:focus
+%extend_7 {
+  border-color: $color_sunset_orange_approx;
+  background: $color_sunset_orange_approx;
+  color: $white;
+}
+
+//original selectors
+//.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay
+%extend_8 {
+  background: $color_cornflower_blue_approx;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: none;
+  color: $white;
+  border-color: $color_cornflower_blue_approx;
+}
+
+//original selectors
+//.flatpickr-day.disabled, .flatpickr-day.disabled:hover, .flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay, .flatpickr-day.notAllowed, .flatpickr-day.notAllowed.prevMonthDay, .flatpickr-day.notAllowed.nextMonthDay
+%extend_9 {
+  color: $color_cape_cod_15_approx;
+  background: transparent;
+  border-color: $color_gray_nurse_approx;
+  cursor: default;
+}
+
+//original selectors
+//.flatpickr-weekwrapper span.flatpickr-day, .flatpickr-weekwrapper span.flatpickr-day:hover
+%extend_10 {
+  display: block;
+  width: 100%;
+  max-width: none;
+  color: $color_cape_cod_15_approx;
+  background: transparent;
+  cursor: default;
+  border: none;
+}
+
+//original selectors
+//.flatpickr-time .flatpickr-time-separator, .flatpickr-time .flatpickr-am-pm
+%extend_11 {
+  height: inherit;
+  display: inline-block;
+  float: left;
+  line-height: inherit;
+  color: $color_cape_cod_15_approx;
+  font-weight: bold;
+  width: 2%;
+  //Instead of the line below you could use @include user-select($select)
+  user-select: none;
+  align-self: center;
+}
+
+
+.flatpickr-calendar {
+  opacity: 0;
+  display: none;
+  text-align: center;
+  visibility: hidden;
+  padding: 0;
+  animation: none;
+  direction: ltr;
+  border: 0;
+  font-size: 14px;
+  line-height: 24px;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 5px;
+  position: absolute;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  touch-action: manipulation;
+  background: $white;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 1px 0 0 $color_gallery_approx, -1px 0 0 $color_gallery_approx, 0 1px 0 $color_gallery_approx, 0 -1px 0 $color_gallery_approx, 0 3px 13px $black_8;
+  width: 307.875px;
+  &.open {
+    @extend %extend_1;
+    display: inline-block;
+    z-index: 99999;
+  }
+  &.inline {
+    @extend %extend_1;
+    display: block;
+    position: relative;
+    top: 2px;
+  }
+  &.static {
+    position: absolute;
+    top: calc(100% +2px);
+    &.open {
+      z-index: 999;
+      display: block;
+    }
+  }
+  &:before {
+    @extend %extend_3;
+    border-width: 5px;
+    margin: 0 -5px;
+  }
+  &:after {
+    @extend %extend_3;
+    border-width: 4px;
+    margin: 0 -4px;
+  }
+  &.rightMost {
+    &:before {
+      left: auto;
+      right: 22px;
+    }
+    &:after {
+      left: auto;
+      right: 22px;
+    }
+  }
+  &.arrowTop {
+    &:before {
+      bottom: 100%;
+      border-bottom-color: $color_gallery_approx;
+    }
+    &:after {
+      bottom: 100%;
+      border-bottom-color: $white;
+    }
+  }
+  &.arrowBottom {
+    &:before {
+      top: 100%;
+      border-top-color: $color_gallery_approx;
+    }
+    &:after {
+      top: 100%;
+      border-top-color: $white;
+    }
+  }
+  &:focus {
+    outline: 0;
+  }
+  &.animate.open {
+    animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  &.multiMonth .flatpickr-days .dayContainer:nth-child(n + 1) .flatpickr-day.inRange:nth-child(7n + 7) {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none !important;
+  }
+  &.multiMonth .flatpickr-days .dayContainer:nth-child(n + 2) .flatpickr-day.inRange:nth-child(7n + 1) {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: -2px 0 0 $color_mercury_approx, 5px 0 0 $color_mercury_approx;
+  }
+  .hasWeeks .dayContainer {
+    @extend %extend_2;
+    border-left: 0;
+  }
+  .hasTime .dayContainer {
+    @extend %extend_2;
+  }
+  &.showTimeInput.hasTime .flatpickr-time {
+    height: 40px;
+    border-top: 1px solid $color_gallery_approx;
+  }
+  &.noCalendar.hasTime .flatpickr-time {
+    height: auto;
+  }
+}
+.flatpickr-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.flatpickr-months {
+  display: flex;
+  .flatpickr-month {
+    background: transparent;
+    color: $color_cape_cod_approx;
+    fill: $color_cape_cod_approx;
+    height: 28px;
+    line-height: 1;
+    text-align: center;
+    position: relative;
+    //Instead of the line below you could use @include user-select($select)
+    user-select: none;
+    overflow: hidden;
+    flex: 1;
+  }
+  .flatpickr-prev-month {
+    @extend %extend_4;
+    &.disabled {
+      display: none;
+    }
+    i {
+      position: relative;
+    }
+    &.flatpickr-prev-month {
+      left: 0;
+    }
+    &.flatpickr-next-month {
+      right: 0;
+    }
+    &:hover {
+      color: $color_sunset_orange_approx;
+      svg {
+        fill: $color_sunset_orange_approx;
+      }
+    }
+    svg {
+      width: 14px;
+      height: 14px;
+      path {
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: fill 0.1s;
+        fill: inherit;
+      }
+    }
+  }
+  .flatpickr-next-month {
+    @extend %extend_4;
+    &.disabled {
+      display: none;
+    }
+    i {
+      position: relative;
+    }
+    &.flatpickr-prev-month {
+      left: 0;
+    }
+    &.flatpickr-next-month {
+      right: 0;
+    }
+    &:hover {
+      color: $color_sunset_orange_approx;
+      svg {
+        fill: $color_sunset_orange_approx;
+      }
+    }
+    svg {
+      width: 14px;
+      height: 14px;
+      path {
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: fill 0.1s;
+        fill: inherit;
+      }
+    }
+  }
+}
+.numInputWrapper {
+  position: relative;
+  height: auto;
+  input {
+    display: inline-block;
+    width: 100%;
+  }
+  span {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    width: 14px;
+    padding: 0 4px 0 2px;
+    height: 50%;
+    line-height: 50%;
+    opacity: 0;
+    cursor: pointer;
+    border: 1px solid $color_cape_cod_15_approx;
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    &:hover {
+      background: $black_8;
+    }
+    &:active {
+      background: $black_8;
+    }
+    &:after {
+      display: block;
+      content: "";
+      position: absolute;
+    }
+    &.arrowUp {
+      top: 0;
+      border-bottom: 0;
+      &:after {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid $color_cape_cod_15_approx;
+        top: 26%;
+      }
+    }
+    &.arrowDown {
+      top: 50%;
+      &:after {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid $color_cape_cod_15_approx;
+        top: 40%;
+      }
+    }
+    svg {
+      width: inherit;
+      height: auto;
+      path {
+        fill: $color_cape_cod_approx;
+      }
+    }
+  }
+  input::-ms-clear {
+    display: none;
+  }
+  &:hover {
+    background: $black_8;
+    span {
+      opacity: 1;
+    }
+  }
+}
+.flatpickr-current-month {
+  font-size: 135%;
+  font-weight: 300;
+  color: inherit;
+  position: absolute;
+  width: 75%;
+  left: 12.5%;
+  padding: 6.16px 0 0 0;
+  line-height: 1;
+  height: 28px;
+  display: inline-block;
+  text-align: center;
+  //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+  transform: translate3d(0px, 0, 0);
+  .numInputWrapper {
+    width: 7ch\0;
+    display: inline-block;
+    span {
+      &.arrowUp:after {
+        border-bottom-color: $color_cape_cod_approx;
+      }
+      &.arrowDown:after {
+        border-top-color: $color_cape_cod_approx;
+      }
+    }
+  }
+  input {
+    &.cur-year {
+      background: transparent;
+      //Instead of the line below you could use @include box-sizing($bs)
+      box-sizing: border-box;
+      color: inherit;
+      cursor: text;
+      padding: 0 0 0 0.5ch;
+      margin: 0;
+      display: inline-block;
+      font-size: inherit;
+      font-family: inherit;
+      font-weight: 300;
+      line-height: inherit;
+      height: auto;
+      border: 0;
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 0;
+      vertical-align: initial;
+      &:focus {
+        outline: 0;
+      }
+    }
+    &.cur-year[disabled] {
+      @extend %extend_5;
+      &:hover {
+        @extend %extend_5;
+      }
+    }
+  }
+  span.cur-month {
+    font-family: inherit;
+    font-weight: 700;
+    color: inherit;
+    display: inline-block;
+    margin-left: 0.5ch;
+    padding: 0;
+    &:hover {
+      background: $black_8;
+    }
+  }
+}
+.flatpickr-weekdays {
+  background: transparent;
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 28px;
+  .flatpickr-weekdaycontainer {
+    display: flex;
+    flex: 1;
+  }
+}
+span {
+  &.flatpickr-weekday {
+    cursor: default;
+    font-size: 90%;
+    background: transparent;
+    color: $black_8;
+    line-height: 1;
+    margin: 0;
+    text-align: center;
+    display: block;
+    flex: 1;
+    font-weight: bolder;
+  }
+  &.flatpickr-day {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0 !important;
+    border: 1px solid $color_gray_nurse_approx;
+    max-width: none;
+    border-right-color: transparent;
+    &.prevMonthDay {
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 0 !important;
+      border: 1px solid $color_gray_nurse_approx;
+      max-width: none;
+      border-right-color: transparent;
+      &:nth-child(n + 8) {
+        border-top-color: transparent;
+      }
+      &:nth-child(n + 36) {
+        border-bottom: 0;
+      }
+      &:nth-child(7n-6) {
+        border-left: 0;
+      }
+      &.today {
+        z-index: 2;
+        &:not(.selected) {
+          border-color: $color_gray_nurse_approx;
+          border-right-color: transparent;
+          border-top-color: transparent;
+          border-bottom-color: $color_sunset_orange_approx;
+          &:hover {
+            border: 1px solid $color_sunset_orange_approx;
+          }
+        }
+      }
+      &.startRange {
+        border-color: $color_cornflower_blue_approx;
+      }
+      &.endRange {
+        border-color: $color_cornflower_blue_approx;
+      }
+      &.selected {
+        z-index: 2;
+      }
+      &:nth-child(-n + 7) {
+        margin-top: 0;
+      }
+    }
+    &.nextMonthDay {
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 0 !important;
+      border: 1px solid $color_gray_nurse_approx;
+      max-width: none;
+      border-right-color: transparent;
+      &:nth-child(n + 8) {
+          border-top-color: transparent;
+        }
+      &:nth-child(n + 36) {
+          border-bottom: 0;
+        }
+      &:nth-child(7n-6) {
+        border-left: 0;
+      }
+      &.today {
+        z-index: 2;
+        &:not(.selected) {
+          border-color: $color_gray_nurse_approx;
+          border-right-color: transparent;
+          border-top-color: transparent;
+          border-bottom-color: $color_sunset_orange_approx;
+          &:hover {
+            border: 1px solid $color_sunset_orange_approx;
+          }
+        }
+      }
+      &.startRange {
+        border-color: $color_cornflower_blue_approx;
+      }
+      &.endRange {
+        border-color: $color_cornflower_blue_approx;
+      }
+      &.selected {
+        z-index: 2;
+      }
+      &:nth-child(-n + 7) {
+        margin-top: 0;
+      }
+    }
+    &:nth-child(n + 8) {
+        border-top-color: transparent;
+      }
+    &:nth-child(n + 36) {
+        border-bottom: 0;
+      }
+    &:nth-child(7n-6) {
+      border-left: 0;
+    }
+    &.today {
+      z-index: 2;
+      &:not(.selected) {
+        border-color: $color_gray_nurse_approx;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: $color_sunset_orange_approx;
+        &:hover {
+          border: 1px solid $color_sunset_orange_approx;
+        }
+      }
+    }
+    &.startRange {
+      border-color: $color_cornflower_blue_approx;
+    }
+    &.endRange {
+      border-color: $color_cornflower_blue_approx;
+    }
+    &.selected {
+      z-index: 2;
+    }
+    &:nth-child(-n + 7) {
+      margin-top: 0;
+    }
+  }
+}
+.dayContainer {
+  padding: 1px 0 0;
+  outline: 0;
+  text-align: left;
+  width: 307.875px;
+  min-width: 307.875px;
+  max-width: 307.875px;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+  transform: translate3d(0px, 0, 0);
+  opacity: 1;
+  padding: 0;
+  border-right: 0;
+  + .dayContainer {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: -1px 0 0 $color_gallery_approx;
+  }
+}
+.flatpickr-weeks {
+  padding: 1px 0 0;
+}
+.flatpickr-days {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  width: 307.875px;
+  &:focus {
+    outline: 0;
+  }
+}
+.flatpickr-day {
+  background: none;
+  border: 1px solid transparent;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 150px;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  color: $color_cape_cod_15_approx;
+  cursor: pointer;
+  font-weight: 400;
+  width: 14.2857143%;
+  flex-basis: 14.2857143%;
+  max-width: 39px;
+  height: 39px;
+  line-height: 39px;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  &.inRange {
+    @extend %extend_6;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: -5px 0 0 $color_gray_nurse_approx, 5px 0 0 $color_gray_nurse_approx;
+  }
+  &.prevMonthDay {
+    @extend %extend_9;
+    &.inRange {
+      @extend %extend_6;
+    }
+    &:hover {
+      @extend %extend_6;
+    }
+    &:focus {
+      @extend %extend_6;
+    }
+    &.today.inRange {
+      @extend %extend_6;
+    }
+  }
+  &.nextMonthDay {
+    @extend %extend_9;
+    &.inRange {
+      @extend %extend_6;
+    }
+    &:hover {
+      @extend %extend_6;
+    }
+    &:focus {
+      @extend %extend_6;
+    }
+    &.today.inRange {
+      @extend %extend_6;
+    }
+  }
+  &.today {
+    border-color: $color_sunset_orange_approx;
+    &.inRange {
+      @extend %extend_6;
+    }
+    &:hover {
+      @extend %extend_7;
+    }
+    &:focus {
+      @extend %extend_7;
+    }
+  }
+  &:hover {
+    @extend %extend_6;
+  }
+  &:focus {
+    @extend %extend_6;
+  }
+  &.selected {
+    @extend %extend_8;
+    &.inRange {
+      @extend %extend_8;
+    }
+    &:focus {
+      @extend %extend_8;
+    }
+    &:hover {
+      @extend %extend_8;
+    }
+    &.prevMonthDay {
+      @extend %extend_8;
+    }
+    &.nextMonthDay {
+      @extend %extend_8;
+    }
+    &.startRange {
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 50px 0 0 50px;
+      &.endRange {
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 50px;
+      }
+      + .endRange:not(:nth-child(7n + 1)) {
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: -10px 0 0 $color_cornflower_blue_approx;
+      }
+    }
+    &.endRange {
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 0 50px 50px 0;
+    }
+  }
+  &.startRange {
+    @extend %extend_8;
+    &.inRange {
+      @extend %extend_8;
+    }
+    &:focus {
+      @extend %extend_8;
+    }
+    &:hover {
+      @extend %extend_8;
+    }
+    &.prevMonthDay {
+      @extend %extend_8;
+    }
+    &.nextMonthDay {
+      @extend %extend_8;
+    }
+    &.startRange {
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 50px 0 0 50px;
+      &.endRange {
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 50px;
+      }
+      + .endRange:not(:nth-child(7n + 1)) {
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: -10px 0 0 $color_cornflower_blue_approx;
+      }
+    }
+    &.endRange {
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 0 50px 50px 0;
+    }
+  }
+  &.endRange {
+    @extend %extend_8;
+    &.inRange {
+      @extend %extend_8;
+    }
+    &:focus {
+      @extend %extend_8;
+    }
+    &:hover {
+      @extend %extend_8;
+    }
+    &.prevMonthDay {
+      @extend %extend_8;
+    }
+    &.nextMonthDay {
+      @extend %extend_8;
+    }
+    &.startRange {
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 50px 0 0 50px;
+      &.endRange {
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 50px;
+      }
+      + .endRange:not(:nth-child(7n + 1)) {
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: -10px 0 0 $color_cornflower_blue_approx;
+      }
+    }
+    &.endRange {
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 0 50px 50px 0;
+    }
+  }
+  &.disabled {
+    @extend %extend_9;
+    cursor: not-allowed;
+    color: $color_cape_cod_15_approx;
+    opacity: .4;
+    &:hover {
+      @extend %extend_9;
+      cursor: not-allowed;
+      color: $color_cape_cod_15_approx;
+    }
+  }
+  &.notAllowed {
+    @extend %extend_9;
+    &.prevMonthDay {
+      @extend %extend_9;
+    }
+    &.nextMonthDay {
+      @extend %extend_9;
+    }
+  }
+  &.hidden {
+    visibility: hidden;
+  }
+  &.week.selected {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: -5px 0 0 $color_cornflower_blue_approx, 5px 0 0 $color_cornflower_blue_approx;
+  }
+}
+.flatpickr-weekwrapper {
+  display: inline-block;
+  float: left;
+  .flatpickr-weeks {
+    padding: 0 12px;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+  }
+  .flatpickr-weekday {
+    float: none;
+    width: 100%;
+    line-height: 28px;
+  }
+  span.flatpickr-day {
+    @extend %extend_10;
+    border: 0;
+    margin: -1px 0 0 -1px;
+    &:hover {
+      @extend %extend_10;
+    }
+  }
+}
+.flatpickr-innerContainer {
+  display: flex;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.flatpickr-rContainer {
+  display: inline-block;
+  padding: 0;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+}
+.flatpickr-time {
+  text-align: center;
+  outline: 0;
+  height: 0;
+  line-height: 40px;
+  max-height: 40px;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .numInputWrapper {
+    flex: 1;
+    width: 40%;
+    height: 40px;
+    float: left;
+    span {
+      &.arrowUp:after {
+        border-bottom-color: $color_cape_cod_15_approx;
+      }
+      &.arrowDown:after {
+        border-top-color: $color_cape_cod_15_approx;
+      }
+    }
+  }
+  input {
+    background: transparent;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+    border: 0;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: inherit;
+    line-height: inherit;
+    color: $color_cape_cod_15_approx;
+    font-size: 14px;
+    position: relative;
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    &.flatpickr-hour {
+      font-weight: bold;
+    }
+    &.flatpickr-minute {
+      font-weight: 400;
+    }
+    &.flatpickr-second {
+      font-weight: 400;
+    }
+    &:focus {
+      outline: 0;
+      border: 0;
+      background: $color_black_haze_approx;
+    }
+    &:hover {
+      background: $color_black_haze_approx;
+    }
+  }
+  .flatpickr-time-separator {
+    @extend %extend_11;
+  }
+  .flatpickr-am-pm {
+    @extend %extend_11;
+    outline: 0;
+    width: 18%;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 400;
+    &:hover {
+      background: $color_black_haze_approx;
+    }
+    &:focus {
+      background: $color_black_haze_approx;
+    }
+  }
+  &.hasSeconds .numInputWrapper {
+    width: 26%;
+  }
+  &.time24hr .numInputWrapper {
+    width: 49%;
+  }
+}
+.flatpickr-input[readonly] {
+  cursor: pointer;
+}
+@-webkit-keyframes fpFadeInDown {
+  from {
+    opacity: 0;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fpFadeInDown {
+  from {
+    opacity: 0;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: translate3d(0, 0, 0);
+  }
+}
+.rangeMode .flatpickr-day {
+  margin-top: -1px;
+}
+.hasWeeks .flatpickr-days {
+  border-right: 0;
+}

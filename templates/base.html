@@ -143,9 +143,10 @@
         {% block css %}
             {% compress css %}
                 <link type="text/css" href="{% static 'project/lib/fancybox/jquery.fancybox.css' %}" rel="stylesheet" />
-                <link type="text/css" href="{% static 'project/lib/flatpickr/flatpickr.css' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'project/lib/flatpickr/flatpickr.scss' %}" rel="stylesheet" />
                 <link type="text/x-scss" href="{% static 'project/lib/slick/slick.scss' %}" rel="stylesheet" />
                 <link type="text/x-scss" href="{% static 'project/lib/slick/slick-theme.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'aurelio/lib/select/select.scss' %}" rel="stylesheet" />
                 <link type="text/x-scss" href="{% static 'project/scss/main.scss' %}" rel="stylesheet" />
             {% endcompress %}
         {% endblock css %}
@@ -159,6 +160,7 @@
                 <script src="{% static 'project/lib/slick/slick.js' %}"></script>
                 <script src="{% static 'project/lib/fancybox/jquery.fancybox.js' %}"></script>
                 <script src="{% static 'project/lib/objectfit/ofi.js' %}"></script>
+                <script src="{% static 'aurelio/lib/select/bootstrap-select.js' %}"></script>
                 <script src="{% static 'project/js/main.js' %}"></script>
             {% endcompress %}
         {% endblock js %}

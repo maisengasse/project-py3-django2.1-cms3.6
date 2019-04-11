@@ -9,20 +9,19 @@ try { maisen = maisen || {};} catch(e){ var maisen = {};}
 maisen.nothing = function() {};
 maisen.init = function() {
     maisen.utils.init();
-
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
     maisen.commands.run();
-
     objectFitImages();
-
 };
 
 maisen.commands = {
     additional : [],
     run : function(context) {
         this.context = context || $(document);
+
+        //bs4
+        this.context.find('[data-toggle="tooltip"]').tooltip();
+
+        //commands
         this.cmd('initForms', "form");
         this.cmd('hamburger', ".hamburger");
         this.cmd('fancyBox', "[data-fancybox]");
@@ -212,6 +211,7 @@ maisen.commands = {
             node.data("datepicker", datepicker);
         });
 
+        node.find('select').selectpicker();
         node.find(":input[required]").prev('label').addClass('required')
 
         var form = node;
