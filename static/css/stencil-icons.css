@@ -1,23 +1,23 @@
-.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-bigimagewithtext {
-    background-image: url('../img/stencil-icons/bigimage-with-text.png');
+.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-fullimagewithtext {
+    background-image: url('../img/stencil-icons/fullimage-with-text.png');
 }
-.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-bigimage {
-    background-image: url('../img/stencil-icons/bigimage.png');
+.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-fullimage {
+    background-image: url('../img/stencil-icons/fullimage.png');
 }
 .cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-imagewithtext {
     background-image: url('../img/stencil-icons/image-with-text.png');
 }
-/*.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-slider {
+.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-slider {
     background-image: url('../img/stencil-icons/slider.png');
-}*/
-/*.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-grouper {
+}
+.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-grouper {
     background-image: url('../img/stencil-icons/group.png');
-}*/
+}
 .cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-teasergroup {
     background-image: url('../img/stencil-icons/teaser-group.png');
 }
-.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-bigtext {
-    background-image: url('../img/stencil-icons/bigtext.png');
+.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-fulltext {
+    background-image: url('../img/stencil-icons/fulltext.png');
 }
 .cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-highlightgroup {
     background-image: url('../img/stencil-icons/highlight-group.png');
@@ -25,8 +25,8 @@
 .cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-highlight {
     background-image: url('../img/stencil-icons/highlight.png');
 }
-.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-imagewithcolumntext {
-    background-image: url('../img/stencil-icons/bigimage-doubletext.png');
+.cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-fullimagewithcolumntext {
+    background-image: url('../img/stencil-icons/fullimage-with-columntext.png');
 }
 .cms-modal .cms-submenu-item.cms-submenu-item-stencil a.stencil-icon-testimonial {
     background-image: url('../img/stencil-icons/testimonial.png');

@@ -1,16 +1,10 @@
 {% load project_tags imagesize_tags cms_tags %}
-<article class="fullimage fullimage-with-columns sm-image-top">
+<article class="fullimage-with-text fullimage-with-columntext md-image-top">
     <div class="cover-background" data-slickslider data-slickslider-arrows data-slickslider-dots="0">
         {% for relation in instance.images.relations %}
             {% with image=relation.image %}
             <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
-			{% if instance.cssclass == 'image-top' %}
-                <img {% if relation.border %}class="border"{% endif %}
-                     {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
-            {% else %}
-                <img {% if relation.border %}class="border"{% endif %}
-                     {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
-			{% endif %}
+                <img {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
                 {% if relation.caption or instance.caption %}
                     <figcaption>{% i18ncaption relation default=instance.caption %}</figcaption>
                 {% endif %}

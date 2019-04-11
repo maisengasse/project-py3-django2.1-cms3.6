@@ -1,13 +1,12 @@
 {% load project_tags imagesize_tags %}
-<article class="fullimage sm-image-top{% if 'nobox' in instance.display %} nobox{% endif %}">
+<article class="fullimage-with-text md-image-top">
     {# {% if instance.images.count > 1 %} #}
     <div class="cover-background" data-slickslider data-slickslider-arrows data-slickslider-dots="0">
     {# {% endif %} #}
         {% for relation in instance.images.relations %}
             {% with image=relation.image %}
             <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
-                <img {% if relation.border %}class="border"{% endif %}
-                    {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
+                <img {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
                 {% if relation.caption or instance.caption %}
                     <figcaption>{% i18ncaption relation default=instance.caption %}</figcaption>
                 {% endif %}
@@ -19,8 +18,8 @@
     {# {% endif %} #}
     {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
         <div class="row {% if 'right' in instance.display %}justify-content-end{% else %}justify-content-start{% endif %}">
-            <div class="col-12 col-sm-6">
-                <div class="card sm-image-top{% if 'nobox' in instance.display %} nobox{% endif %}">
+            <div class="col-12 col-md-6">
+                <div class="card md-image-top">
                     {% if instance.title %}
                         <div class="card-header">
                             <h2>{{ instance.title|safe }}</h2>

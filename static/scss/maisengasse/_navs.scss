@@ -1,6 +1,8 @@
 @import "../main-variables";
-// // Mobile Nav
+@import "helpers";
+@import "components";
 
+// –––––––––––––––––––– Hamburger ––––––––––––––––––––
 #maisen-dropdown-toggler {
     position: absolute;
     right: 10px;
@@ -9,7 +11,7 @@
 }
 
 #maisen-dropdown-nav {
-    // Mobilnavigation
+    // –––––––––––––––––––– Mobilnavigation ––––––––––––––––––––
     @include media-breakpoint-down(sm) {
         @keyframes show-mobile-nav {
             0% { opacity: 0; transform: translateY(0) }
@@ -137,7 +139,7 @@
         }
     }
 
-    // Desktopnavigation
+    // –––––––––––––––––––– Desktopnavigation ––––––––––––––––––––
     @include media-breakpoint-up(md) {
         width: 100%;
         ul.navbar-nav {
