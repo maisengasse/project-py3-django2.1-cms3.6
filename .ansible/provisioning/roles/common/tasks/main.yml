@@ -62,6 +62,19 @@
     - postcss-cli
     - autoprefixer
 
+- name: SSH config directory
+  file: "path={{ project_dir }}/.ssh owner={{ app_user }} group={{ app_grp }} mode=0700 state=directory"
+
+- name: copy private development key
+  template: "src='id_rsa' dest={{ home_dir }}/.ssh/id_rsa owner={{ app_user }} group={{ app_grp }} mode=0600"
+
+- name: copy public development key
+  template: "src='id_rsa.pub' dest={{ home_dir }}/.ssh/id_rsa.pub owner={{ app_user }} group={{ app_grp }} mode=0600"
+
+
+  # copy: "src=/home/vagrant/.ssh/authorized_keys dest={{ home_dir }}/.ssh/authorized_keys owner={{ app_user }} group={{ app_grp }} mode=0600"
+
+
 # - name: Add project group
 #   group: "name={{ app_grp }} state=present"
 #   when: not deployment
