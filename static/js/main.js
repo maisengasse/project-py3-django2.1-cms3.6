@@ -219,11 +219,11 @@ maisen.commands = {
         form.preventDoubleSubmission();
 
         //z-index-hack
-        var zindex = 1000;
-        form.find(".form-group").each(function() {
-            $(this).css('z-index', zindex);
-            zindex--;
-        });
+        // var zindex = 1000;
+        // form.find(".form-group").each(function() {
+        //     $(this).css('z-index', zindex);
+        //     zindex--;
+        // });
     },
     maisenDropdownNav : function(body) {
         var nav = body.find('#maisen-dropdown-nav');
