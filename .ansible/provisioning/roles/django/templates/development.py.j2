@@ -3,20 +3,6 @@ from .base import *
 DEBUG = True
 TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': '{{ project_name }}',
-#         'USER': '{{ db_user }}',
-#         'PASSWORD': '{{ db_password }}',
-#         'HOST': '127.0.0.1',
-#         'PORT': '',
-#         'OPTIONS': {
-#            "init_command": "SET storage_engine=INNODB",
-#         }
-#     },
-# }
-
 MEDIA_ROOT = '{{ home_dir }}/media'
 MEDIA_URL = '/media/'
 
@@ -26,6 +12,12 @@ STATIC_URL = '/static/'
 CMS_PAGE_CACHE = False
 CMS_PLACEHOLDER_CACHE = False
 CMS_PLUGIN_CACHE = False
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache"
+    }
+}
+
 
 PORTAL_URL = '{{ project_domain }}'
 

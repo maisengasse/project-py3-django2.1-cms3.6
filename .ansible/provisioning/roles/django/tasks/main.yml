@@ -26,7 +26,7 @@
   template: "src=fabric.j2 dest={{ home_dir}}/{{ project_name }}/fabric owner={{ app_user }} group={{ app_grp }} mode=0755"
 
 - name: Copy Production django settings.py template
-  template: "src=production.py.j2 dest={{ project_dir }}/{{ project_name }}/settings/production.py owner={{ app_user }} group={{ app_grp }} mode=0644"
+  template: "src=development.py.j2 dest={{ project_dir }}/{{ project_name }}/settings/development.py owner={{ app_user }} group={{ app_grp }} mode=0644"
 
 - name: Create wsgi directory
   file: "path={{ home_dir }}/wsgi owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"

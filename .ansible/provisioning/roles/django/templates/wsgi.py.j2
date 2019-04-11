@@ -11,7 +11,7 @@ for path in paths:
   if path not in sys.path:
     sys.path.append(path)
 
-os.environ['DJANGO_SETTINGS_MODULE'] = '{{ project_name }}.settings.production'
+os.environ['DJANGO_SETTINGS_MODULE'] = '{{ project_name }}.settings.development'
 
 UPGRADING = False
 project_dir = "{{ home_dir }}/{{ project_name }}"
