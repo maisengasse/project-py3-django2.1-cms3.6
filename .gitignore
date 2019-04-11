@@ -1,9 +1,0 @@
-.vagrant/
-.vscode/
-/static/CACHE/
-/media
-*.pyc
-__pycache__
-settings/local.py
-project/settings/production.py
-manage.py
