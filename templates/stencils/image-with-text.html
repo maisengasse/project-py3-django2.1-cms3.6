@@ -7,7 +7,7 @@
 			        {% for relation in instance.images.relations %}
 			            {% with image=relation.image %}
 			            <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
-			                <img {% srcset image 'fullwidth' '' sizes='540px' %} alt="{% firstof relation.caption instance.caption image %}" />
+			                <img {% srcset image 'fullwidth' ratio=instance.ratio %} alt="{% firstof relation.caption instance.caption image %}" />
 			                {% if relation.caption or instance.caption %}
                                 <figcaption>{% i18ncaption relation default=instance.caption %}</figcaption>
 			                {% endif %}

@@ -4,7 +4,7 @@
         {% if instance.images.count %}
             {% with relation=instance.images.relations.0 image=instance.images.image  %}
                 <img {% if relation.border %}class="border"{% endif %}
-                     {% srcset image None 'fleximage-4-3' '50vw' %} alt="{{ instance.title }}" />
+                     {% srcset image 'halfwidth' ratio=instance.ratio %} alt="{{ instance.title }}" />
             {% endwith %}
         {% endif %}
             <h4>{{ instance.title }}</h4>

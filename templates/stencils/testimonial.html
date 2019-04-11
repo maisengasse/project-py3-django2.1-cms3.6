@@ -6,7 +6,7 @@
 				{% if instance.files.files %}
 					<figure class="testimonial-icon">
 	                    <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
-	                    {# <img {% srcset instance.images.image 'fullwidth' sizes="400px" %} alt="{{ instance.title }}"> #}
+	                    {# <img {% srcset instance.images.image 'fullwidth' ratio="instance.ratio" %} alt="{{ instance.title }}"> #}
 	                </figure>
 				{% endif %}
                 {% if instance.title %}

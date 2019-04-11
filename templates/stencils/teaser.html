@@ -7,7 +7,7 @@
                     {% if instance.link %}
                     	<a href="{{ instance.link }}">
                     {% endif %}
-        	                <img {% srcset instance.images.image 'halfwidth' sizes="450px" %} alt="{{ instance.title }}">
+        	                <img {% srcset instance.images.image 'halfwidth' ratio=instance.ratio %} alt="{{ instance.title }}">
                 	{% if instance.link %}
                         </a>
                     {% endif %}
