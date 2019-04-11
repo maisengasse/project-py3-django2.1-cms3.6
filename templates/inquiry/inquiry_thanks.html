@@ -1,0 +1,11 @@
+{% extends "small-header.html" %}
+{% load i18n %}
+{% block footer-inquiry %}{% endblock footer-inquiry %}
+{% block content %}
+<article>
+    <div class="container">
+        <h2>{% trans "Vielen Dank" %}</h2>
+        <p>{% trans "Ihre Anfrage wurde gesendet.<br/>Wir melden uns in Kürze." %}</p>
+    </div>
+</article>
+{% endblock content %}

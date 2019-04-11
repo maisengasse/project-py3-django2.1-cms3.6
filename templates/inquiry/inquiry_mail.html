@@ -1,0 +1,47 @@
+<h2>Hallo,</h2>
+ihr habt eine Online-Anfrage von {{ data.email }} erhalten.
+
+<h3>Anfrage</h3>
+<table>
+    <tr>
+        <td width="100">Sprache</td>
+        <td><b>{{ data.lang }}</b></td>
+    </tr>
+    <tr>
+        <td width="100">E-Mail</td>
+        <td><b>{{ data.email }}</b></td>
+    </tr>
+    <tr>
+        <td width="100">Anreisedateum</td>
+        <td><b>{{ data.arrival }}</b></td>
+    </tr>
+    <tr>
+        <td width="100">Abreisedatum</td>
+        <td><b>{{ data.departure }}</b></td>
+    </tr>
+    <tr>
+        <td width="100">Anzahl Gäste </td>
+        <td><b>{{ data.adults }} Erwachsene / {{ data.children }} Kinder</b></td>
+    </tr>
+    <tr>
+        <td width="100">Anrede</td>
+        <td><b>{{ data.salutation }}</b></td>
+    </tr>
+    <tr>
+        <td width="100">Vorname</td>
+        <td><b>{{ data.firstname }}</b></td>
+    </tr>
+    <tr>
+        <td width="100">Nachname</td>
+        <td><b>{{ data.lastname }}</b></td>
+    </tr>
+    <tr>
+        <td>Nachricht</td>
+        <td><b>{{ data.message }}</b></td>
+    </tr>
+</table>
+
+<br />
+<br />
+Beste Grüsse,<br />
+Eure Website

@@ -57,9 +57,7 @@ class InquiryForm(forms.Form):
         ("Herr", "Herr"),
         ("Familie", "Familie"),
     )
-    salutation = forms.ChoiceField(
-        label=_("Anrede"), choices=SALUTATION_CHOICES
-    )
+    salutation = forms.ChoiceField(label=_("Anrede"), choices=SALUTATION_CHOICES)
     email = forms.EmailField(label=_("E-Mail"), required=True)
     firstname = forms.CharField(label=_("Vorname"))
     lastname = forms.CharField(label=_("Nachname"))
@@ -75,8 +73,7 @@ class InquiryForm(forms.Form):
         dep = cd["departure"]
         if dep <= arr:
             self.add_error(
-                "departure",
-                _(u"Das Abreisedatum muss nach dem Anreisedatum liegen."),
+                "departure", _(u"Das Abreisedatum muss nach dem Anreisedatum liegen.")
             )
 
 
@@ -87,8 +84,8 @@ def inquiry_form(request):
         if form.is_valid():
             data = form.cleaned_data
             ctx = locals()
-            body = render_to_string("mails/inquiry_mail.txt", ctx)
-            html_body = render_to_string("mails/inquiry_mail.html", ctx)
+            body = render_to_string("inquiry/inquiry_mail.txt", ctx)
+            html_body = render_to_string("inquiry/inquiry_mail.html", ctx)
             send_mail(
                 "Online-Anfrage: %s bis %s"
                 % (
@@ -104,8 +101,8 @@ def inquiry_form(request):
             )
             return HttpResponseRedirect(reverse("inquiry_form_thanks"))
 
-    return render(request, "views/inquiry_form.html", locals())
+    return render(request, "inquiry/inquiry.html", locals())
 
 
 def inquiry_form_thanks(request):
-    return render(request, "views/inquiry_form_thanks.html", locals())
+    return render(request, "inquiry/inquiry_thanks.html", locals())
