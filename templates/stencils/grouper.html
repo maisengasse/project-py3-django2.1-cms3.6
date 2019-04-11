@@ -1,11 +1,7 @@
 {% load cms_tags %}
 <div class="grouper">
     {% if instance.title or instance.link %}
-        {% if instance.container == 2 %}
-            <div class="container">
-        {% elif instance.container == 3 %}
-            <div class="container-fluid">
-        {% endif %}
+        {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
             <div class="row">
                 {% if instance.title %}
                     <div class="col-12 col-sm-8 col-md-10">
@@ -18,9 +14,7 @@
                     </div>
                 {% endif %}
             </div>
-        {% if not instance.container == 1 %}
-            </div>
-        {% endif %}
+        {% if instance.container %}</div>{% endif %}
     {% endif %}
     {% for plugin in instance.child_plugin_instances %}
         {% with in_grouper=1 %}

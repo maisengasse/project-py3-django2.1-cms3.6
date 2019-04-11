@@ -999,3 +999,11 @@ span {
 .hasWeeks .flatpickr-days {
   border-right: 0;
 }
+
+// IE11 Kalender Fix
+@media all and (-ms-high-contrast:none) {
+  span.flatpickr-day {
+    display: block;
+    flex: 1 0 auto;
+  }
+}

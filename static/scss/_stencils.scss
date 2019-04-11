@@ -1,84 +1,18 @@
-// Büro Maisengasse 2019
-
-// 	1.) Typography ––––––––––––––––––––––––––––––
-// 	2.) General Settings ––––––––––––––––––––––––––––––
-//	3.) All Stencils ––––––––––––––––––––––––––––––
-//		3.1.)	bigimage / gallery
-//		3.2.)	bigimage-with-text / fullimage
-//		3.3.)	bigtext / text
-//		3.4.)	teaser-group
-//		3.5.)	image-with-columntext / fullimage-with-columns
-//		3.6.)	image-with-text / image-withtext
-//		3.7.)	highlight-group
-//		3.8.)	highlight
-
-
-// –––––––––––––––––––––––––––––– Typography ––––––––––––––––––––––––––––––
-h2 {
-	font-size: 45px;
-	font-weight: $font-weight-medium;
-	color: $brand-primary;
-	margin-bottom: 15px;
-}
-
-h3 {
-	font-size: 30px;
-	font-weight: $font-weight-medium;
-}
-
-p {
-	font-size: $font-size-base;
-	line-height: 1.45em;
-}
-
-// –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
-.cover-background {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	margin-bottom: 0;
-
-	// html.object-fit & {
-		a {
-			display: block;
-			width: 100%;
-			height: 100%;
-		}
-		.slick-list, .slick-track, figure, img {
-			height: 100% !important;
-			margin-bottom: 0;
-		}
-		img {
-			@include object-fit(cover, center);
-			// object-fit: cover;
-		}
-	// }
-}
-
-.card {
-	overflow: hidden;
-	border: none;
-	border-radius: $border-radius;
-	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
-	.card-header,
-	.card-body,
-	.card-footer {
-		padding: 0;
-		background-color: transparent;
-		border: none;
-	}
-	.card-body {
-
-	}
-}
-
 // –––––––––––––––––––––––––––––– All Stencils ––––––––––––––––––––––––––––––
+// FullImage // fullimage
+// FullImageWithText // fullimage-with-text
+// FullText // fulltext
+// TeaserGroup // teaser-group
+// FullImageWithColumnText / fullimage-with-columntext
+// ImageWithText / image-withtext
+// HighlightGroup
+// Highlight
+// Testimonials
+// Timeline
 
-// –––––––––– bigimage / gallery ––––––––––
-article.bigimage {
+
+// –––––––––– FullImage // fullimage ––––––––––
+article.fullimage {
 	// Imageoverlay
 	// figure {
 	// 	position: relative;
@@ -94,8 +28,9 @@ article.bigimage {
 	// }
 }
 
-// –––––––––– bigimage-with-text / fullimage ––––––––––
-article.fullimage {
+
+// –––––––––– FullImageWithText // fullimage-with-text ––––––––––
+article.fullimage-with-text {
 	position: relative;
 
 	.card {
@@ -103,12 +38,12 @@ article.fullimage {
 		padding: 60px;
 	}
 	
-	&.sm-image-top {
+	&.md-image-top {
 		@include media-breakpoint-down(md) {
 			.cover-background {
 				position: static;
 			}
-			.col-sm-6 {
+			.col-md-6 {
 				flex: 0 0 100%;
 				max-width: 100%;
 				margin-left: 0;
@@ -123,12 +58,14 @@ article.fullimage {
 	}
 }
 
-// –––––––––– bigtext / text ––––––––––
-article.text {
+
+// –––––––––– FullText // fulltext ––––––––––
+article.fulltext {
 	margin: 100px 0;
 }
 
-// –––––––––– teaser-group ––––––––––
+
+// –––––––––– TeaserGroup // teaser-group ––––––––––
 article.teaser-group {
 	margin: 100px 0;
 	h2 {
@@ -136,7 +73,7 @@ article.teaser-group {
 	}
 	.card {
 		.card-body {
-			padding: 35px;
+			padding: 20px 0;
 		}
 	}
 	@include media-breakpoint-down(lg) {
@@ -146,12 +83,14 @@ article.teaser-group {
 	}
 }
 
-// –––––––––– image-with-columntext / fullimage-with-columns ––––––––––
-article.image-with-columntext {
+
+// –––––––––– FullImageWithColumnText // fullimage-with-columntext ––––––––––
+article.fullfullimage-with-columntext {
 
 }
 
-// –––––––––– image-with-text / image-withtext ––––––––––
+
+// –––––––––– ImageWithText // image-withtext ––––––––––
 article.image-with-text {
 	margin: 100px 0;
 
@@ -164,7 +103,8 @@ article.image-with-text {
 	}
 }
 
-// –––––––––– highlight-group ––––––––––
+
+// –––––––––– HighlightGroup // highlight-group ––––––––––
 article.highlight-group {
 	margin: 100px 0;
 	h2 {
@@ -182,7 +122,8 @@ article.highlight-group {
 	}
 }
 
-// –––––––––– highlight ––––––––––
+
+// –––––––––– Highlight // highlight ––––––––––
 article.highlight {
 	margin: 100px 0;
 	figure {
@@ -190,7 +131,8 @@ article.highlight {
 	}
 }
 
-// –––––––––– testimonial ––––––––––
+
+// –––––––––– Testimonial // testimonial ––––––––––
 article.testimonial {
 	margin: 100px 0;
 	text-align: center;
@@ -202,3 +144,5 @@ article.testimonial {
 		margin-bottom: 20px;
 	}
 }
+
+// –––––––––– Timeline ––––––––––

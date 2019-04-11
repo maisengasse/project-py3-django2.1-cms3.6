@@ -1,25 +1,63 @@
-// Büro Maisengasse 2019
+// Contents
+// 1.) Helper Classes
+// 2.) Maisengasse Stylings
+// 3.) Silbentrennung
+// 4.) Responsive Breaks
+// 5.) Utils
+// 6.) Tilted Edges
+// 7.) Overlay Classes
+// 8.) Accessibility Classes
 
-//  1.) Helpers
-//  2.) Animation
-//  3.) Tilted Edges
-//  4.) Utils
-//  5.) Grid Tweaks
 
-
-// –––––––––––––––––––––––––––––– 1.) Helpers ––––––––––––––––––––––––––––––
+// –––––––––––––––––––––––––––––– 1.) Helper Classes ––––––––––––––––––––––––––––––
 .overflow {
     display: block;;
     overflow: hidden;
     text-indent: -999px;
 }
 
-.hyphenate {
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
+.relative {
+    position: relative;
 }
 
+.narrow-gutters {
+    margin-right: $grid-gutter-width/4;
+    margin-left: $grid-gutter-width/4;
+    > .col,
+    > [class*="col-"] {
+        padding-right: $grid-gutter-width/4;
+        padding-left: $grid-gutter-width/4;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    div.two-cols {
+        column-count: 2;
+        column-gap: $grid-gutter-width;
+        p {
+            text-align: left;
+        }
+    }
+}
+
+
+// –––––––––––––––––––––––––––––– 2.) Maisengasse Stylings ––––––––––––––––––––––––––––––
+@include media-breakpoint-up(lg) {
+    .container-left {
+        @include media-breakpoint-up(md) { .card { margin-right: $special-margin-md; } }
+        @include media-breakpoint-up(lg) { .card { margin-right: $special-margin-lg; } }
+        @include media-breakpoint-up(xl) { .card { margin-right: $special-margin-xl; } }
+        @media screen and (min-width: $max-content-width) { .card { margin-right: $special-margin-xxl; } }
+    }
+    .container-right {
+        @include media-breakpoint-up(md) { .card { margin-left: $special-margin-md; } }
+        @include media-breakpoint-up(lg) { .card { margin-left: $special-margin-lg; } }
+        @include media-breakpoint-up(xl) { .card { margin-left: $special-margin-xl; } }
+        @media screen and (min-width: $max-content-width) { .card { margin-left: $special-margin-xxl; } }
+    }
+}
+
+// Tooltip Styling (Maisengasse)
 .tooltip {
     margin-bottom: 10px;
     .tooltip-inner {
@@ -36,11 +74,152 @@
     }
 }
 
-// –––––––––––––––––––––––––––––- 2.) Animacion! –––––––––––––––––––––––––––
+
+// –––––––––––––––––––––––––––––– 3.) Silbentrennung ––––––––––––––––––––––––––––––
+@mixin hyphenate {
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+.hyphenate {
+    @include hyphenate;
+}
+.hyphenate-xs-down {
+    @include media-breakpoint-down(xs) {
+        @include hyphenate;
+    }
+}
+.hyphenate-sm-down {
+    @include media-breakpoint-down(sm) {
+        @include hyphenate;
+    }
+}
+.hyphenate-md-down {
+    @include media-breakpoint-down(md) {
+        @include hyphenate;
+    }
+}
+.hyphenate-lg-down {
+    @include media-breakpoint-down(lg) {
+        @include hyphenate;
+    }
+}
+.hyphenate-xl-down {
+    @include media-breakpoint-down(xl) {
+        @include hyphenate;
+    }
+}
 
 
+// –––––––––––––––––––––––––––––– 4.) Responsive Breaks ––––––––––––––––––––––––––––––
+@mixin br-none {
+  br { content: ' '; }
+  br:after { content:' '; }
+}
+.br-none-xs-down {
+    @include media-breakpoint-down(xs) {
+        @include br-none;
+    }
+}
+.br-none-sm-down {
+    @include media-breakpoint-down(sm) {
+        @include br-none;
+    }
+}
+.br-none-md-down {
+    @include media-breakpoint-down(md) {
+        @include br-none;
+    }
+}
+.br-none-lg-down {
+    @include media-breakpoint-down(lg) {
+        @include br-none;
+    }
+}
+.br-none-xl-down {
+    @include media-breakpoint-down(xl) {
+        @include br-none;
+    }
+}
 
-// –––––––––––––––––––––––––––––– 3.) Tilted Edges ––––––––––––––––––––––––––––––
+
+// –––––––––––––––––––––––––––––– 5.) Utils ––––––––––––––––––––––––––––––
+@mixin object-fit($fit: fill, $position: null){
+    -o-object-fit: $fit;
+    object-fit: $fit;
+    @if $position {
+        -o-object-position: $position;
+        object-position: $position;
+        font-family: 'object-fit: #{$fit}; object-position: #{$position}';
+    } @else {
+        font-family: 'object-fit: #{$fit}';
+    }
+}
+
+// generic transform
+@mixin transform($transforms) {
+       -moz-transform: $transforms;
+         -o-transform: $transforms;
+        -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+            transform: $transforms;
+}
+
+// rotate
+@mixin rotate ($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+     @include transform(scale($scale));
+}
+
+// translate
+@mixin translate ($x, $y) {
+    @include transform(translate($x, $y));
+}
+
+// skew
+@mixin skew ($x, $y) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+         -o-transform-origin: $origin;
+        -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}
+
+//sticky
+@mixin sticky($top) {
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: $top;
+}
+
+// pseudo
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+// texture with overlay
+@mixin blendy($img, $color, $blend) {
+  background-image: url('../img/#{$img}');
+  background-color: $color;
+  background-blend-mode: $blend;
+}
+
+
+// –––––––––––––––––––––––––––––– 6.) Tilted Edges ––––––––––––––––––––––––––––––
 @mixin angle($pseudo, $flip: false, $angle: 20deg) {
   // Possible values for $pseudo are: before, after, both
   @if $pseudo == 'before' or $pseudo == 'after' or $pseudo == 'both' {
@@ -141,83 +320,8 @@
   @include angle(both, true);
 }
 
-// –––––––––––––––––––––––––––––– 4.) Utils ––––––––––––––––––––––––––––––
-/*
-  This mixin can be used to set the object-fit:
-  @include object-fit(contain);
-  or object-fit and object-position:
-  @include object-fit(cover, top);
-*/
-@mixin object-fit($fit: fill, $position: null){
-    -o-object-fit: $fit;
-    object-fit: $fit;
-    @if $position {
-        -o-object-position: $position;
-        object-position: $position;
-        font-family: 'object-fit: #{$fit}; object-position: #{$position}';
-    } @else {
-        font-family: 'object-fit: #{$fit}';
-    }
-}
 
-// generic transform
-@mixin transform($transforms) {
-       -moz-transform: $transforms;
-         -o-transform: $transforms;
-        -ms-transform: $transforms;
-    -webkit-transform: $transforms;
-            transform: $transforms;
-}
-
-// rotate
-@mixin rotate ($deg) {
-    @include transform(rotate(#{$deg}deg));
-}
-
-// scale
-@mixin scale($scale) {
-     @include transform(scale($scale));
-}
-
-// translate
-@mixin translate ($x, $y) {
-    @include transform(translate($x, $y));
-}
-
-// skew
-@mixin skew ($x, $y) {
-    @include transform(skew(#{$x}deg, #{$y}deg));
-}
-
-//transform origin
-@mixin transform-origin ($origin) {
-    moz-transform-origin: $origin;
-         -o-transform-origin: $origin;
-        -ms-transform-origin: $origin;
-    -webkit-transform-origin: $origin;
-          transform-origin: $origin;
-}
-
-//sticky
-@mixin sticky($top) {
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: -o-sticky;
-    position: sticky;
-    top: $top;
-}
-
-// pseudo
-@mixin pseudo($display: block, $pos: absolute, $content: ''){
-    content: $content;
-    display: $display;
-    position: $pos;
-}
-
-
-// –––––––––––––––––––––––––––––– 5.) Grid Tweaks ––––––––––––––––––––––––––––––
-// ... grid-framework.scss
+// –––––––––––––––––––––––––––––– 7.) Overlay Classes ––––––––––––––––––––––––––––––
 @mixin make-overlay-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
   @each $breakpoint in map-keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint, $breakpoints);
@@ -234,8 +338,90 @@
   }
 }
 @if $enable-overlay-classes {
-  @include make-overlay-columns();
+  html:not(.acc-bigger) {
+    @include make-overlay-columns();
+  }
+}
+
+// Accessibility Classes
+@mixin make-acc($size, $columns: $grid-columns) {
+  flex: 0 0 percentage($size / $columns) !important;
+  // Add a `max-width` to ensure content within each column does not blow out
+  // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+  // do not appear to require this.
+  max-width: percentage($size / $columns) !important;
+}
+
+@mixin make-acc-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+  margin-left: if($num == 0, 0, percentage($num));
 }
 
 
+// –––––––––––––––––––––––––––––– 8.) Accessibility Classes ––––––––––––––––––––––––––––––
+@mixin make-acc-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  // Common properties for all breakpoints
+  %acc-column {
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
 
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    @for $i from 1 through $columns {
+      .acc#{$infix}-#{$i} {
+        @extend %acc-column;
+      }
+    }
+    .acc#{$infix},
+    .acc#{$infix}-auto {
+      @extend %acc-column;
+    }
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // Provide basic `.acc-{bp}` classes for equal-width flexbox columns
+      .acc#{$infix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+      .acc#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%; // Reset earlier grid tiers
+      }
+
+      @for $i from 1 through $columns {
+        .acc#{$infix}-#{$i} {
+          @include make-acc($i, $columns);
+        }
+      }
+
+      .order-acc#{$infix}-first { order: -1; }
+
+      .order-acc#{$infix}-last { order: $columns + 1; }
+
+      @for $i from 0 through $columns {
+        .order-acc#{$infix}-#{$i} { order: $i; }
+      }
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
+          .offset-acc#{$infix}-#{$i} {
+            @include make-acc-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+@if $enable-accessibility-classes {
+  html.acc-bigger {
+    @include make-acc-columns();
+  }
+}

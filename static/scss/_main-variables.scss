@@ -9,7 +9,6 @@ $brand-primary: #344A5F;
 $white: #FFFFFF;
 $text-color: #404040;
 
-
 // //
 // // Color system
 // //
@@ -113,9 +112,10 @@ $text-color: #404040;
 // $enable-gradients:          false;
 // $enable-transitions:        true;
 // $enable-hover-media-query:  false; // Deprecated, no longer affects any compiled CSS
-$enable-grid-classes:       	true;
-$enable-overlay-classes:       	true;
 // $enable-print-styles:       true;
+$enable-grid-classes:       			true;
+$enable-overlay-classes:       			true;
+$enable-accessibility-classes:       	false;
 
 
 // // Spacing
@@ -191,12 +191,20 @@ $grid-breakpoints: (
 // //
 // // Define the maximum width of `.container` for different screen sizes.
 
-// $container-max-widths: (
-//   sm: 540px,
-//   md: 720px,
-//   lg: 960px,
-//   xl: 1140px
-// );
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+$max-content-width:				1680px;
+
+$special-margin-sm: 			calc((100vw - 540px)/2 + 15px);
+$special-margin-md: 			calc((100vw - 720px)/2 + 15px);
+$special-margin-lg: 			calc((100vw - 960px)/2 + 15px);
+$special-margin-xl: 			calc((100vw - 1140px)/2 + 15px);
+$special-margin-xxl: 			calc((1680px - 1140px)/2 + 15px);
 
 // @include _assert-ascending($container-max-widths, "$container-max-widths");
 
@@ -218,7 +226,7 @@ $grid-gutter-width:           30px;
 // $border-width:                1px;
 // $border-color:                $gray-300;
 
-$border-radius:               		5px;
+$border-radius:               		0px;
 // $border-radius-lg:            .3rem;
 // $border-radius-sm:            .2rem;
 
@@ -267,8 +275,8 @@ $font-weight-black:             900;
 // $line-height-base:            1.5;
 
 // $h1-font-size:                $font-size-base * 2.5;
-$h2-font-size:                	$font-size-base * 2.75;
-$h3-font-size:                	$font-size-base * 2;
+$font-size-h2:                		$font-size-base * 2.75;
+$font-size-h3:                		$font-size-base * 2;
 // $h4-font-size:                $font-size-base * 1.5;
 // $h5-font-size:                $font-size-base * 1.25;
 // $h6-font-size:                $font-size-base;

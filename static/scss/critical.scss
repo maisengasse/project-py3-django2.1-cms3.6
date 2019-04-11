@@ -11,6 +11,8 @@
 @import "../lib/bootstrap/scss/nav";
 @import "../lib/bootstrap/scss/navbar";
 
+// Maisengasse Navigations
+@import "maisengasse/navs.scss";
 
 // –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
 html {
@@ -38,8 +40,8 @@ body {
 
 // Bootstrap Navbar Padding-Fix
 @media (max-width: 991.98px) {
-    .navbar-expand-lg > .container,
-    .navbar-expand-lg > .container-fluid {
+    .navbar-expand-md > .container,
+    .navbar-expand-md > .container-fluid {
         padding-right: 15px;
         padding-left: 15px;
     }
@@ -53,6 +55,7 @@ body {
     }
 }
 
+// Basic Image Styling
 figure {
     margin: 0;
     img {
@@ -60,4 +63,11 @@ figure {
     }
 }
 
-// –––––––––––––––––––––––––––––– Navigation ––––––––––––––––––––––––––––––
+
+// –––––––––––––––––––––––––––––– Header Stylings ––––––––––––––––––––––––––––––
+header#top {
+
+}
+
+
+// –––––––––––––––––––––––––––––– Navigation Overwrites ––––––––––––––––––––––––––––––

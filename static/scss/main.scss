@@ -41,9 +41,9 @@
 
 // Import Maisengasse styles
 @import "maisengasse/helpers.scss";
-@import "maisengasse/navs.scss";
 @import "maisengasse/components.scss";
-@import "_stencils.scss";
+// @import "maisengasse/navs.scss";
+@import "stencils.scss";
 
 
 // –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
@@ -56,15 +56,20 @@ h1 {
 }
 
 h2 {
-
+    font-size: $font-size-h2;
+    font-weight: $font-weight-medium;
+    color: $brand-primary;
+    margin-bottom: 15px;
 }
 
 h3 {
-
+    font-size: $font-size-h3;
+    font-weight: $font-weight-medium;
 }
 
 p {
-
+    font-size: $font-size-base;
+    line-height: 1.45em;
 }
 
 a {
@@ -75,19 +80,80 @@ a {
 }
 
 // –––––––––––––––––––––––––––––– Header ––––––––––––––––––––––––––––––
-header#top {
-
-}
+// --> additional settings in critical.scss
 
 
 // –––––––––––––––––––––––––––––– Content ––––––––––––––––––––––––––––––
 div#content {
 
-    // Styling Bootstrap Cards
-    .card {
-        border-radius: $border-radius;
+    // Maximalbreite Inhalte
+    @include media-breakpoint-up($max-content-width) {
+        max-width: $max-content-width;
+        margin: 0 auto;
+    }
+
+}
+
+.card {
+    border: none;
+    border-radius: $border-radius;
+    //box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
+    .card-header,
+    .card-body,
+    .card-footer {
+        background-color: transparent;
+        border: none;
+        padding: 0;
     }
 }
+
+
+// –––––––––––––––––––––––––––––– SlickSlider ––––––––––––––––––––––––––––––
+.slick-slider {
+    position: relative;
+    margin: 0 !important;
+    .slick-prev, .slick-next {
+        position: absolute !important;
+        width: 50px;
+        height: 50px;
+        background-color: transparentize($brand-primary, .3);
+        display: block;
+        z-index: 3;
+        // transition: all .5s;
+        &:hover {
+            background-color: $brand-primary;
+        }
+    }
+
+    .slick-disabled {
+        opacity: 0;
+    }
+
+    .slick-prev.slick-arrow {
+        left: 25px;
+        background-image: url('../img/icons/arrow-left-white.svg');
+        background-position: 16.5px 14px;
+        background-size: auto 40%;
+        background-repeat: no-repeat;
+        // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        display: none;
+    }
+
+    .slick-next.slick-arrow {
+        right: 25px;
+        background-image: url('../img/icons/arrow-right-white.svg');
+        background-position: 20px 14px;
+        background-size: auto 40%;
+        background-repeat: no-repeat;
+        // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+    }
+}
+
+// –––––––––––––––––––––––––––––– Stencils ––––––––––––––––––––––––––––––
 
 
 // –––––––––––––––––––––––––––––– Footer ––––––––––––––––––––––––––––––
@@ -142,5 +208,33 @@ footer#bottom {
             top: 3px;
 
         }
+    }
+}
+
+
+// –––––––––––––––––––––––––––––– Specials ––––––––––––––––––––––––––––––
+// Cover Background
+.cover-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 0;
+
+    a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .slick-list, .slick-track, figure, img {
+        height: 100% !important;
+        margin-bottom: 0;
+    }
+
+    img {
+        @include object-fit(cover, center);
     }
 }

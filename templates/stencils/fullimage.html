@@ -1,12 +1,11 @@
 {% load static imagesize_tags project_tags %}
-<article class="bigimage">
+<article class="fullimage">
     {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
         <div{% if not in_slider %} data-slickslider data-slickslider-arrows="0" data-slickslider-dots="0"{% endif %}>
             {% for relation in instance.images.relations %}
                 {% with image=relation.image %}
                 <figure{% if relation.caption or instance.caption %} class="captioned"{% endif %}>
-                    <img {% if relation.border %}class="border"{% endif %}
-                         {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
+                    <img {{ image|srcset:'fullwidth' }} alt="{% firstof relation.caption instance.caption image %}" />
                     {% if relation.caption or instance.caption %}
                         <figcaption>{% i18ncaption relation default=instance.caption %}</figcaption>
                     {% endif %}
