@@ -57,6 +57,7 @@ class InquiryForm(forms.Form):
         ("Herr", "Herr"),
         ("Familie", "Familie"),
     )
+    lang = forms.CharField(label=_("Sprache"))
     salutation = forms.ChoiceField(label=_("Anrede"), choices=SALUTATION_CHOICES)
     email = forms.EmailField(label=_("E-Mail"), required=True)
     firstname = forms.CharField(label=_("Vorname"))
@@ -64,8 +65,12 @@ class InquiryForm(forms.Form):
 
     arrival = forms.DateField(label=_("Anreise"), input_formats=["%d.%m.%Y"])
     departure = forms.DateField(label=_("Abreise"), input_formats=["%d.%m.%Y"])
-    adults = forms.IntegerField(label=_("Erwachsene"))
-    children = forms.IntegerField(label=_("Kinder"), required=False)
+
+    adults = forms.IntegerField(label=_("Erwachsene"), widget=forms.TextInput)
+    children = forms.IntegerField(
+        label=_("Kinder"), widget=forms.TextInput, required=False
+    )
+    message = forms.CharField(label=_("Ihre Wünsche"), widget=forms.Textarea)
 
     def clean(self):
         cd = self.cleaned_data
