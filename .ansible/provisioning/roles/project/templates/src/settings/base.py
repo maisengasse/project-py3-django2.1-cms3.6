@@ -248,7 +248,7 @@ CMS_PLACEHOLDER_CONF = {
 }
 
 CMS_PLACEHOLDER_CONF["header"] = CMS_PLACEHOLDER_CONF["content"].copy()
-CMS_PLACEHOLDER_CONF["header"]["name"] = "Kopfbereich"
+CMS_PLACEHOLDER_CONF["header"]["name"] = gettext("Kopfbereich")
 
 STENCILS_ENABLED = [
     "Slider",

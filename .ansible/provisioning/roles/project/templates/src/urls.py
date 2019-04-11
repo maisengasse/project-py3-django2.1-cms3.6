@@ -35,19 +35,17 @@ from {{ project_name }} import views as {{ project_name }}_views
 admin.autodiscover()
 
 urlpatterns = [
-    # url(r'^translate/', include('rosetta.urls')),
     url(r'^admin/linktree/?$', cmstools_views.linktree),
     url(r'^filerpool/', include(filerpool_urls)),
-
-    url(r'^admin/', include(admin.site.urls)),
-    # url(r'^', include(sitemap_urls)),
     url(r'^sitemap\.xml$', sitemap_views.sitemap,
                            {'sitemaps': {'cmspages': CMSSitemap }}),
-    url(r'^', include(cms_urls)),
 ]
 
-# urlpatterns += i18n_patterns(
-# )
+urlpatterns += i18n_patterns(
+    url(r'^admin/translate/', include('rosetta.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include(cms_urls)),
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

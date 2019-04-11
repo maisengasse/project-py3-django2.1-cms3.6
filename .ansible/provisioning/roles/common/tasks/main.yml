@@ -63,7 +63,7 @@
     - autoprefixer
 
 - name: SSH config directory
-  file: "path={{ project_dir }}/.ssh owner={{ app_user }} group={{ app_grp }} mode=0700 state=directory"
+  file: "path={{ home_dir }}/.ssh owner={{ app_user }} group={{ app_grp }} mode=0700 state=directory"
 
 - name: copy private development key
   template: "src='id_rsa' dest={{ home_dir }}/.ssh/id_rsa owner={{ app_user }} group={{ app_grp }} mode=0600"

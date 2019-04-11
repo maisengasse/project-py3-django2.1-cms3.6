@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-11 16:06+0200\n"
+"PO-Revision-Date: 2019-04-11 16:18+0105\n"
+"Last-Translator: b'  <admin@maisengasse.at>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.9.0\n"
+
+#: project/cms_apps.py:10
+msgid "Anfrageformular"
+msgstr "Inquiry-Form"
+
+#: project/cms_toolbars.py:20
+msgid "Module"
+msgstr "Modules"
+
+#: project/cms_toolbars.py:23
+msgid "Seitenbaum"
+msgstr "Site Structure"
+
+#: project/cms_toolbars.py:27
+msgid "Medienpool"
+msgstr "Media-Pool"
+
+#: project/cms_toolbars.py:31
+msgid "Übersetzungskatalog"
+msgstr "Translation Catalogue"
+
+#: project/settings/base.py:171
+msgid "Deutsch"
+msgstr "German"
+
+#: project/settings/base.py:225
+msgid "Standard"
+msgstr "Default"
+
+#: project/settings/base.py:226
+msgid "Schmaler Header"
+msgstr "Small Header"
+
+#: project/settings/base.py:251
+msgid "Kopfbereich"
+msgstr "Header Area"
+
+#: project/settings/base.py:274
+msgid "Normale Breite"
+msgstr "Default Width"
+
+#: project/settings/base.py:275
+msgid "Volle Breite"
+msgstr "Full Width"
+
+#: project/views.py:60
+msgid "Sprache"
+msgstr "Language"
+
+#: project/views.py:61
+msgid "Anrede"
+msgstr "Salutation"
+
+#: project/views.py:62
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: project/views.py:63
+msgid "Vorname"
+msgstr "First Name"
+
+#: project/views.py:64
+msgid "Nachname"
+msgstr "Last Name"
+
+#: project/views.py:66
+msgid "Anreise"
+msgstr "Arrival"
+
+#: project/views.py:67
+msgid "Abreise"
+msgstr "Departure"
+
+#: project/views.py:69 templates/inquiry/inquiry.html:23
+msgid "Erwachsene"
+msgstr "Adults"
+
+#: project/views.py:71 templates/inquiry/inquiry.html:24
+msgid "Kinder"
+msgstr "Children"
+
+#: project/views.py:73
+msgid "Ihre Wünsche"
+msgstr "Your Message"
+
+#: project/views.py:81
+msgid "Das Abreisedatum muss nach dem Anreisedatum liegen."
+msgstr "The departure date must occur after the arrival date."
+
+#: templates/404.html:8
+msgid "404"
+msgstr ""
+
+#: templates/404.html:9
+msgid "Seite nicht gefunden"
+msgstr "Page not found."
+
+#: templates/404.html:10
+msgid ""
+"Die von Ihnen angeforderte Seite konnte nicht gefunden werden. Vielleicht "
+"haben Sie eine falsche oder veraltete URL aufgerufen. Sie können den von "
+"Ihnen gewünschten Inhalt über unsere Startseite finden."
+msgstr ""
+"The requested page could not be found. Maybe you requested a wrong or "
+"outdated url. You may find the searched content on our homepage."
+
+#: templates/404.html:11
+msgid "Zurück zur Startseite"
+msgstr "Back to homepage"
+
+#: templates/inquiry/inquiry.html:8
+msgid "Anfrage"
+msgstr "Inquiry"
+
+#: templates/inquiry/inquiry.html:9
+msgid "Wir beraten Sie gerne"
+msgstr "We are looking forward to help"
+
+#: templates/inquiry/inquiry.html:34
+msgid "Anfrage senden"
+msgstr "Send inquiry"
+
+#: templates/inquiry/inquiry_thanks.html:7
+msgid "Vielen Dank"
+msgstr "Thank you."
+
+#: templates/inquiry/inquiry_thanks.html:8
+msgid "Ihre Anfrage wurde gesendet.<br/>Wir melden uns in Kürze."
+msgstr "Your inquiry has been sent. <br/> We will contact you shortly."
+
+#: templates/stencils/teaser.html:25
+msgid "Mehr erfahren"
+msgstr "More info"
