@@ -24,6 +24,10 @@
    template: "src='fabfile.py' dest={{ project_dir }}/fabfile.py owner={{ app_user }} group={{ app_grp }} mode=0664"
    when: create_project
 
+ - name: Create gitignore
+   template: "src='.gitignore' dest={{ project_dir }}/.gitignore owner={{ app_user }} group={{ app_grp }} mode=0664"
+   when: create_project
+
  - name: Create README
    template: "src='README.md' dest={{ project_dir }}/README.md owner={{ app_user }} group={{ app_grp }} mode=0664"
    when: create_project

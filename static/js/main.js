@@ -13,9 +13,10 @@ maisen.init = function() {
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
     });
-
-
     maisen.commands.run();
+
+    objectFitImages();
+
 };
 
 maisen.commands = {

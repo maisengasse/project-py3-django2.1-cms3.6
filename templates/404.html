@@ -1,0 +1,16 @@
+{% extends "small-header.html" %}
+{% load i18n %}
+{% block content %}
+<article class="text">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <p class="title">{% trans "404" %}</p>
+                <h2>{% trans "Seite nicht gefunden" %}</h2>
+                <p>{% trans "Die von Ihnen angeforderte Seite konnte nicht gefunden werden. Vielleicht haben Sie eine falsche oder veraltete URL aufgerufen. Sie können den von Ihnen gewünschten Inhalt über unsere Startseite finden." %}</p>
+                <p><a href="/" class="btn btn-ouline-primary">{% trans "Zurück zur Startseite" %}</a></p>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock content %}

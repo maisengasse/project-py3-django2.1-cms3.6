@@ -63,7 +63,7 @@
     {% render_block "css" %}
     </head>
 
-    <body>
+    <body class="{% block body-class %}{% endblock body-class %}">
         {% cms_toolbar %}
         {% block body %}
             <header id="top">
