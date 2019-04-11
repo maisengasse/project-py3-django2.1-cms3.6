@@ -1,5 +1,5 @@
 #http://download.maisengasse.at/eggs/emencia.django.newsletter-1.0.0rc1-maisen.tar.gz
-http://download.maisengasse.at/eggs/maisen.cmstools-3.0.0.dev14.tar.gz
+http://download.maisengasse.at/eggs/maisen.cmstools-3.0.0.dev15.tar.gz
 ajaxuploader==0.3.8
 beautifulsoup4==4.7.1
 cryptography==2.4.2
