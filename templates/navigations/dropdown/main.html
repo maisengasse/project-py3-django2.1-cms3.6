@@ -8,7 +8,7 @@
                 {{ child.get_menu_title }} {% if child.children %}<span class="caret"></span>{% endif %}
             </a>
             {% if child.children %}
-            <ul class="dropdown-menu level-{{ child.level }}">
+            <ul class="dropdown-menu dropdown-menu-right level-{{ child.level }}">
                 <li class="d-block d-md-none nav-item back" data-navlevel-back>
                     <a href="#" class="nav-link"><span class="caret"></span> {{ child.get_menu_title }}</a>
                 </li>
