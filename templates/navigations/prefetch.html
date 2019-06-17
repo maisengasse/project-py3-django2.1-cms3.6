@@ -1,0 +1,2 @@
+{% for child in children %}{% if not child.selected %}<link rel="prefetch" href="{{ child.attr.redirect_url|default:child.get_absolute_url }}" />
+{% endif %} {% endfor %}

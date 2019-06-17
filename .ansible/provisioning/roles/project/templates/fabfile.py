@@ -20,7 +20,7 @@ LOCAL_MEDIA = [
 
 LOCAL_MYSQL_VERSION = ""
 REMOTE_MYSQL_VERSION = ""
-DROP_ALL_TABLES = "mysqldump%(v)s --add-drop-table --no-data %(db)s | grep -e '^DROP | FOREIGN_KEY_CHECKS' | mysql%(v)s %(db)s"
+DROP_ALL_TABLES = "mysqldump%(v)s --add-drop-table --no-data %(db)s | grep -e '^DROP' -e 'FOREIGN_KEY_CHECKS' | mysql%(v)s %(db)s"
 CREATE_DUMP = "mysqldump%(v)s %(db)s > %(dump)s"
 CREATE_GZIP_DUMP = "mysqldump%(v)s %(db)s | gzip > %(dump)s.gz"
 LOAD_DUMP = "mysql%(v)s %(db)s < %(dump)s"

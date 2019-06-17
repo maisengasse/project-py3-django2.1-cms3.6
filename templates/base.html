@@ -59,6 +59,15 @@
 
         <title>{% block title %}{% seo_title ' | Project SEO Title' %}{% endblock title %}</title>
 
+        {% if request.current_page %}
+            <link rel="alternate" hreflang="de" href="{{ PORTAL_URL }}{% page_url request.current_page 'de' %}" />
+            <link rel="alternate" hreflang="en" href="{{ PORTAL_URL }}{% page_url request.current_page 'en' %}" />
+        {% endif %}
+
+        {# <link rel="prefetch" href="{% url 'inquiry_form' %}" /> #}
+        {# <link data-tellink-fallback rel="prefetch" href="{% page_url 'contact' %}" /> #}
+        {% show_menu 0 1 1 1 "navigations/prefetch.html" %}
+
     {% endblock head %}
     {% render_block "css" %}
     </head>
