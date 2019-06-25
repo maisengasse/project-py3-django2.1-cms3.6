@@ -61,7 +61,7 @@
 
         {% if request.current_page %}
             <link rel="alternate" hreflang="de" href="{{ PORTAL_URL }}{% page_url request.current_page 'de' %}" />
-            <link rel="alternate" hreflang="en" href="{{ PORTAL_URL }}{% page_url request.current_page 'en' %}" />
+            {# <link rel="alternate" hreflang="en" href="{{ PORTAL_URL }}{% page_url request.current_page 'en' %}" /> #}
         {% endif %}
 
         {# <link rel="prefetch" href="{% url 'inquiry_form' %}" /> #}
