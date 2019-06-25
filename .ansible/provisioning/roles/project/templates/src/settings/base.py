@@ -83,7 +83,7 @@ INSTALLED_APPS = [
     "maisen.cmstools.editables.translated",
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     "cms.middleware.utils.ApphookReloadMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -91,7 +91,6 @@ MIDDLEWARE_CLASSES = [
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.auth.middleware.SessionAuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "maisen.cmstools.middleware.FixLinkTargetsMiddleware",
@@ -230,20 +229,8 @@ CMS_TEMPLATES = (
 CMS_PLACEHOLDER_CONF = {
     "content": {
         "name": "Inhalt",
-        "plugins": [
-            "FlexSectionPlugin",
-            "FlexTextPlugin",
-            "FlexCodePlugin",
-            "fullwidthPlugin",
-            "FlexTextImagePlugin",
-        ],
-        "plugin_modules": {
-            "FlexDownloadPlugin": "Spezial",
-            "FlexCodePlugin": "Spezial",
-            "FlexVideoPlugin": "Spezial",
-            "FlexAudioPlugin": "Spezial",
-            "FlexGalleryPlugin": "Spezial",
-        },
+        "plugins": [],
+        "plugin_modules": {},
     }
 }
 
@@ -276,26 +263,6 @@ STENCILS_CONTAINER_CHOICES = [
 ]
 
 STENCILS_IMAGE_RATIOS = [(16, 9), (4, 3), (1, 1), (3, 4)]
-
-
-# STENCILS_CONFIG = {
-#     'ExampleStencil' : dict(
-#         fields = ['field1','field2','field3',],
-#         widgets = {
-#             'field1' : "django.forms.Textarea"
-#         },
-#         display_choices = [
-#             ('display1', gettext('Display 1')),
-#             ('display2', gettext('Display 2')),
-#             ('display3', gettext('Display 3')),
-#         ],
-#         child_config = {
-#             "ExampleChild" : {
-#                 "amount" : 3,
-#             }
-#         }
-#     )
-# }
 
 
 CMS_SHOW_START_DATE = True
