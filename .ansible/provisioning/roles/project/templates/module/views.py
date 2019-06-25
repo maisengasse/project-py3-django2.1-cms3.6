@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.shortcuts import render, get_object_or_404
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as djangologin

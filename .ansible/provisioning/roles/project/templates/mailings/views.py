@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 
 from django.template.defaultfilters import linebreaksbr
 from django.template import RequestContext
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.encoding import smart_str
 
 

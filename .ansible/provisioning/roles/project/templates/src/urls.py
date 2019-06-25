@@ -43,7 +43,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     url(r'^admin/translate/', include('rosetta.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^', include(cms_urls)),
 )
 

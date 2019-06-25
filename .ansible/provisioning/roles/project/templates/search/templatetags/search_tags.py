@@ -3,7 +3,7 @@ from django.template import Context
 from sekizai.context import SekizaiContext
 from django.utils.safestring import mark_safe
 from maisen.cmstools.templatetags.cmstools_tags import striptags2, unescape
-from django.core.urlresolvers import NoReverseMatch
+from django.urls import NoReverseMatch
 from cms.plugin_rendering import render_plugins
 
 register = template.Library()

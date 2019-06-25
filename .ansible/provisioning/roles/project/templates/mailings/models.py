@@ -1,6 +1,6 @@
 import datetime, glob, os
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
@@ -35,7 +35,7 @@ class Mailing(models.Model):
 #         verbose_name = _(u'News-Artikel')
 #         verbose_name_plural = _(u'News-Artikel')
 
-#     newsitem = models.ForeignKey(Newsitem, verbose_name=_('Newseintrag'), related_name="nlteasers")
+#     newsitem = models.ForeignKey(Newsitem, verbose_name=_('Newseintrag'), related_name="nlteasers", on_delete=models.PROTECT)
 #     title = models.CharField(verbose_name=_('Titel'), max_length=255, null=True, blank=True)
 #     body = models.TextField(verbose_name=_('Haupttext'), null=True, blank=True)
 #     image = PhotoPoolImageField(_('Bild'), null=True, blank=True)

@@ -6,7 +6,7 @@ from maisen.cmstools.mail import send_mail
 from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required

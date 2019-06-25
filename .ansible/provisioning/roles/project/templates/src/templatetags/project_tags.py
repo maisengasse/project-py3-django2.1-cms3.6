@@ -8,7 +8,6 @@ from django.utils.safestring import mark_safe
 from maisen.cmstools.utils import render_string
 from maisen.cmstools.filerpool.models import RemoteFilerImage
 from maisen.cmstools.templatetags.cmstools_tags import striptags2
-from maisen.cmstools.videotools import is_youtube_video, is_vimeo_video
 from maisen.cmstools.filerpool.templatetags.imagesize_tags import sizeurl
 from maisen.cmstools.utils import slugify
 
@@ -17,13 +16,13 @@ register = template.Library()
 
 @register.filter
 def sourcecode(value, mobile=False):
-    if value.strip().startswith('<iframe'):
-        if is_youtube_video(value) or is_vimeo_video(value):
-            ratio = "%.0f" % ((float(9) / 16) * 100)
-            wrapper = """<div class="iframe-wrapper"
-                              style="height: 0px;
-                                     padding-bottom:%s%%">%s</div>"""
-            return mark_safe(wrapper % (ratio, value))
+    # if value.strip().startswith('<iframe'):
+    #     if is_youtube_video(value) or is_vimeo_video(value):
+    #         ratio = "%.0f" % ((float(9) / 16) * 100)
+    #         wrapper = """<div class="iframe-wrapper"
+    #                           style="height: 0px;
+    #                                  padding-bottom:%s%%">%s</div>"""
+    #         return mark_safe(wrapper % (ratio, value))
     return mark_safe(value)
 
 

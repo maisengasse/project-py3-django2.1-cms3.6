@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import truncatewords_html, truncatewords
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from autoslug import AutoSlugField
 from filer.fields.file import FilerFileField
 from cms.models.fields import PlaceholderField
@@ -57,7 +57,7 @@ class {{ item[0].model_class }}(DublinCore):
 {% endif %}
 {% if item[0].categorized %}
 
-    category = models.ForeignKey({{ item[0].model_class }}Category, verbose_name=_("{{ item[0].model_name }}-Kategorie"), related_name="{{ item[0].module_name }}")
+    category = models.ForeignKey({{ item[0].model_class }}Category, verbose_name=_("{{ item[0].model_name }}-Kategorie"), related_name="{{ item[0].module_name }}", on_delete=models.PROTECT)
 {% endif %}
 
     images = PhotoPoolField(verbose_name=_('Bilder'), null=True, blank=True)

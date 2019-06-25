@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from django import forms
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.template.defaultfilters import slugify, striptags
 from django.utils.translation import ugettext_lazy as _
 from cms.extensions import PageExtensionAdmin

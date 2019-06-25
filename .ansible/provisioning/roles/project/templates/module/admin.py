@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django import forms
 from django.conf import settings

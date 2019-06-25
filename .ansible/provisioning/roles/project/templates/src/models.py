@@ -3,7 +3,7 @@ import datetime
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from autoslug import AutoSlugField
 
 from cms.extensions import PageExtension
@@ -13,7 +13,6 @@ from cms.models.fields import PlaceholderField
 from maisen.cmstools.filerpool.fields import PhotoPoolImageField, PhotoPoolField
 from maisen.cmstools.models import DublinCore
 from maisen.cmstools.utils import render_string
-from maisen.cmstools.sortable.models import Sortable
 
 # class HeaderExtension(PageExtension):
 #     class Meta:
