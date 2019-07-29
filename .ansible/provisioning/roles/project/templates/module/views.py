@@ -30,12 +30,12 @@ def {{ item[0].module_name }}_detail(request, slug):
 
 def {{ item[0].module_name }}_list(request):
     items = {{ item[0].model_class }}.objects.current()
-    page = request.GET.get('seite', 1)
-    pager = Paginator(items, 20)
+    # page = request.GET.get('seite', 1)
+    # pager = Paginator(items, 20)
 
-    try:
-        current_page = pager.page(page)
-    except (EmptyPage,) as e:
-        return HttpResponseRedirect(request.path)
+    # try:
+    #     current_page = pager.page(page)
+    # except (EmptyPage,) as e:
+    #     return HttpResponseRedirect(request.path)
 
     return render(request, '{{ item[0].module_name }}/{{ item[0].module_name }}_list.html', locals())

@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
     # Share an additional folder to the guest VM. The first argument is
     # an identifier, the second is the path on the guest to mount the
     # folder, and the third is the path on the host to the actual folder.
-    # config.vm.synced_folder "../maisen.cmstools.30", "/home/vagrant/maisen.cmstools"
+    # config.vm.synced_folder "../maisen.cmstools.31", "/home/vagrant/maisen.cmstools"
 
     # Enable provisioning with a shell script.
     # config.vm.provision :shell, :path => "etc/install/install.sh", :args => "intermedia"

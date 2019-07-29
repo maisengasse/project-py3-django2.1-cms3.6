@@ -98,5 +98,5 @@ class {{ item[0].model_class }}Teaser(CMSPlugin):
     count = models.IntegerField(verbose_name=_('Anzahl'), default=3)
 
     def __str__(self):
-        return self.title or unicode(self.id)
+        return self.title or str(self.id)
 {% endif %}

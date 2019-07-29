@@ -1,7 +1,7 @@
 {% extends "default.html" %}
 {% load imagesize_tags i18n cms_tags project_tags %}
 
-{% block main %}
+{% block content %}
     <article class="module-list">
         <div class="container">
             <div class="row">
@@ -11,14 +11,14 @@
                         <li>
                             {% render_model_block item %}
                             <h3>{{ item.title }}</h3>
-                            <img {{ item.images.image|srcset:'module-list' }} alt="{{ item.title }}" />
+                            <img {{ item.images.image|srcset:'halfwidth' }} alt="{{ item.title }}" />
                             <a href="{{ item.get_absolute_url }}">mehr</a>
                             {% endrender_model_block %}
                         </li>
                         {% empty %}
                         <li>
                             Es wurden keine Objekte gefunden.
-                        </li> 
+                        </li>
                         {% endfor %}
                     </ul>
                     {% include 'views/pager.html' %}
@@ -26,4 +26,4 @@
             </div>
         </div>
     </article>
-{% endblock main %}
+{% endblock content %}

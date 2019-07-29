@@ -8,7 +8,7 @@
                     <li>
                         {% render_model_block item %}
                         <h3>{{ item.title }}</h3>
-                        <img {{ item.images.image|srcset:'module-teaser' }} alt="{{ item.title }}" />
+                        <img {{ item.images.image|srcset:'halfwidth' }} alt="{{ item.title }}" />
                         <a href="{{ item.get_absolute_url }}">mehr</a>
                         {% endrender_model_block %}
                     </li>

@@ -235,35 +235,34 @@ maisen.commands = {
             if (!body.is('.nav-open')) body.addClass('nav-closed');
         });
 
-        body.on('mouseenter mouseleave', '#maisen-dropdown-nav .dropdown', function (e) {
+        var dropdown_events = Modernizr.touchevents ? 'click' : 'mouseenter mouseleave';
+        body.on(dropdown_events, '#maisen-dropdown-nav .dropdown', function (e) {
             var dropdown = $(e.target).closest('.dropdown');
             var menu = dropdown.children('.dropdown-menu');
             dropdown.addClass('show');
             menu.addClass('show');
-            setTimeout(function () {
-                dropdown[dropdown.is(':hover') ? 'addClass' : 'removeClass']('show');
-                menu[dropdown.is(':hover') ? 'addClass' : 'removeClass']('show');
-            }, 200);
+
+            if (!Modernizr.touchevents) {
+                setTimeout(function () {
+                    dropdown[dropdown.is(':hover') ? 'addClass' : 'removeClass']('show');
+                    menu[dropdown.is(':hover') ? 'addClass' : 'removeClass']('show');
+                }, 200);
+            }
         });
 
         nav.find('[data-toggle="navlevel"]').each(function() {
             var node = $(this);
             var level = node.next();
-            if ($(window).width() > 768) {
-                node.on('click', function(e) {
-                    e.preventDefault();
-                });
-            } else {
-                node.on('click', function(e) {
-                    e.preventDefault();
-                });
-                level.children('[data-navlevel-back]').on('click', function() {
+            node.on('click', function(e) {
+                e.preventDefault();
+            });
+            level.children('[data-navlevel-back]').on('click', function() {
+                setTimeout(function() {
                     node.removeClass('show');
                     level.removeClass('show');
-                });
-            }
+                }, 10);
+            });
         });
-
     },
     inputUnit : function(node) {
         var input = node.find(':input');
