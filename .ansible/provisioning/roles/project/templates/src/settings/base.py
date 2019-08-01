@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "maisen.cmstools",
     "maisen.cmstools.filerpool",
     "maisen.cmstools.editables",
+    "maisen.cmstools.addresses",
     # plugins
     "maisen.cmstools.workflows",
     # 'maisen.cmstools.flex',
