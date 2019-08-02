@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 SERVER_EMAIL = "django@{{ project_domain }}"
-ADMINS = [("Armin Wolf", "armin@maisengasse.at")]
+ADMINS = [("Maisengasse Errors", "cinquecento@maisengasse.at")]
 
 SSL_URLS = []
 # Application definition
@@ -241,9 +241,9 @@ CMS_PLACEHOLDER_CONF["header"]["name"] = gettext("Kopfbereich")
 STENCILS_ENABLED = [
     "Slider",
     "Grouper",
-    "BigText",
-    "BigImage",
-    "BigImageWithText",
+    "FullText",
+    "FullImage",
+    "FullImageWithText",
     "ImageWithText",
     "HighlightGroup",
     "TeaserGroup",
@@ -364,10 +364,10 @@ FILERPOOL_ITEM_OPTIONS = (
     # ('Titel EN', 'title_en', 'textarea'),
 )
 
-EMAIL_HOST = "mail.maisengasse.at"
-EMAIL_HOST_USER = "postfuchs@maisengasse.at"
-EMAIL_HOST_PASSWORD = "forexternalmails"
-EMAIL_USE_TLS = True
+# EMAIL_HOST = "mail.maisengasse.at"
+# EMAIL_HOST_USER = "postfuchs@maisengasse.at"
+# EMAIL_HOST_PASSWORD = "forexternalmails"
+# EMAIL_USE_TLS = True
 
 MAIL_SUBJECT_PREFIX = ""
 INQUIRY_RECIPIENT = "armin@maisengasse.at"
