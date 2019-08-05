@@ -1,0 +1,27 @@
+<article class="fullvideo">
+    {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
+        <div class="row">
+            <div class="col-12">
+                {% if instance.title %}
+                    <h2>{{ instance.title }}</h2>
+                {% endif %}
+                {% if instance.link %}
+                <div class="d-none d-sm-flex col-sm-4 col-md-3 justify-content-end">
+                    <a class="more" href="{{ instance.link }}" target="_blank">{{ instance.link_label|default:'Mehr erfahren' }}</a>
+                </div>
+                {% endif %}
+                {% if is_embed_video %}
+                <div data-toggle="plyr" class="plyr plyr__video-embed">
+                    {{ instance.code|safe }}
+                </div>
+                {% else %}
+                <video data-toggle="plyr" class="plyr" playsinline controls>
+                    {% for file in instance.files.files %}
+                        <source src="{{ file.url }}" type="video/{{ file.extension }}" />
+                    {% endfor %}
+                </video>
+                {% endif %}
+            </div>
+        </div>
+    {% if instance.container %}</div>{% endif %}
+</article>

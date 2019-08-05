@@ -31,6 +31,7 @@ maisen.commands = {
         this.cmd('targetBlank', 'a[data-target-blank]');
         this.cmd('scrollToID', 'a[href^="#"]');
         this.cmd('maisenDropdownNav', 'body');
+        this.cmd('plyr', '[data-toggle="plyr"]');
         this.cmd('clientSideInclude', '*[data-csi]');
         this.cmd('iframeModal', '#iframe-modal');
         this.runAdditional(this.context);
@@ -79,6 +80,9 @@ maisen.commands = {
     },
     fancyBox : function(node) {
         //selfinit
+    },
+    plyr : function(node) {
+        var player = new Plyr(node, {});
     },
     slicksliderDot : function(node) {
         var target = $(node.data('slicksliderdot-for'));
