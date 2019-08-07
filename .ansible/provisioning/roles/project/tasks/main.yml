@@ -32,6 +32,9 @@
    template: "src='README.md' dest={{ project_dir }}/README.md owner={{ app_user }} group={{ app_grp }} mode=0664"
    when: create_project
 
+ - name: Create SERVERSETUP
+   template: "src='server_setup.md' dest={{ project_dir }}/server_setup.md owner={{ app_user }} group={{ app_grp }} mode=0664"
+   when: create_project
 
 # # Search Module
 #  - name: Install Python packages
