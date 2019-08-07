@@ -281,6 +281,7 @@ CKEDITOR_CONFIGS = {
         "extraPlugins": "adv_link",
         "width": "800px",
         "stylesSet": "default",
+        "startupOutlineBlocks" : True,
         "toolbar": [
             ["Styles"],
             ["Bold", "Italic", "Underline"],
@@ -303,6 +304,7 @@ THUMBNAIL_ALIASES = {
         "halfwidth": {"size": (600, 0), "crop": False},
         "quarterwidth": {"size": (300, 0), "crop": False},
         "smallsquare": {"size": (300, 300), "crop": True},
+        "fullhd": {"size": (1920, 1080), "crop": True},
     }
 }
 

@@ -2,7 +2,8 @@
 /* global maisen:true */
 /* global $:false */
 /* global jQuery:false */
-/* global window:false */
+/* global Plyr:false */
+/* global Modernizr:false */
 /* global console:false */
 try { maisen = maisen || {};} catch(e){ var maisen = {};}
 
@@ -83,6 +84,8 @@ maisen.commands = {
     },
     plyr : function(node) {
         var player = new Plyr(node, {});
+        var poster = node.attr('data-poster');
+        if (poster) player.poster  = poster;
     },
     slicksliderDot : function(node) {
         var target = $(node.data('slicksliderdot-for'));
@@ -103,7 +106,7 @@ maisen.commands = {
                 if (nextSlide == index) {
                     allLinks.removeClass('active');
                     node.addClass('active');
-                };
+                }
             });
 
         }
@@ -130,7 +133,7 @@ maisen.commands = {
         if (node.is('[data-slickslider-lazy]')) {
             cfg.lazyLoad = 'ondemand';
             cfg.adaptiveHeight = false;
-        };
+        }
 
         if (node.attr('data-slickslider-autoplay')) {
             cfg.autoplay = true;
@@ -181,7 +184,7 @@ maisen.commands = {
                 node.slick("unslick");
                 node.slick(cfg);
             });
-        };
+        }
     },
     targetBlank : function(node) {
         node.attr('target', '_blank');
@@ -217,7 +220,7 @@ maisen.commands = {
         });
 
         node.find('select').selectpicker();
-        node.find(":input[required]").prev('label').addClass('required')
+        node.find(":input[required]").prev('label').addClass('required');
 
         var form = node;
         form.preventDoubleSubmission();
