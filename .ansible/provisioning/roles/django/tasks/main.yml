@@ -54,7 +54,7 @@
       host: "localhost"
       login_user: root
       login_password: "{{ db_root_password }}"
-      priv: "{{ db_name }}.*:ALL,GRANT"
+      priv: "{{ db_name }}.*:ALL,GRANT/test_%.*:ALL,GRANT"
 
 - name: Copy the credentials as .my.cnf file
   template: "src=my.cnf.j2 dest={{ home_dir }}/.my.cnf owner={{ app_user }} group={{ app_grp }} mode=0664"
