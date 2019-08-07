@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
+from django.utils.safestring import mark_safe
 from django.contrib import admin
 from django.urls import reverse
 from django.db import models
@@ -53,15 +54,15 @@ class {{ item[0].model_class }}Admin(PlaceholderAdminMixin, admin.ModelAdmin):
 
 {% if item[0].detailpage %}
     def _link_preview(self, obj):
+        out = ""
         if obj and obj.id:
-            return "<br/>Vorschau der Detailseite: <a href='%(url)s' target='_blank'>%(url)s</a>" % {
+            out = (
+                """Vorschau der Detailseite: <a href='javascript:window.open("%(url)s")' target='_blank'>%(url)s</a>"""
                 'url' : reverse('{{ item[0].module_name }}_preview', args=[obj.id])
-            }
+            )
         else:
-            return "<em>erst nach dem Speichern möglich</em>"
-        return ""
-
-    _link_preview.allow_tags = True
+            out = "<em>erst nach dem Speichern möglich</em>"
+        return mark_safe(out)
     _link_preview.short_description = "Vorschau"
 {% endif %}
 
