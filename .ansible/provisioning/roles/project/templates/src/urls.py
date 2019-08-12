@@ -42,6 +42,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
+    url(r"^ckeditor/", include("ckeditor_uploader.urls")),
     url(r'^admin/translate/', include('rosetta.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include(cms_urls)),

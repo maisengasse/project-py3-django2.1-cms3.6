@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "filer",
     "easy_thumbnails",
     "ckeditor",
+    "ckeditor_uploader",
     "codemirror2",
     "bootstrap4",
     "maisen.cmstools",
@@ -282,6 +283,8 @@ CKEDITOR_CONFIGS = {
         "width": "800px",
         "stylesSet": "default",
         "startupOutlineBlocks" : True,
+        # "filebrowserBrowseUrl": "/de/ckeditor/browse/", #RTE Images
+        # "filebrowserUploadUrl": "/de/ckeditor/upload/", #RTE Images
         "toolbar": [
             ["Styles"],
             ["Bold", "Italic", "Underline"],
@@ -289,6 +292,7 @@ CKEDITOR_CONFIGS = {
             ["Link", "Unlink", "Anchor"],
             ["SpecialChar", "Paste", "PasteText", "PasteFromWord"],
             ["Table"],
+            # ["Image"], #RTE Images
             ["Undo", "Redo"],
             ["RemoveFormat", "ShowBlocks", "Source"],
         ],
