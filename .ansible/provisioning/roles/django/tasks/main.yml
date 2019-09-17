@@ -4,17 +4,17 @@
   pip:
     name={{ item.name }}
     version={{ item.version }}
-    virtualenv_command="/usr/bin/python3 -m venv"
+    virtualenv_command="/usr/bin/python3.6 -m venv"
     virtualenv={{ home_dir }}/python-{{ project_name }}
   become: "{{ app_user }}"
   with_items:
     # django
     - { name: pytz, version: 2018.4 }
-    - { name: pip, version: 18.1 }
+    - { name: pip, version: 19.2.3 }
 
 - name: Install PIP
   pip:
-      virtualenv_command="/usr/bin/python3 -m venv"
+      virtualenv_command="/usr/bin/python3.6 -m venv"
       virtualenv={{ home_dir }}/python-{{ project_name }}
       requirements={{ home_dir}}/{{ project_name }}/requirements.txt
   become: "{{ app_user }}"
