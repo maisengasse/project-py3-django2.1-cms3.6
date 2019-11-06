@@ -201,6 +201,7 @@ STATICFILES_FINDERS = [
     "compressor.finders.CompressorFinder",
 ]
 
+SILENCED_SYSTEM_CHECKS = ['urls.W001']
 
 # User-uploaded files
 # https://docs.djangoproject.com/en/1.9/topics/files/
