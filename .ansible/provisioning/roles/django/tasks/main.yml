@@ -9,8 +9,8 @@
   become: "{{ app_user }}"
   with_items:
     # django
-    - { name: pytz, version: 2018.4 }
-    - { name: pip, version: 19.2.3 }
+    - { name: pytz, version: 2019.3 }
+    - { name: pip, version: 19.3.1 }
 
 - name: Install PIP
   pip:
