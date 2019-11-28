@@ -1,8 +1,8 @@
 Project
 =======
 
-Website based on Django 2.1 / Django CMS 3.6
-Copyright (c) 2019 Büro Maisengasse OG
+Website based on Django 2.2.7 / Django CMS 3.7
+Copyright &copy; 2019 Büro Maisengasse OG
 
 Development Environment Requirements
 ---
@@ -10,7 +10,6 @@ Development Environment Requirements
 - [Vagrant](https://www.vagrantup.com)
 - Vagrant provider, eg [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - [Ansible](https://www.ansible.com)
-
 
 Initial Setup:
 ---
@@ -23,7 +22,7 @@ Initial Setup:
 
 ### Get all data from production
 
-- goto project directory: `cd {{ project_name }}`
+- go to project directory: `cd {{ project_name }}`
 - run fabric sync command: `./fabric initdb`
 
 

@@ -56,7 +56,7 @@
 - name: restart memcached
   service: name=memcached state=restarted
 
-- name: Install nodejs packages
+- name: Install NodeJs packages
   npm: name={{ item }} global=yes state=present
   with_items:
     - postcss-cli
@@ -65,10 +65,10 @@
 - name: SSH config directory
   file: "path={{ home_dir }}/.ssh owner={{ app_user }} group={{ app_grp }} mode=0700 state=directory"
 
-- name: copy private development key
+- name: copy private development Key
   template: "src='id_rsa' dest={{ home_dir }}/.ssh/id_rsa owner={{ app_user }} group={{ app_grp }} mode=0600"
 
-- name: copy public development key
+- name: copy public development Key
   template: "src='id_rsa.pub' dest={{ home_dir }}/.ssh/id_rsa.pub owner={{ app_user }} group={{ app_grp }} mode=0600"
 
 

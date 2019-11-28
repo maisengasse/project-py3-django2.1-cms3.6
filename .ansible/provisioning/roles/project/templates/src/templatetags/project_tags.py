@@ -49,7 +49,6 @@ def richtext(value):
     return mark_safe(str(soup))
 
 
-
 @register.simple_tag(takes_context=True)
 def seo_description(context, default=""):
     desc = default
@@ -95,3 +94,18 @@ def i18ncaption(context, relation, default="", prop="caption"):
     if not val:
         val = relation.get(prop)
     return mark_safe(val or default)
+
+# use {{ item.title|splittitle:'<br />' }}
+@register.filter
+def splittitle(title, joiner=" "):
+    seperator = "|"
+    if seperator in title:
+        t1, t2 = [t.strip() for t in title.split(seperator, 1)]
+        title = '<h5 class="primary mb-0">%s</h5>%s<h5 class="mb-0">%s</h5>' % (t1, joiner, t2)
+    else:
+        title = '<h5 class="primary mb-0">%s</h5>' % title
+    return mark_safe(title)
+
+
+
+
