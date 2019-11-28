@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+// Import Variables and Specials
+@import "main-variables";
+@import "../lib/bootstrap/scss/functions";
+@import "../lib/bootstrap/scss/variables";
+@import "../lib/bootstrap/scss/mixins";
+
+
+#preloader {
+    opacity: 1;
+    position: fixed;
+    z-index: 10000000000;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    // background: url("/static/intersport/img/signet-color.svg") center center no-repeat;
+    // background-size: 80px;
+    background-color: $white;
+
+    @include media-breakpoint-down(md) {
+        border: solid 15px white;
+        background-color: $white;
+    }
+
+    // &:before, &:after {
+    //     content: "";
+    //     display: block;
+    //     position: absolute;
+    //     left: 0;
+    //     width: 40px;
+    //     height: 5px;
+    //     top: calc(50vh + 60px);
+    //     left: calc(50vw - 50px);
+    //     background-color: rgba($brand-primary, 1);
+    // }
+
+    // &:after {
+    //     z-index: -1;
+    //     width: 100px;
+    //     background-color: rgba($gray-blue, 1);
+    // }
+
+    // &:before, &:after {
+    //     content: "";
+    //     display: block;
+    //     position: absolute;
+    //     width: 1px;
+    //     height: 65px;
+    //     left: 50%;
+    //     background-color: rgba($brand-primary, 1);
+    // }
+
+    // &:before {
+    //     top: calc(50vh + 50px);
+    // }
+
+    // &:after {
+    //     bottom: calc(50vh + 50px);
+    // }
+
+}
+
+@keyframes enter {
+    0% { opacity : 1; top: 0; }
+    99% { opacity: .01; top: 0; }
+    100% { opacity : 0; top : -200vh; }
+}
+@keyframes leave {
+    0% { opacity : 0; top : -200vh; }
+    1% { opacity: .01; top: 0; }
+    100% { opacity : 1; top: 0; }
+}
+
+@keyframes enter-line {
+    0% {width: 40px; opacity: 1; }
+    98% {width: 100px; opacity: 1; }
+    100% {width: 100px; opacity: 0; }
+}
+
+@keyframes leave-line {
+    0% {width: 0px; opacity: 1; }
+    100% {width: 40px; opacity: 1; }
+}
+
+body.leaving #preloader {
+    animation: leave .3s;
+    animation-fill-mode: forwards;
+    &:before {
+        animation: leave-line .3s;
+        animation-timing-function: ease-out;
+    }
+}
