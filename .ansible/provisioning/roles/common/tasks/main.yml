@@ -37,6 +37,7 @@
     - libjpeg-dev
     - libtiff-dev
     - zlib1g-dev
+    - htop
     - libfreetype6-dev
     - liblcms2-dev
     - libldap2-dev

@@ -33,7 +33,7 @@
    when: create_project
 
  - name: Create SERVERSETUP
-   template: "src='server_setup.md' dest={{ project_dir }}/server_setup.md owner={{ app_user }} group={{ app_grp }} mode=0664"
+   template: "src='server_setup.md' dest={{ project_dir }}/SERVERSETUP.md owner={{ app_user }} group={{ app_grp }} mode=0664"
    when: create_project
 
 # # Search Module

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
-VERSION = "0.0.1"
+VERSION = "0.7"
 SITE_ID = 1
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

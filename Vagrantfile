@@ -4,7 +4,7 @@
 VAGRANTFILE_CONFIG_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
     # Base box to build off, and download URL for when it doesn't exist on the user's system already
-    config.vm.box = "bento/ubuntu-16.04"
+    config.vm.box = "bento/ubuntu-18.04"
     #config.vm.box_version = "20180614.0.2"
     #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
 
