@@ -2,12 +2,13 @@
 #################################
 ############# Debian, Ubuntu, ...
 - name: Install Mysql package
-  apt: name={{ item }} state=present
-  with_items:
-    - mariadb-server
-    - libmariadb-client-lgpl-dev
-    - python-mysqldb
-    - python3-mysqldb
+  apt: 
+    pkg:
+      - mariadb-server
+      - libmariadb-client-lgpl-dev
+      - python-mysqldb
+      - python3-mysqldb
+    state: present
 
 - name: Create mysql_config symlink
   file:

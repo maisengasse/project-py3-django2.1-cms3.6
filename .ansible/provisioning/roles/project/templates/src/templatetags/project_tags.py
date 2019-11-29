@@ -31,7 +31,7 @@ def richtext(value):
     if not value:
         return ""
 
-    soup = BeautifulSoup(value, 'html.parser')
+    soup = BeautifulSoup(value, "html.parser")
 
     # for table in soup.findAll('table'):
     #     #remove table attrs
@@ -42,9 +42,9 @@ def richtext(value):
     #             del(table[attr]);
 
     # link titles
-    for a in soup.findAll('a'):
-        if not a.get('title'):
-            a['title'] = a.text
+    for a in soup.findAll("a"):
+        if not a.get("title"):
+            a["title"] = a.text
 
     return mark_safe(str(soup))
 
@@ -52,12 +52,12 @@ def richtext(value):
 @register.simple_tag(takes_context=True)
 def seo_description(context, default=""):
     desc = default
-    if context.get('seo_description'):
-        desc = striptags2(context['seo_description'])
+    if context.get("seo_description"):
+        desc = striptags2(context["seo_description"])
     else:
         tpl = "{{ '{%' }} load cms_tags{{ '%}' }}{{ '{%' }} page_attribute 'meta_description' {{ '%}' }}"
         d = render_string(tpl, context)
-        if d and d != u'None':
+        if d and d != u"None":
             desc = d
     return desc
 
@@ -65,47 +65,33 @@ def seo_description(context, default=""):
 @register.simple_tag(takes_context=True)
 def seo_title(context, suffix="", default=""):
     title = default
-    if context.get('seo_title'):
-        title = context['seo_title']
+    if context.get("seo_title"):
+        title = context["seo_title"]
     else:
         tpl = "{{ '{%' }} load cms_tags{{ '%}' }}{{ '{%' }} page_attribute 'page_title' {{ '%}' }}"
         t = render_string(tpl, context)
-        if t and t != u'None':
+        if t and t != u"None":
             title = t
     return title + suffix
 
 
 @register.simple_tag(takes_context=True)
 def seo_image(context):
-    if context.get('seo_image'):
-        image = context['seo_image']
+    if context.get("seo_image"):
+        image = context["seo_image"]
     else:
         image = Image.objects.get(id=settings.DEFAULT_SEO_IMAGE)
-    return sizeurl(image, 'ogimage')
+    return sizeurl(image, "ogimage")
 
 
 @register.simple_tag(takes_context=True)
 def i18ncaption(context, relation, default="", prop="caption"):
     i18nprop = prop
-    lang = context['request'].LANGUAGE_CODE
-    if lang != 'de':
-        i18nprop = prop+'_'+lang
+    lang = context["request"].LANGUAGE_CODE
+    if lang != "de":
+        i18nprop = prop + "_" + lang
     val = relation.get(i18nprop)
     if not val:
         val = relation.get(prop)
     return mark_safe(val or default)
-
-# use {{ item.title|splittitle:'<br />' }}
-@register.filter
-def splittitle(title, joiner=" "):
-    seperator = "|"
-    if seperator in title:
-        t1, t2 = [t.strip() for t in title.split(seperator, 1)]
-        title = '<h5 class="primary mb-0">%s</h5>%s<h5 class="mb-0">%s</h5>' % (t1, joiner, t2)
-    else:
-        title = '<h5 class="primary mb-0">%s</h5>' % title
-    return mark_safe(title)
-
-
-
 

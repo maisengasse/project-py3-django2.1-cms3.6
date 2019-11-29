@@ -8,16 +8,16 @@
 - name: Add Python3.6 Repository
   apt_repository: repo=ppa:deadsnakes/ppa state=present
 
-- name: Add NodeJS6 Repository
-  apt_repository: repo={{item}} state=present
-  with_items:
-    deb https://deb.nodesource.com/node_6.x xenial main
-    deb-src https://deb.nodesource.com/node_6.x xenial main
-
 - name: Add NodeJS6 Repository Key
   apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
+
+- name: Add NodeJS6 Repository
+  apt_repository: repo={{item}} state=present
+  with_items:
+    deb https://deb.nodesource.com/node_13.x bionic main
+    deb-src https://deb.nodesource.com/node_13.x bionic main
 
 - name: Update and upgrade apt packages
   become: true
@@ -25,33 +25,33 @@
     update_cache: yes
 
 - name: Install needed packages (apt)
-  apt: pkg={{ item }} state=present
-  with_items:
-    # general stuff
-    - git
-    - subversion
-    - curl
-    - language-pack-de-base
-    - build-essential
-    - libssl-dev
-    - libjpeg-dev
-    - libtiff-dev
-    - zlib1g-dev
-    - htop
-    - libfreetype6-dev
-    - liblcms2-dev
-    - libldap2-dev
-    - gettext
-    - memcached
-    - unzip
-    - libffi-dev
-    - node-less
-    - python-dev
-    - python-pip
-    - python-virtualenv
-    - python3.6
-    - python3.6-dev
-    - python3.6-venv
+  apt: 
+    pkg: 
+      - git
+      - subversion
+      - curl
+      - language-pack-de-base
+      - build-essential
+      - libssl-dev
+      - libjpeg-dev
+      - libtiff-dev
+      - zlib1g-dev
+      - htop
+      - libfreetype6-dev
+      - liblcms2-dev
+      - libldap2-dev
+      - gettext
+      - memcached
+      - unzip
+      - libffi-dev
+      - node-less
+      - python-dev
+      - python-pip
+      - python-virtualenv
+      - python3.6
+      - python3.6-dev
+      - python3.6-venv
+    state: present
 
 - name: restart memcached
   service: name=memcached state=restarted
