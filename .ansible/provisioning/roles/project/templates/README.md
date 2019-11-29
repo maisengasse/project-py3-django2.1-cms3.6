@@ -1,4 +1,4 @@
-Project
+{{ project_name }}
 =======
 
 Website based on Django 2.2.7 / Django CMS 3.7
