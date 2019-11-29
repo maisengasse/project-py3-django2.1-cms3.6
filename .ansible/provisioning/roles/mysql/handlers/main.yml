@@ -1,6 +1,8 @@
 ---
 - name: restart mysql
   service: name=mysql state=restarted
+  when: create_project
 
 - name: restart mariadb
   service: name=mariadb state=restarted
+  when: create_project
