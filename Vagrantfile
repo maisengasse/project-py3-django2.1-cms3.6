@@ -61,10 +61,10 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
         create_modules: false,
         modules: [
             # {
-            #    module_name: 'pls_change_me (lowercase and plural -> projects)',
-            #    model_class: 'pls_change_me (uppercase and singular -> Project)',
-            #    model_name: 'pls_change_me (uppercase and german/singular -> Projekteintrag)',
-            #    model_name_plural: 'pls_change_me (selfexplaning but german pls)',
+            #    module_name: 'module_change_me (lowercase and plural -> projects)',
+            #    model_class: 'module_change_me (uppercase and singular -> Project)',
+            #    model_name: 'module_change_me (uppercase and german/singular -> Projekteintrag)',
+            #    model_name_plural: 'module_change_me (selfexplaning but german pls)',
             #    categorized: false,
             #    publish_workflows: false,
             #    detailpage: true,
