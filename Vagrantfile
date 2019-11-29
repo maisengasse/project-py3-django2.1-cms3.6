@@ -51,17 +51,20 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
         app_user: "vagrant",
         app_grp: "vagrant",
         home_dir: "/home/vagrant",
-        project_name: "project",
-        project_domain: "project.at",
-        project_dir: "/home/vagrant/project",
-        create_project: true,
+
+        # --------- Change me --------
+        # (just replace "pls_change_me with lowercase project name")
+        project_name: "pls_change_me",
+        project_domain: "pls_change_me.at",
+        project_dir: "/home/vagrant/pls_change_me",
+        create_project: true, # After Project is set up -> create_project: false
         create_modules: false,
         modules: [
             # {
-            #    module_name: 'news',
-            #    model_class: 'Newsitem',
-            #    model_name: 'Newseintrag',
-            #    model_name_plural: 'Newseinträge',
+            #    module_name: 'pls_change_me (lowercase and plural -> projects)',
+            #    model_class: 'pls_change_me (uppercase and singular -> Project)',
+            #    model_name: 'pls_change_me (uppercase and german/singular -> Projekteintrag)',
+            #    model_name_plural: 'pls_change_me (selfexplaning but german pls)',
             #    categorized: false,
             #    publish_workflows: false,
             #    detailpage: true,
@@ -70,8 +73,10 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
         ],
         # create_project_search: false,
         # create_project_mailings: false,
-        db_name: 'project',
-        db_user: 'project',
+        db_name: 'pls_change_me',
+        db_user: 'pls_change_me',
+        #-------------------------------------------
+
         db_password: '',
         db_root_password: '',
       }

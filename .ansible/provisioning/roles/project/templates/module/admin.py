@@ -9,7 +9,6 @@ from django.conf import settings
 from cms.models import Page
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from maisen.cmstools.widgets import CKEditorWidget, CodeMirrorWidget
-
 from {{ project_name }}.{{ item[0].module_name }}.models import {{ item[0].model_class }}
 
 class {{ item[0].model_class }}AdminForm(forms.ModelForm):
@@ -57,8 +56,7 @@ class {{ item[0].model_class }}Admin(PlaceholderAdminMixin, admin.ModelAdmin):
         out = ""
         if obj and obj.id:
             out = (
-                """Vorschau der Detailseite: <a href='javascript:window.open("%(url)s")' target='_blank'>%(url)s</a>"""
-                'url' : reverse('{{ item[0].module_name }}_preview', args=[obj.id])
+                f"Vorschau der Detailseite: <a href='javascript:window.open({reverse('{{ item[0].module_name }}_preview', args=[obj.id])})' target='_blank'>{reverse('{{ item[0].module_name }}_preview', args=[obj.id])}</a>"
             )
         else:
             out = "<em>erst nach dem Speichern möglich</em>"

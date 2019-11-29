@@ -1,4 +1,7 @@
 from modeltranslation.translator import translator, TranslationOptions
+{% if item[0].plugin %}
+from {{ project_name }}.{{ item[0].module_name }}.models import {{ item[0].model_class }}, {{ item[0].model_class }}Teaser 
+{% else %}
 from {{ project_name }}.{{ item[0].module_name }}.models import {{ item[0].model_class }}
 
 class {{ item[0].model_class }}TO(TranslationOptions):
