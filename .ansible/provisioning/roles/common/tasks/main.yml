@@ -49,8 +49,10 @@
       - memcached
       - unzip
       - libffi-dev
+      - cowsay
       - node-less
       - python-dev
+      - fortune-mod 
       - python-pip
       - python-virtualenv
       - python3.6
