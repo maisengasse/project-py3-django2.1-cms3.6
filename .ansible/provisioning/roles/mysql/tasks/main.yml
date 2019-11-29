@@ -9,12 +9,14 @@
       - python-mysqldb
       - python3-mysqldb
     state: present
+  when: create_project
 
 - name: Create mysql_config symlink
   file:
     src: "/usr/bin/mariadb_config"
     dest: "/usr/bin/mysql_config"
     state: link
+  when: create_project
 
 - name: Update MySQL root password for all root accounts
   mysql_user:
@@ -30,9 +32,12 @@
     - 127.0.0.1
     - ::1
     - localhost
+  when: create_project
 
 - name: Global mysql config
   template: "src=my.cnf.server.j2 dest=/etc/my.cnf owner=root group=root mode=0664"
+  when: create_project
 
 - name: Start Mysql Service
   service: name=mysql state=started enabled=true
+  when: create_project

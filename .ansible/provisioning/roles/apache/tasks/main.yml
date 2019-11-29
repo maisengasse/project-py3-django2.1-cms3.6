@@ -28,6 +28,7 @@
       - libapache2-mod-wsgi
       - libapache2-mod-xsendfile
     state: present
+  when: create_project
 
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
