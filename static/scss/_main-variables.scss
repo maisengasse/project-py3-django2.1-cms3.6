@@ -5,8 +5,9 @@
 // // Variables should follow the `$component-state-property-size` formula for
 // // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
-$brand-primary: #344A5F;
+$brand-primary: #44393C;
 $white: #FFFFFF;
+
 $text-color: #404040;
 
 // //
@@ -67,7 +68,7 @@ $text-color: #404040;
 //   "gray-dark":  $gray-800
 // ), $colors);
 
-// $primary:       $brand-primary;
+$primary:       $brand-primary;
 // $secondary:     $gray-600;
 // $success:       $green;
 // $info:          $cyan;
@@ -75,9 +76,6 @@ $text-color: #404040;
 // $danger:        $red;
 // $light:         $gray-100;
 // $dark:          $gray-800;
-
-
-
 
 // $theme-colors: ();
 // $theme-colors: map-merge((
@@ -117,6 +115,18 @@ $enable-grid-classes:       			true;
 $enable-overlay-classes:       			true;
 $enable-accessibility-classes:       	false;
 
+// // Hamburger Settings
+// //
+// $hamburger-padding-x                       : 10px;
+// $hamburger-padding-y                       : 10px;
+$hamburger-layer-width                     : 28px;
+$hamburger-layer-height                    : 3px;
+// $hamburger-layer-spacing                   : 4px;
+$hamburger-layer-color                     : $text-color;
+$hamburger-layer-border-radius             : 3px;
+$hamburger-hover-opacity                   : 1;
+$hamburger-hover-transition-duration       : 0.35s;
+$hamburger-hover-transition-timing-function: ease-in-out;
 
 // // Spacing
 // //
@@ -249,15 +259,16 @@ $border-radius:               		0px;
 // // Font, line-height, and color for body text, headings, and more.
 
 // // stylelint-disable value-keyword-case
-$font-family-sans-serif:      "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-sans-serif:      	"Ubuntu", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+$font-family-serif:      		"Lora", Georgia, "Times New Roman", Times, serif;
 // $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-$font-family-base:            $font-family-sans-serif;
+$font-family-base:            	$font-family-sans-serif;
 // // stylelint-enable value-keyword-case
 
 $font-size-base:              	1rem; // Assumes the browser default, typically `16px`
-// $font-size-lg:                ($font-size-base * 1.25);
-// $font-size-sm:                ($font-size-base * .875);
-$font-size-sm-down:              ($font-size-base * 1.18);
+// $font-size-lg:               ($font-size-base * 1.25);
+// $font-size-sm:             	($font-size-base * .875);
+$font-size-sm-down:             ($font-size-base * 1.18);
 
 
 $font-weight-thin:              100;
@@ -272,11 +283,11 @@ $font-weight-black:             900;
 
 
 // $font-weight-base:            $font-weight-normal;
-// $line-height-base:            1.5;
+$line-height-base:            	1.45;
 
-// $h1-font-size:                $font-size-base * 2.5;
-$font-size-h2:                		$font-size-base * 2.75;
-$font-size-h3:                		$font-size-base * 2;
+$font-size-h1:                	$font-size-base * 2.75;
+$font-size-h2:                	$font-size-base * 2.5;
+$font-size-h3:                	$font-size-base * 2;
 // $h4-font-size:                $font-size-base * 1.5;
 // $h5-font-size:                $font-size-base * 1.25;
 // $h6-font-size:                $font-size-base;

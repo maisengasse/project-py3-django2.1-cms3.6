@@ -1,13 +1,9 @@
 {% load static project_tags imagesize_tags %}
 {% if in_group %}
-    {% if highlight_count > 4 %}
-    <div class="col-6 col-sm-4 col-md-2">
-    {% else %}
-    <div class="col-6 col-lg-3">
-    {% endif %}
+    <div class="col-6 col-sm-4 col-md-3">
         <div class="card">
             <div class="card-header">
-                <figure>
+                <figure class="highlight-icon">
                     <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
                     {# <img {% srcset instance.images.image 'fullwidth' sizes="400px" %} alt="{{ instance.title }}"> #}
                 </figure>

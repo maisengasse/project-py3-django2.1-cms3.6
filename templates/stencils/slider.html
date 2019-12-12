@@ -1,5 +1,5 @@
 {% load cms_tags %}
-<div class="slider">
+<section class="slider">
     <div data-slickslider
          data-finite
          {% if instance.show != 1 %}data-slickslider-show="{{ instance.show }}"{% endif %}
@@ -13,4 +13,4 @@
             </div>
         {% endfor %}
     </div>
-</div>
+</section>

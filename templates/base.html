@@ -1,86 +1,90 @@
-{% load compress static cms_tags menu_tags sekizai_tags i18n project_tags %}
-{% load robots_index %}
+{% load compress static cms_tags menu_tags sekizai_tags i18n project_tags editables_tags %} 
+{% load robots_index %} 
 
 <!DOCTYPE html>
 <html lang="{{ request.LANGUAGE_CODE }}">
     <head>
-    {% block head %}
+        {% block head %} 
 
-        {% page_robots %}
+            {% page_robots %}
 
-        {% block meta %}
-            <meta charset="utf-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="author" content="Project Author">
-            <meta name="robots" content="all">
-            <meta name="revisit-after" content="31days">
+            {% block meta %}
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="author" content="Project Author">
+                <meta name="robots" content="all">
+                <meta name="revisit-after" content="31days">
 
-            {% block fb_meta %}
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="{{ PORTAL_URL }}{{ request.path }}" />
-                <meta property="og:image" content="{{ PORTAL_URL }}{% seo_image %}" />
-                <meta property="og:image:width" content="1200" />
-                <meta property="og:image:height" content="630" />
-                <link rel="canonical" href="{{ PORTAL_URL }}{{ request.path }}" />
-            {% endblock fb_meta %}
+                {% block fb_meta %}
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="{{ PORTAL_URL }}{{ request.path }}" />
+                    <meta property="og:image" content="{{ PORTAL_URL }}{% seo_image %}" />
+                    <meta property="og:image:width" content="1200" />
+                    <meta property="og:image:height" content="630" />
+                    <link rel="canonical" href="{{ PORTAL_URL }}{{ request.path }}" />
+                {% endblock fb_meta %}
 
-            {% block seo_meta %}
-                <meta name="keywords" content="{% page_attribute 'meta_keywords' %}">
-                <meta name="description" content="{% seo_description 'Project SEO Description' %}">
-                <meta property="og:title" content="{% seo_title ' | Project SEO Title'%}" />
-                <meta property="og:description" content="{% seo_description 'Project SEO Description' %}" />
-            {% endblock seo_meta %}
-        {% endblock meta %}
+                {% block seo_meta %}
+                    <meta name="keywords" content="{% page_attribute 'meta_keywords' %}"> 
+                    <meta name="description" content="{%  seo_description 'SEO Description for pls_change_me' %}">
+                    <meta property="og:title" content="{%  seo_title ' | pls_change_me Facebook Title'%}" />
+                    <meta property="og:description" content="{%  seo_description 'pls_change_me Facebook Description' %}" />
+                {% endblock seo_meta %}
+            {% endblock meta %}
 
-        {% block jsonld %}
-            {% include 'jsonld.html' %}
-        {% endblock jsonld %}
+            {% block jsonld %}
+                {% include 'jsonld.html' %}
+            {% endblock jsonld %}
 
-        {% block favicon %}
-            {% comment %}
-                https://realfavicongenerator.net/
-            {% endcomment %}
-        {% endblock favicon %}
+            {% block favicon %}
+                {% comment %}
+                    https://realfavicongenerator.net/
+                {% endcomment %}
+            {% endblock favicon %}
 
-        {% block fonts %}
-            <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-        {% endblock fonts %}
+            {% block fonts %}
+                <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Ubuntu:400,400i,700,700i&amp;display=swap" rel="stylesheet">
+            {% endblock fonts %}
 
-        {% compress css inline %}
-            <link type="text/x-scss" href="{% static 'project/scss/preloader.scss' %}" rel="stylesheet" />
-        {% endcompress %}
-
-        {% block critical-css %}
-            {% compress css %}
-                <link type="text/x-scss" href="{% static 'project/scss/critical.scss' %}" rel="stylesheet" />
+            {% compress css inline %}
+                <link type="text/x-scss" href="{% static 'pls_change_me/scss/preloader.scss'%}" rel="stylesheet" />
             {% endcompress %}
-        {% endblock critical-css %}
 
-        {% block js-top %}
-            <script src="{% static 'project/lib/modernizr/modernizr.js' %}"></script>
-        {% endblock js-top %}
+            {% block critical-css %}
+                {% compress css %}
+                    <link type="text/x-scss" href="{%static 'pls_change_me/scss/critical.scss' %}" rel="stylesheet" />
+                {% endcompress %}
+            {% endblock critical-css %}
 
-        <title>{% block title %}{% seo_title ' | Project SEO Title' %}{% endblock title %}</title>
+            {% block js-top %}
+                <script src="{% static 'pls_change_me/lib/modernizr/modernizr.js' %}"></script>
+            {% endblock js-top %}
 
-        {% if request.current_page %}
-            <link rel="alternate" hreflang="de" href="{{ PORTAL_URL }}{% page_url request.current_page 'de' %}" />
-            {# <link rel="alternate" hreflang="en" href="{{ PORTAL_URL }}{% page_url request.current_page 'en' %}" /> #}
-        {% endif %}
+            <title>{% block title %}{% seo_title ' | pls_change_me' %}{% endblock title %}</title>
 
-        {# <link rel="prefetch" href="{% url 'inquiry_form' %}" /> #}
-        {# <link data-tellink-fallback rel="prefetch" href="{% page_url 'contact' %}" /> #}
-        {% show_menu 0 1 1 1 "navigations/prefetch.html" %}
+            {% if request.current_page %}
+                <link rel="alternate" hreflang="de" href="{{ PORTAL_URL }}{% page_url request.current_page 'de' %}" />
+                {# <link rel="alternate" hreflang="en" href="{{ PORTAL_URL }}{% raw %}{% page_url request.current_page 'en' %}" /> #} 
+            {% endif %}
 
-    {% endblock head %}
-    {% render_block "css" %}
+            {# <link rel="prefetch" href="{% url 'inquiry_form' %}" /> #}
+            {# <link data-tellink-fallback rel="prefetch" href="{% page_url 'contact' %}" /> #}
+            {% show_menu 0 1 1 1 "navigations/prefetch.html" %}
+
+        {% endblock head %}
+
+        {% render_block "css" %}
+        {% render_block "js" %}
     </head>
 
     <body class="{% block body-class %}{% endblock body-class %}">
-         {% if not request.toolbar or not request.toolbar.edit_mode_active %}
+        {% if not request.toolbar or not request.toolbar.edit_mode_active %}
             <div id="preloader"></div>
         {% endif %}
+
         {% cms_toolbar %}
+
         {% block body %}
             <header id="top">
                 {% block nav %}
@@ -89,14 +93,14 @@
                         <div class="container">
                             <div id="prenav-project">
                                 <ul class="prenav-nav justify-content-end">
-                                    {% language_chooser 'navigations/langs.html'%}
+                                     {% language_chooser 'navigations/langs.html'%}
                                     <li><a href="mailto:office@maisengasse.at">office@maisengasse.at</a></li>
                                     <li><a href="tel:+43544290980‬">+43 5442 90980‬</a></li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
-                    {% endcomment %}
+                     {% endcomment %}
                     <nav class="navbar navbar-expand-md bg-light">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="/">Büro Maisengasse</a>
@@ -108,14 +112,32 @@
                 {% block header %}
                 {% endblock header %}
             </header>
-            <div id="content">
+
+            <main id="content">
                 {% block content %}
                 {% endblock content %}
-            </div>
+            </main>
         {% endblock body %}
 
         {% block footer %}
             <footer id="bottom">
+                <div class="contact">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-3">
+                                {% editable_richtext "footer" %}
+                                <p>
+                                    Büro Maisengasse OG <br>
+                                    Maisengasse 18 <br>
+                                    6500 Landeck <br>&nbsp;<br>
+                                    <a href="mailto:office@maisengasse.at">office@maisengasse.at</a>
+                                    <a href="http://www.maisengasse.at/">www.maisengasse.at</a>
+                                </p>
+                                {% endeditable_richtext %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="partners">
                     <div class="container">
                         <div class="row align-items-center h-100">
@@ -155,56 +177,59 @@
 
         {% block css %}
             {% compress css %}
-                <link type="text/css" href="{% static 'project/lib/fancybox/jquery.fancybox.css' %}" rel="stylesheet" />
-                <link type="text/x-scss" href="{% static 'project/lib/flatpickr/flatpickr.scss' %}" rel="stylesheet" />
-                <link type="text/x-scss" href="{% static 'project/lib/slick/slick.scss' %}" rel="stylesheet" />
-                <link type="text/x-scss" href="{% static 'project/lib/slick/slick-theme.scss' %}" rel="stylesheet" />
-                <link type="text/x-scss" href="{% static 'project/lib/select/select.scss' %}" rel="stylesheet" />
-                <link type="text/x-scss" href="{% static 'project/lib/plyr/scss/plyr.scss' %}" rel="stylesheet" />
-                <link type="text/x-scss" href="{% static 'project/scss/main.scss' %}" rel="stylesheet" />
+                <link type="text/css" href="{% static 'pls_change_me/lib/fancybox/jquery.fancybox.css' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'pls_change_me/lib/flatpickr/flatpickr.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'pls_change_me/lib/slick/slick.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'pls_change_me/lib/slick/slick-theme.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'pls_change_me/lib/select/select.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'pls_change_me/lib/plyr/scss/plyr.scss' %}" rel="stylesheet" />
+                <link type="text/x-scss" href="{% static 'pls_change_me/scss/main.scss' %}" rel="stylesheet" />
             {% endcompress %}
         {% endblock css %}
 
         {% block js %}
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             {% compress js %}
-                <script src="{% static 'project/lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
-                <script src="{% static 'project/lib/flatpickr/flatpickr.js' %}"></script>
-                <script src="{% static 'project/lib/flatpickr/de.js' %}"></script>
-                <script src="{% static 'project/lib/slick/slick.js' %}"></script>
-                <script src="{% static 'project/lib/fancybox/jquery.fancybox.js' %}"></script>
-                <script src="{% static 'project/lib/objectfit/ofi.js' %}"></script>
-                <script src="{% static 'project/lib/select/bootstrap-select.js' %}"></script>
-                <script src="{% static 'project/lib/plyr/plyr.js' %}"></script>
-                <script src="{% static 'project/js/main.js' %}"></script>
+                <script src="{% static 'pls_change_me/lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
+                <script src="{% static 'pls_change_me/lib/flatpickr/flatpickr.js' %}"></script>
+                <script src="{% static 'pls_change_me/lib/flatpickr/de.js' %}"></script>
+                <script src="{% static 'pls_change_me/lib/slick/slick.js' %}"></script>
+                <script src="{% static 'pls_change_me/lib/fancybox/jquery.fancybox.js' %}"></script>
+                <script src="{% static 'pls_change_me/lib/objectfit/ofi.js' %}"></script>
+                <script src="{% static 'pls_change_me/lib/select/bootstrap-select.js' %}"></script>
+                <script src="{% static 'pls_change_me/lib/plyr/plyr.js' %}"></script>
+                <script src="{% static 'pls_change_me/js/main.js' %}"></script>
             {% endcompress %}
         {% endblock js %}
-        {% render_block "js" %}
+
+        {% render_block "css-bottom" %}
+        {% render_block "js-bottom" %}
 
         {% block cookies %}
-        {% comment %}
+         {% comment %}
             <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
             <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
             <script>
-            window.addEventListener("load", function(){
-            window.cookieconsent.initialise({
-              "palette": {
-                "popup": {
-                  "background": "#ffffff",
-                  "text": "000000"
-                },
-                "button": {
-                  "background": "#0080b8",
-                  "text": "#ffffff"
-                }
-              },
-              "content": {
-                "message" : "{% trans "Durch die Nutzung unserer Website erklären Sie sich damit einverstanden, dass wir Cookies setzen." %}",
-                "dismiss" : "{% trans "OK" %}",
-                "link" : "{% trans "Mehr" %}",
-                "href": "/cookies/"
-              }
-            })});
+                window.addEventListener("load", function(){
+                    window.cookieconsent.initialise({
+                        "palette": {
+                            "popup": {
+                              "background": "#ffffff",
+                              "text": "000000"
+                            },
+                            "button": {
+                              "background": "#0080b8",
+                              "text": "#ffffff"
+                            }
+                        },
+                        "content": {
+                            "message" : "{% trans "Durch die Nutzung unserer Website erklären Sie sich damit einverstanden, dass wir Cookies setzen." %}",
+                            "dismiss" : "{% trans "OK" %}",
+                            "link" : "{% trans "Mehr" %}",
+                            "href": "/cookies/"
+                        }
+                    })
+                });
             </script>
             <style type="text/css">
                 .cc-window.cc-banner {
@@ -219,9 +244,11 @@
             <script>
                 var gaProperty = 'UA-XX-YY';
                 var disableStr = 'ga-disable-' + gaProperty;
+
                 if (document.cookie.indexOf(disableStr + '=true') > -1) {
                     window[disableStr] = true;
                 }
+
                 function gaOptout() {
                     document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
                     window[disableStr] = true;
@@ -260,4 +287,4 @@
             </style>
         {% endcompress %}
     </body>
-</html>
+</html> 

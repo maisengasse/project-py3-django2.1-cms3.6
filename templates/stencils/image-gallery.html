@@ -1,0 +1,27 @@
+{% load static imagesize_tags project_tags i18n menu_tags %}
+
+<article class="image-gallery">
+    {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <figure>
+                    <a href="{{ instance.images.images.0|sizeurl:"fancybox" }}" data-fancybox="gallery{{ instance.id }}"><img {% srcset instance.images.images.0 'halfwidth' '' '' %} alt="{{ instance.title }}"></a>
+                </figure>
+                <figure>
+                    <a href="{{ instance.images.images.1|sizeurl:"fancybox" }}" data-fancybox="gallery{{ instance.id }}"><img {% srcset instance.images.images.1 'halfwidth' '' '' %} alt="{{ instance.title }}"></a>
+                </figure>
+           </div>
+           <div class="col-12 col-lg-5">
+                <figure class="portrait">
+                    <a href="{{ instance.images.images.2|sizeurl:"fancybox" }}" data-fancybox="gallery{{ instance.id }}"><img {% srcset instance.images.images.2 'halfwidth' '' '' %} alt="{{ instance.title }}"></a>
+                </figure>
+                <figure class="small">
+                    <a href="{{ instance.images.images.3|sizeurl:"fancybox" }}" data-fancybox="gallery{{ instance.id }}"><img {% srcset instance.images.images.3 'halfwidth' '' '' %} alt="{{ instance.title }}"></a>
+                </figure>
+           </div>
+           {% for image in instance.images.images|slice:'4:' %}
+           <a class="d-none" href="{{ image|sizeurl:"fancybox" }}" data-fancybox="gallery{{ instance.id }}"></a>
+           {% endfor %}
+        </div>
+    {% if instance.container %}</div>{% endif %}
+</article>

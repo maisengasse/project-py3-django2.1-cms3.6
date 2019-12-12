@@ -4,7 +4,11 @@
         <div class="row">
             <div class="col-12">
                 {% if instance.title %}
-                    <h2>{{ instance.title }}</h2>
+                    {% if in_accordion %}
+                        <h4>{{ instance.title }}</h4>
+                    {% else %}
+                        <h2>{{ instance.title }}</h2>
+                    {% endif %}
                 {% endif %}
                 {% if instance.link %}
                 <div class="d-none d-sm-flex col-sm-4 col-md-3 justify-content-end">

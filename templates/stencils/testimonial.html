@@ -1,12 +1,12 @@
-{% load project_tags %}
+{% load project_tags imagesize_tags %}
 <article class="testimonial">
 	{% if instance.container %}<div class="{{ instance.container }}">{% endif %}
 		<div class="row justify-content-center">
 			<div class="col-12 col-sm-10 col-md-8 col-lg-6">
-				{% if instance.files.files %}
+				{% if instance.images.image %}
 					<figure class="testimonial-icon">
-	                    <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}">
-	                    {# <img {% srcset instance.images.image 'fullwidth' ratio="instance.ratio" %} alt="{{ instance.title }}"> #}
+						<img {% srcset instance.images.image 'smallsquare' sizes="200px" %} alt="{{ instance.title }}">
+	                    {# <img src="{{ instance.files.files.0.url }}" alt="{{ instance.title }}"> #}
 	                </figure>
 				{% endif %}
                 {% if instance.title %}

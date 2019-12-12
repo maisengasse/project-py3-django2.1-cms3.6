@@ -11,15 +11,24 @@
 @import "../lib/bootstrap/scss/nav";
 @import "../lib/bootstrap/scss/navbar";
 
+// Maisengasse Helpers
+@import "maisengasse/components.scss";
+@import "maisengasse/helpers.scss";
+
 // Maisengasse Navigations
 @import "maisengasse/navs.scss";
+
+
+// –––––––––––––––––––––––––––––– CMS Stylings ––––––––––––––––––––––––––––––
+// --> django CMS Stylings
+
 
 // –––––––––––––––––––––––––––––– General Settings ––––––––––––––––––––––––––––––
 html {
 	/* Adjust font size */
     font-size: 100%;
     -webkit-text-size-adjust: 100%;
-    /* Font varient */
+    /* Font variant */
     font-variant-ligatures: none;
     -webkit-font-variant-ligatures: none;
     /* Smoothing */
@@ -35,6 +44,7 @@ html {
 
 body {
 	font-family: $font-family-base;
+    line-height: $line-height-base;
 	color: $text-color;
 }
 
@@ -55,19 +65,136 @@ body {
     }
 }
 
+// Maximalbreite Inhalte
+@include media-breakpoint-up($max-content-width) {
+    main#content {
+        > .container,
+        > .container-fluid,
+        > section.slider,
+        > article.fullimage,
+        > article.fullimage-with-text,
+        > article.fullimage-with-columntext,
+        > article.fullvideo {
+            max-width: $max-content-width;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
 // Basic Image Styling
 figure {
     margin: 0;
+    vertical-align: top !important;
     img {
         width: 100%;
     }
 }
 
 
+// –––––––––––––––––––––––––––––– Typography ––––––––––––––––––––––––––––––
+h1 {
+    font-size: $font-size-h1;
+    font-weight: $font-weight-bold;
+    color: $brand-primary;
+}
+
+h2 {
+    font-size: $font-size-h2;
+    font-weight: $font-weight-bold;
+    color: $brand-primary;
+}
+
+h3 {
+    font-size: $font-size-h3;
+    font-weight: $font-weight-bold;
+    color: $text-color;
+}
+
+p {
+    font-family: $font-family-serif;
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    color: $text-color;
+}
+
+a {
+    font-size: $font-size-base;
+    color: $brand-primary;
+    &:hover {
+        color: darken($brand-primary, 10%);
+    }
+}
+
+
 // –––––––––––––––––––––––––––––– Header Stylings ––––––––––––––––––––––––––––––
 header#top {
+    article.fullimage figure {
+        max-height: 1000px;
 
+        img {
+            @include object-fit(cover, center);
+        }
+    }
 }
 
 
 // –––––––––––––––––––––––––––––– Navigation Overwrites ––––––––––––––––––––––––––––––
+nav.navbar {
+    padding: 15px 1rem;
+}
+
+
+// –––––––––––––––––––––––––––––– Content Stylings ––––––––––––––––––––––––––––––
+main#content {
+
+}
+
+
+// –––––––––––––––––––––––––––––– Stencil Stylings ––––––––––––––––––––––––––––––
+
+
+// –––––––––––––––––––––––––––––– SlickSlider ––––––––––––––––––––––––––––––
+.slick-slider {
+    position: relative;
+    margin: 0 !important;
+    .slick-prev, .slick-next {
+        position: absolute !important;
+        width: 50px;
+        height: 50px;
+        background-color: transparentize($brand-primary, .3);
+        display: block;
+        z-index: 3;
+        // transition: all .5s;
+        &:hover {
+            background-color: $brand-primary;
+        }
+    }
+
+    .slick-disabled {
+        opacity: 0;
+    }
+
+    .slick-prev.slick-arrow {
+        left: 25px;
+        background-image: url('../img/icons/arrow-left-white.svg');
+        background-position: 16.5px 14px;
+        background-size: auto 40%;
+        background-repeat: no-repeat;
+        // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        display: none;
+    }
+
+    .slick-next.slick-arrow {
+        right: 25px;
+        background-image: url('../img/icons/arrow-right-white.svg');
+        background-position: 20px 14px;
+        background-size: auto 40%;
+        background-repeat: no-repeat;
+        // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+    }
+}

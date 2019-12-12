@@ -1,0 +1,34 @@
+{% load cms_tags %}
+<article class="accordion-group">
+    <div class="container">
+    	{% if instance.title %}
+    		<div class="row">
+    			<div class="col-12">
+    				<h2>{{ instance.title }}</h2>
+    			</div>
+    		</div>
+    	{% endif %}
+    	<div class="row">
+    		<div class="col-12">
+		    	<div class="accordion" id="accordion-{{ instance.id }}">
+		    		{% for plugin in instance.child_plugin_instances %}
+			    		{% with accordioncontents=plugin.child_plugin_instances in_accordion=True %}
+			    		<div class="card">
+			    			<div class="card-header" id="heading-{{ plugin.id }}">
+			    				<a href="javascript:void(0)" data-toggle="collapse" data-target="#collapse-{{ plugin.id }}" aria-controls="collapse-{{ plugin.id }}"><h3>{{ plugin.title }}</h3></a>
+			    			</div>
+							<div id="collapse-{{ plugin.id }}" class="collapse" aria-labelledby="heading-{{ plugin.id }}" data-parent="#accordion-{{ instance.id }}">
+				    			<div class="card-body">
+				    				{% for plugin in accordioncontents %}
+					    				{% render_plugin plugin %}
+				    				{% endfor %}
+				    			</div>
+				    		</div>
+			    		</div>
+			    		{% endwith %}
+		    		{% endfor %}
+		    	</div>
+    		</div>
+    	</div>
+    </div>
+</article>

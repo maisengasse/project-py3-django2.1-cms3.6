@@ -144,6 +144,7 @@
         width: 100%;
         ul.navbar-nav {
             li {
+               margin-left: 10px;
                 &:hover {
                     background-color: $white;
                     a {

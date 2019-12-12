@@ -11,11 +11,13 @@
                 </div>
                 {% endif %}
                 {% if is_embed_video %}
-                <div data-toggle="plyr" class="plyr plyr__video-embed">
+                <div data-toggle="plyr" data-poster="{{ poster }}"
+                     class="plyr plyr__video-embed">
                     {{ instance.code|safe }}
                 </div>
                 {% else %}
-                <video data-toggle="plyr" class="plyr" playsinline controls>
+                <video data-toggle="plyr" class="plyr" data-poster="{{ poster }}"
+                       playsinline controls>
                     {% for file in instance.files.files %}
                         <source src="{{ file.url }}" type="video/{{ file.extension }}" />
                     {% endfor %}

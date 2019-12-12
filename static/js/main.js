@@ -6,6 +6,13 @@
 /* global Modernizr:false */
 /* global console:false */
 try { maisen = maisen || {};} catch(e){ var maisen = {};}
+maisen.BREAKPOINTS = {xs: 0, sm: 576, md: 768, lg: 992, xl: 1200 };
+maisen.BREAKPOINTS_MAX = {
+    xs: maisen.BREAKPOINTS.sm - 1,
+    sm: maisen.BREAKPOINTS.md - 1,
+    md: maisen.BREAKPOINTS.lg - 1,
+    lg: maisen.BREAKPOINTS.xl - 1,
+};
 
 maisen.nothing = function() {};
 maisen.init = function() {
@@ -34,6 +41,7 @@ maisen.commands = {
         this.cmd('maisenDropdownNav', 'body');
         this.cmd('plyr', '[data-toggle="plyr"]');
         this.cmd('clientSideInclude', '*[data-csi]');
+        this.cmd('timeline', '*[data-toggle="timeline"]');
         this.cmd('iframeModal', '#iframe-modal');
         this.runAdditional(this.context);
     },
@@ -133,7 +141,7 @@ maisen.commands = {
         if (node.is('[data-slickslider-lazy]')) {
             cfg.lazyLoad = 'ondemand';
             cfg.adaptiveHeight = false;
-        }
+        };
 
         if (node.attr('data-slickslider-autoplay')) {
             cfg.autoplay = true;
@@ -145,33 +153,18 @@ maisen.commands = {
             cfg.focusOnSelect = true;
         }
 
-        if (node.attr('data-slickslider-show')) {
-            var sst = parseInt(node.attr('data-slickslider-show'), 10);
-            cfg.slidesToShow = sst;
-            cfg.slidesToScroll = sst;
-            cfg.responsive = [
-                {
-                  breakpoint: 1680,
-                  settings: {
-                    slidesToShow: sst/1.3333333,
-                    slidesToScroll: sst/1.3333333
-                  }
-                },
-                {
-                  breakpoint: 1200,
-                  settings: {
-                    slidesToShow: sst/2,
-                    slidesToScroll: sst/2
-                  }
-                },
-                {
-                  breakpoint: 768,
-                  settings: {
-                    slidesToShow: sst/4,
-                    slidesToScroll: sst/4
-                  }
-                },
-            ];
+        if (node.attr('data-slickslider-columns')) {
+            cfg.slidesToShow = 3;
+            cfg.slidesToScroll = 3;
+            cfg.responsive = $.map(node.data('slickslider-columns'), function(v, k) {
+                return {
+                    breakpoint : maisen.BREAKPOINTS_MAX[k],
+                    settings : {
+                        slidesToShow: v,
+                        slidesToScroll: v
+                    }
+                };
+            });
         }
 
         node.slick(cfg);
@@ -184,7 +177,7 @@ maisen.commands = {
                 node.slick("unslick");
                 node.slick(cfg);
             });
-        }
+        };
     },
     targetBlank : function(node) {
         node.attr('target', '_blank');
@@ -292,6 +285,16 @@ maisen.commands = {
             if (val.match(/^\d+$/)) input.val(val + ' ' + unit);
         });
         input.trigger('blur');
+    },
+    timeline : function(node) {
+        var events = node.find('.events li');
+        var diff = 100 / (events.length - 1);
+
+        events.each(function(i, e) {
+            $(this).css({
+                'left' : i*diff+"%"
+            });
+        });
     },
 };
 

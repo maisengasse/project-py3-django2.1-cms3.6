@@ -1,0 +1,22 @@
+{% load cms_tags imagesize_tags project_tags %}
+<article class="team-group">
+    {% if instance.container %}<div class="{{ instance.container }}">{% endif %}
+        {% if instance.title %}
+            <div class="row">
+                {% if instance.title or instance.body %}
+                    <div class="col-12 col-sm-8 col-md-10">
+                        <h2>{{ instance.title }}</h2>
+                        <div class="richtext">
+                            {{ instance.body|richtext }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        <div class="row justify-content-start">
+            {% for plugin in instance.child_plugin_instances %}
+                    {% render_plugin plugin %}
+            {% endfor %}
+        </div>
+    {% if instance.container %}</div>{% endif %}
+</article>
