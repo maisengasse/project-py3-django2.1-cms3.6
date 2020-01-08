@@ -246,11 +246,18 @@ STENCILS_ENABLED = [
     "FullText",
     "FullImage",
     "FullImageWithText",
+    "FullImageWithColumnText",
+    "FullVideo",
     "ImageWithText",
+    "ImageGallery",
+    "VideoWithText",
     "HighlightGroup",
-    "TeaserGroup",
-    "ImageWithColumnText",
     "Highlight",
+    "TeaserGroup",
+    "TeamGroup",
+    "TimelineGroup",
+    "Testimonial",
+    "AccordionGroup",
 ]
 
 for stencil in STENCILS_ENABLED:
@@ -308,12 +315,15 @@ THUMBNAIL_ALIASES = {
         "fullwidth": {"size": (1200, 0), "crop": False},
         "halfwidth": {"size": (600, 0), "crop": False},
         "quarterwidth": {"size": (300, 0), "crop": False},
+        "largesquare": {"size": (500, 500), "crop": True},
         "smallsquare": {"size": (300, 300), "crop": True},
         "fullhd": {"size": (1920, 1080), "crop": True},
     }
 }
 
 PLACEHOLDER_IMAGE_ID = 1
+CONTACT_IMAGE_ID = 5
+PLACEHOLDER_ICON_ID = 11
 DEFAULT_SEO_IMAGE = 2
 
 THUMBNAIL_PROCESSORS = (
