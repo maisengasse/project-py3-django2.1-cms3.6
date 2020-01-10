@@ -19,7 +19,7 @@
       virtualenv={{ home_dir }}/python-{{ project_name }}
       requirements={{ home_dir}}/{{ project_name }}/requirements.txt
   become: "{{ app_user }}"
-  when: create_project
+  # when: create_project
 
 - name: Copy manage.py template
   template: "src=manage.py.j2 dest={{ home_dir}}/{{ project_name }}/manage.py owner={{ app_user }} group={{ app_grp }} mode=0755"
