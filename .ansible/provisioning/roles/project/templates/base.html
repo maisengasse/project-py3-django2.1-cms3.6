@@ -45,8 +45,8 @@
         {% raw %}{% endblock favicon %}{% endraw %}
 
         {% raw %}{% block fonts %}{% endraw %}
-            <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-        {% raw %}{% endblock fonts %}{% endraw %}
+                <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Ubuntu:400,400i,700,700i&amp;display=swap" rel="stylesheet">
+        {% raw %}{% endblock fonts %}{% endraw %}        
 
         {% raw %}{% compress css inline %}{% endraw %}
             <link type="text/x-scss" href="{% raw %}{%{% endraw %} static '{{ project_name }}/scss/preloader.scss'{% raw %}%}{% endraw %}" rel="stylesheet" />
@@ -74,7 +74,9 @@
         {% raw %}{% show_menu 0 1 1 1 "navigations/prefetch.html" %}{% endraw %}
 
     {% raw %}{% endblock head %}{% endraw %}
+
     {% raw %}{% render_block "css" %}{% endraw %}
+    {% raw %} {% render_block "js" %}{% endraw %}
     </head>
 
     {% raw %}<body class="{% block body-class %}{% endblock body-class %}">{% endraw %}
@@ -109,14 +111,32 @@
                 {% raw %}{% block header %}{% endraw %}
                 {% raw %}{% endblock header %}{% endraw %}
             </header>
-            <div id="content">
+            <main id="content">
                 {% raw %}{% block content %}{% endraw %}
                 {% raw %}{% endblock content %}{% endraw %}
-            </div>
+            </main>
         {% raw %}{% endblock body %}{% endraw %}
+
 
         {% raw %}{% block footer %}{% endraw %}
             <footer id="bottom">
+                <div class="contact">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-3">
+                                {% raw %}{% editable_richtext "footer" %}{% endraw %}
+                                <p>
+                                    Büro Maisengasse OG <br>
+                                    Maisengasse 18 <br>
+                                    6500 Landeck <br>&nbsp;<br>
+                                    <a href="mailto:office@maisengasse.at">office@maisengasse.at</a>
+                                    <a href="http://www.maisengasse.at/">www.maisengasse.at</a>
+                                </p>
+                                {% raw %}{% endeditable_richtext %}{% endraw %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="partners">
                     <div class="container">
                         <div class="row align-items-center h-100">
@@ -180,7 +200,12 @@
                 <script src="{% raw %}{%{% endraw %} static '{{ project_name }}/js/main.js' {% raw %}%}{% endraw %}"></script>
             {% raw %}{% endcompress %}{% endraw %}
         {% raw %}{% endblock js %}{% endraw %}
-        {% raw %}{% render_block "js" %}{% endraw %}
+
+
+        {% raw %}{% render_block "css-bottom" %}{% endraw %}
+        {% raw %}{% render_block "js-bottom" %}{% endraw %}
+
+        
 
         {% raw %}{% block cookies %}{% endraw %}
          {% raw %}{% comment %}{% endraw %}
