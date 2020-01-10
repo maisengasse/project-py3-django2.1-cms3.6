@@ -11,7 +11,7 @@
     # django
     - { name: pytz, version: 2019.3 }
     - { name: pip, version: 19.3.1 }
-  when: create_project
+  # when: create_project
 
 - name: Install PIP
   pip:
@@ -23,35 +23,35 @@
 
 - name: Copy manage.py template
   template: "src=manage.py.j2 dest={{ home_dir}}/{{ project_name }}/manage.py owner={{ app_user }} group={{ app_grp }} mode=0755"
-  when: create_project
+  # when: create_project
 
 - name: Copy fabric template
   template: "src=fabric.j2 dest={{ home_dir}}/{{ project_name }}/fabric owner={{ app_user }} group={{ app_grp }} mode=0755"
-  when: create_project
+  # when: create_project
 
 - name: Copy Production django settings.py template
   template: "src=development.py.j2 dest={{ project_dir }}/{{ project_name }}/settings/development.py owner={{ app_user }} group={{ app_grp }} mode=0644"
-  when: create_project
+  # when: create_project
 
 - name: Create wsgi directory
   file: "path={{ home_dir }}/wsgi owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
-  when: create_project
+  # when: create_project
 
 - name: Copy wsgi.py template
   template: "src=wsgi.py.j2 dest={{ home_dir }}/wsgi/{{ project_name }}.wsgi owner={{ app_user }} group={{ app_grp }} mode=0664"
-  when: create_project
+  # when: create_project
 
 - name: Create static directory
   file: "path={{ home_dir }}/static owner={{ app_user }} group={{ app_grp }} mode=0755 state=directory"
-  when: create_project
+  # when: create_project
 
 - name: Link Project static directory
   file: "src={{ project_dir }}/static dest={{ home_dir }}/static/{{ project_name }} owner={{ app_user }} group={{ app_grp }} state=link"
-  when: create_project
+  # when: create_project
 
 - name: Link Project media directory
   file: "src={{ project_dir }}/media dest={{ home_dir }}/media owner={{ app_user }} group={{ app_grp }} state=link"
-  when: create_project
+  # when: create_project
 
 # - name: Collect static files
 #   django_manage: "command=collectstatic app_path={{ project_dir }}"
@@ -65,11 +65,11 @@
       login_user: root
       login_password: "{{ db_root_password }}"
       priv: "{{ db_name }}.*:ALL,GRANT/test_%.*:ALL,GRANT"
-  when: create_project
+  # when: create_project
 
 - name: Copy the credentials as .my.cnf file
   template: "src=my.cnf.j2 dest={{ home_dir }}/.my.cnf owner={{ app_user }} group={{ app_grp }} mode=0664"
-  when: create_project
+  # when: create_project
 
 - name: Create Database
   mysql_db:
@@ -77,9 +77,9 @@
     login_user: "root"
     login_password: "{{ db_root_password }}"
     state: "present"
-  when: create_project
+  # when: create_project
 
 - name: restart mysql
   service: name=mysql state=restarted
-  when: create_project
+  # when: create_project
 

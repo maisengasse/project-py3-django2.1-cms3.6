@@ -4,30 +4,30 @@
 - name: update apt
   apt: update_cache=yes cache_valid_time=3600
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  when: create_project
+  # when: create_project
 
 - name: Add Python3.6 Repository
   apt_repository: repo=ppa:deadsnakes/ppa state=present
-  when: create_project
+  # when: create_project
 
 - name: Add NodeJS6 Repository Key
   apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
-  when: create_project
+  # when: create_project
 
 - name: Add NodeJS6 Repository
   apt_repository: repo={{item}} state=present
   with_items:
     deb https://deb.nodesource.com/node_13.x bionic main
     deb-src https://deb.nodesource.com/node_13.x bionic main
-  when: create_project
+  # when: create_project
 
 - name: Update and upgrade apt packages
   become: true
   apt:
     update_cache: yes
-  when: create_project
+  # when: create_project
 
 - name: Install needed packages (apt)
   apt: 
@@ -59,30 +59,30 @@
       - python3.6-dev
       - python3.6-venv
     state: present
-  when: create_project
+  # when: create_project
 
 - name: restart memcached
   service: name=memcached state=restarted
-  when: create_project
+  # when: create_project
 
 - name: Install NodeJs packages
   npm: name={{ item }} global=yes state=present
   with_items:
     - postcss-cli
     - autoprefixer
-  when: create_project
+  # when: create_project
 
 - name: SSH config directory
   file: "path={{ home_dir }}/.ssh owner={{ app_user }} group={{ app_grp }} mode=0700 state=directory"
-  when: create_project
+  # when: create_project
 
 - name: copy private development Key
   template: "src='id_rsa' dest={{ home_dir }}/.ssh/id_rsa owner={{ app_user }} group={{ app_grp }} mode=0600"
-  when: create_project
+  # when: create_project
 
 - name: copy public development Key
   template: "src='id_rsa.pub' dest={{ home_dir }}/.ssh/id_rsa.pub owner={{ app_user }} group={{ app_grp }} mode=0600"
-  when: create_project
+  # when: create_project
 
   # copy: "src=/home/vagrant/.ssh/authorized_keys dest={{ home_dir }}/.ssh/authorized_keys owner={{ app_user }} group={{ app_grp }} mode=0600"
 
