@@ -1,2 +1,0 @@
-#!/bin/bash
-exec /home/vagrant/python-julianschwazer/bin/fab "$1"
