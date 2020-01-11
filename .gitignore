@@ -1,0 +1,12 @@
+.vagrant/
+.vscode/
+/static/CACHE/
+/media
+*.pyc
+*.sql.gz
+*.sql
+__pycache__
+settings/local.py
+julianschwazer/settings/development.py
+julianschwazer/settings/production.py
+manage.py
