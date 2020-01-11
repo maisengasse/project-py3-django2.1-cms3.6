@@ -57,7 +57,7 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
         project_name: "julianschwazer",
         project_domain: "julianschwazer.at",
         project_dir: "/home/vagrant/julianschwazer",
-        create_project: true, # After Project is set up -> create_project: false
+        create_project: false, # After Project is set up -> create_project: false
         create_modules: false,
         modules: [
             # {
