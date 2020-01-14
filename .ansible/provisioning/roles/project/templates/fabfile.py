@@ -6,7 +6,7 @@ from fabric import Connection
 REMOTE_HOST = "mgh2.mynet.at"
 REMOTE_USER = "{{ project_name }}"
 REMOTE_PATH = "/web/{{ project_name }}/home/projects/{{ project_name }}"
-REMOTE_DB = "{{ project_name }}db2"
+REMOTE_DB = "{{ project_name }}db1"
 REMOTE_MEDIA = [
     REMOTE_PATH + "/media/filer_public/",
     # REMOTE_PATH + "/media/ckeditor/"
