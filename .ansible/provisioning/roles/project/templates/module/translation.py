@@ -18,6 +18,6 @@ translator.register({{ item[0].model_class }}Category, {{ item[0].model_class }}
 
 {% if item[0].plugin %}
 class {{ item[0].model_class }}TeaserTO(TranslationOptions):
-    fields = ('title', 'body',)
+    fields = ('title', )
 translator.register({{ item[0].model_class }}Teaser, {{ item[0].model_class }}TeaserTO)
 {% endif %}
