@@ -54,9 +54,9 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
 
         # --------- Change me --------
         # (just replace "pls_change_me with lowercase project name")
-        project_name: "pls_change_me",
-        project_domain: "pls_change_me.at",
-        project_dir: "/home/vagrant/pls_change_me",
+        project_name: "maisengasse",
+        project_domain: "maisengasse.at",
+        project_dir: "/home/vagrant/maisengasse",
         create_project: true, # After Project is set up -> create_project: false
         create_modules: false,
         modules: [
@@ -73,8 +73,8 @@ Vagrant.configure(VAGRANTFILE_CONFIG_VERSION) do |config|
         ],
         # create_project_search: false,
         # create_project_mailings: false,
-        db_name: 'pls_change_me',
-        db_user: 'pls_change_me',
+        db_name: 'maisengasse',
+        db_user: 'maisengasse',
         #-------------------------------------------
 
         db_password: '',
