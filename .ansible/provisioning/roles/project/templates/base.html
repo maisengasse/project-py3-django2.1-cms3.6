@@ -3,9 +3,9 @@
 {% raw %} {% load robots_index %} {% endraw %}
 
 <!DOCTYPE html>
-<html lang="{% raw %} {{ request.LANGUAGE_CODE }} {% endraw %}">
+<html lang="{% raw %}{{ request.LANGUAGE_CODE }}{% endraw %}">
     <head>
-    {% raw %}{% block head %} {% endraw %}
+    {% raw %}{% block head %}{% endraw %}
 
         {% raw %}{% page_robots %}{% endraw %}
 
@@ -102,7 +102,7 @@
                      {% raw %}{% endcomment %}{% endraw %}
                     <nav class="navbar navbar-expand-md bg-light">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="/">Büro Maisengasse</a>
+                            <a class="navbar-brand" href="/">{{ project_name }}</a>
                             {% raw %}{% include 'navigations/dropdown/dropdown-nav.html' %}{% endraw %}
                         </div>
                     </nav>
