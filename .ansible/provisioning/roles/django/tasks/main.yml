@@ -10,7 +10,7 @@
   with_items:
     # django
     - { name: pytz, version: 2019.3 }
-    - { name: pip, version: 19.3.1 }
+    - { name: pip, version: 20.0.2 }
   # when: create_project
 
 - name: Install PIP

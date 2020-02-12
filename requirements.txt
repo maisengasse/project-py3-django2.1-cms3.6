@@ -43,7 +43,7 @@ django-treebeard==4.3
 djangocms-admin-style==1.4.0
 djangocms-page-sitemap==0.5.3
 djcacheutils==3.0.0
-easy-thumbnails==2.6
+easy-thumbnails==2.7
 fabric==2.5.0
 hashids==1.2.0
 html5lib==1.0.1
