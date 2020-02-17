@@ -53,6 +53,7 @@ idna==2.8
 invoke==1.2.0
 libsass==0.19.2
 mysqlclient==1.4.6
+ipdb==0.12.3
 paramiko==2.6.0
 phonenumbers==8.10.14
 Pillow==6.0.0

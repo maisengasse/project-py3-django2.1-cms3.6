@@ -76,12 +76,12 @@
   file: "path={{ home_dir }}/.ssh owner={{ app_user }} group={{ app_grp }} mode=0700 state=directory"
   # when: create_project
 
-- name: copy private development Key
-  template: "src='id_rsa' dest={{ home_dir }}/.ssh/id_rsa owner={{ app_user }} group={{ app_grp }} mode=0600"
-  # when: create_project
+# - name: copy private development Key
+#   template: "src='id_rsa' dest={{ home_dir }}/.ssh/id_rsa owner={{ app_user }} group={{ app_grp }} mode=0600"
+#   # when: create_project
 
-- name: copy public development Key
-  template: "src='id_rsa.pub' dest={{ home_dir }}/.ssh/id_rsa.pub owner={{ app_user }} group={{ app_grp }} mode=0600"
+# - name: copy public development Key
+#   template: "src='id_rsa.pub' dest={{ home_dir }}/.ssh/id_rsa.pub owner={{ app_user }} group={{ app_grp }} mode=0600"
   # when: create_project
 
   # copy: "src=/home/vagrant/.ssh/authorized_keys dest={{ home_dir }}/.ssh/authorized_keys owner={{ app_user }} group={{ app_grp }} mode=0600"
