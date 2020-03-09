@@ -9,7 +9,6 @@ from cms.models.fields import PlaceholderField
 from emencia.django.newsletter.models import Newsletter, Contact, MailingList
 
 from maisen.cmstools.filerpool.fields import PhotoPoolField, PhotoPoolImageField
-# from {{ project_name }}.news.models import Newsitem
 
 class Mailing(models.Model):
     class Meta:

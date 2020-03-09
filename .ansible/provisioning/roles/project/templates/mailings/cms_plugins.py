@@ -4,13 +4,13 @@ from django import forms
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 from cms.models import CMSPlugin, Page
-from maisen.cmstools.plugins.flex.models import FlexSection
-from maisen.cmstools.plugins.flex.cms_plugins import FlexSectionPlugin, FlexTextPlugin, FlexTextImagePlugin, FlexImagePlugin
+from maisen.cmstools.stencils.cms_plugins import StencilBase, StencilPlugin
+from maisen.cmstools.stencils.models import StencilData, StencilSlider
 from maisen.cmstools.widgets import CKEditorWidget, CodeMirrorWidget, OptionalInternalLink
 
 # from models import NewsTeaser
 
-class NLTextPlugin(FlexTextPlugin):
+class NLTextPlugin(StencilPlugin):
     name = _('Text')
     render_template="mailings/plugins/nltext.html"
 
@@ -21,17 +21,33 @@ class NLTextPlugin(FlexTextPlugin):
 
 plugin_pool.register_plugin(NLTextPlugin)
 
-class NLTextImagePlugin(FlexTextImagePlugin):
-    render_template="mailings/plugins/nltextimage.html"
-    name = _('Text mit Bild')
 
-    def get_form(self, *args, **kw):
-        form = super(NLTextImagePlugin, self).get_form(*args, **kw)
-        self.inlines = []
-        return form
+class NlIntroPluginForm(forms.ModelForm):
+    class Meta:
+        model = StencilData
+        fields = ('title', 'subtitle', 'body')
+        widgets = {
+            'title' : forms.Textarea,
+            'subtitle' : forms.Textarea,
+            'body' : CKEditorWidget,
+        }
 
 
-plugin_pool.register_plugin(NLTextImagePlugin)
+class NLIntroPlugin(CMSPluginBase):
+    name = _("Intro")
+    model = StencilData
+    form = NlIntroPluginForm
+    fields = ('title', 'subtitle', 'body')
+    render_template="mailings/plugins/nlintro.html"
+
+    def render(self, context, instance, placeholder):
+        color = get_highlight_color(placeholder)
+        context.update(locals())
+        return context
+
+plugin_pool.register_plugin(NLIntroPlugin)
+
+
 
 class NLImagePlugin(FlexImagePlugin):
     name = _('Bild')
@@ -74,33 +90,44 @@ NLSECTION_CHILD_CONFIG = {
     },
 }
 
+# class NLTextImagePlugin(FlexTextImagePlugin):
+#     render_template="mailings/plugins/nltextimage.html"
+#     name = _('Text mit Bild')
+
+#     def get_form(self, *args, **kw):
+#         form = super(NLTextImagePlugin, self).get_form(*args, **kw)
+#         self.inlines = []
+#         return form
 
 
-class NLSectionPlugin(FlexSectionPlugin):
-    name = _('Mehrspalter')
-    render_template="mailings/plugins/nlsection.html"
-    child_config = NLSECTION_CHILD_CONFIG
-    child_classes = child_config.keys()
-    inlines = []
-    child_columns = 2
-    _fieldsets = [
-        (None, {
-            'fields': ['title',],
-        }),
-    ]
+# plugin_pool.register_plugin(NLTextImagePlugin)
 
-    def get_fieldsets(self, request, obj=None, **kwargs):
-        f = list(self._fieldsets)
-        if not obj:
-            f += [
-                (_('Spalten'), {
-                    'fields': ('column1', 'column2',),
-                }),
-            ]
-        self.fieldsets = f
-        return f
 
-plugin_pool.register_plugin(NLSectionPlugin)
+# class NLSectionPlugin(FlexSectionPlugin):
+#     name = _('Mehrspalter')
+#     render_template="mailings/plugins/nlsection.html"
+#     child_config = NLSECTION_CHILD_CONFIG
+#     child_classes = child_config.keys()
+#     inlines = []
+#     child_columns = 2
+#     _fieldsets = [
+#         (None, {
+#             'fields': ['title',],
+#         }),
+#     ]
+
+#     def get_fieldsets(self, request, obj=None, **kwargs):
+#         f = list(self._fieldsets)
+#         if not obj:
+#             f += [
+#                 (_('Spalten'), {
+#                     'fields': ('column1', 'column2',),
+#                 }),
+#             ]
+#         self.fieldsets = f
+#         return f
+
+# plugin_pool.register_plugin(NLSectionPlugin)
 
 
 # class NewsTeaserPluginForm(forms.ModelForm):
