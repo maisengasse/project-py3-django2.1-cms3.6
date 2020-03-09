@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from emencia.django.newsletter.models import Newsletter
@@ -54,7 +55,7 @@ class NewsletterAdmin(DefaultNewsletterAdmin):
     inlines = (MailingInline,)
 
     def preview_link(self, instance):
-        return """<a href="%s" target="_blank">Editieren</a>""" % instance.mailing.get_absolute_url()
+        return mark_safe(f'<a href="{instance.mailing.get_absolute_url()}" target="_blank">Editieren</a>')
     preview_link.short_description = "Editieren"
     preview_link.allow_tags = True;
 
