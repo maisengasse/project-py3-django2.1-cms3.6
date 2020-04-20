@@ -41,6 +41,7 @@
       - libjpeg-dev
       - libtiff-dev
       - zlib1g-dev
+      - postfix
       - htop
       - libfreetype6-dev
       - liblcms2-dev
