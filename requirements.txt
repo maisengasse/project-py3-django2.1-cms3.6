@@ -1,4 +1,4 @@
-http://download.maisengasse.at/eggs/maisen.cmstools-3.1.0.dev6.tar.gz
+http://download.maisengasse.at/eggs/maisen.cmstools-3.1.0.dev8.tar.gz
 git+https://github.com/maisengasse/newsletter.git
 ajaxuploader==0.3.8
 reportlab==3.5.42

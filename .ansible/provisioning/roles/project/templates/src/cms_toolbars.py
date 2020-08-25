@@ -28,7 +28,7 @@ class ModuleToolbar(CMSToolbar):
         module_menu.add_break("student-admin-break", position=3)
 
         url = "/admin/translate/"
-        module_menu.add_sideframe_item(_(u"Übersetzungskatalog"), url=url, position=1)
+        module_menu.add_sideframe_item(_("Übersetzungskatalog"), url=url, position=1)
 
 @toolbar_pool.register
 class SiteTree(CMSToolbar):

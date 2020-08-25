@@ -51,36 +51,149 @@ class InternalActionsLinks(InternalLinkHandler):
 
 
 class InquiryForm(forms.Form):
-    SALUTATION_CHOICES = (
-        ("", "--- Anrede ---"),
-        ("Frau", "Frau"),
-        ("Herr", "Herr"),
-        ("Familie", "Familie"),
+    YEAR = timezone.now().year
+    ADULTS_COUNT_CHOICES = zip(range(1, 10), range(1, 10))
+    CHILD_COUNT_CHOICES = zip(range(7), range(7))
+    CHILD_AGE_YEARS = [("", _("Jahr"))] + list(
+        zip(range(YEAR - 18, YEAR), range(YEAR - 18, YEAR + 1))
     )
-    lang = forms.CharField(label=_("Sprache"))
+    CHILD_AGE_MONTHS = [("", _("Monat"))] + list(zip(range(1, 13), range(1, 13)))
+    CHILD_AGE_DAYS = [("", _("Tag"))] + list(zip(range(1, 32), range(1, 32)))
+
+    SALUTATION_CHOICES = [
+        ("", _("-- Bitte wählen --")),
+        ("Frau", _("Frau")),
+        ("Herr", _("Herr")),
+        ("Familie", _("Familie")),
+    ]
+
+    lang = forms.CharField(label=_("Sprache"), required=False)
     salutation = forms.ChoiceField(label=_("Anrede"), choices=SALUTATION_CHOICES)
     email = forms.EmailField(label=_("E-Mail"), required=True)
+    phone = forms.CharField(label=_("Telefonnummer"))
     firstname = forms.CharField(label=_("Vorname"))
     lastname = forms.CharField(label=_("Nachname"))
+
+    roomtype = forms.ModelChoiceField(
+        Room.objects.current(),
+        label=_("Zimmer- oder Apartmenttyp auswählen"),
+        required=False,
+    )
+    roomtype_two = forms.ModelChoiceField(
+        Room.objects.current(),
+        label=_("Zimmer- oder Apartmenttyp auswählen"),
+        required=False,
+    )
+    roomtype_three = forms.ModelChoiceField(
+        Room.objects.current(),
+        label=_("Zimmer- oder Apartmenttyp auswählen"),
+        required=False,
+    )
+    roomtype_four = forms.ModelChoiceField(
+        Room.objects.current(),
+        label=_("Zimmer- oder Apartmenttyp auswählen"),
+        required=False,
+    )
 
     arrival = forms.DateField(label=_("Anreise"), input_formats=["%d.%m.%Y"])
     departure = forms.DateField(label=_("Abreise"), input_formats=["%d.%m.%Y"])
 
-    adults = forms.IntegerField(label=_("Erwachsene"), widget=forms.TextInput)
-    children = forms.IntegerField(
-        label=_("Kinder"), widget=forms.TextInput, required=False
+    adults = forms.ChoiceField(label=_("Erwachsene"), choices=ADULTS_COUNT_CHOICES)
+    children = forms.ChoiceField(label=_("Kinder"), choices=CHILD_COUNT_CHOICES)
+
+    child1_year = forms.ChoiceField(
+        label=_("Jahr"), choices=CHILD_AGE_YEARS, required=False
     )
+    child1_month = forms.ChoiceField(
+        label=_("Monat"), choices=CHILD_AGE_MONTHS, required=False
+    )
+    child1_day = forms.ChoiceField(
+        label=_("Tag"), choices=CHILD_AGE_DAYS, required=False
+    )
+    child2_year = forms.ChoiceField(
+        label=_("Jahr"), choices=CHILD_AGE_YEARS, required=False
+    )
+    child2_month = forms.ChoiceField(
+        label=_("Monat"), choices=CHILD_AGE_MONTHS, required=False
+    )
+    child2_day = forms.ChoiceField(
+        label=_("Tag"), choices=CHILD_AGE_DAYS, required=False
+    )
+    child3_year = forms.ChoiceField(
+        label=_("Jahr"), choices=CHILD_AGE_YEARS, required=False
+    )
+    child3_month = forms.ChoiceField(
+        label=_("Monat"), choices=CHILD_AGE_MONTHS, required=False
+    )
+    child3_day = forms.ChoiceField(
+        label=_("Tag"), choices=CHILD_AGE_DAYS, required=False
+    )
+    child4_year = forms.ChoiceField(
+        label=_("Jahr"), choices=CHILD_AGE_YEARS, required=False
+    )
+    child4_month = forms.ChoiceField(
+        label=_("Monat"), choices=CHILD_AGE_MONTHS, required=False
+    )
+    child4_day = forms.ChoiceField(
+        label=_("Tag"), choices=CHILD_AGE_DAYS, required=False
+    )
+    child5_year = forms.ChoiceField(
+        label=_("Jahr"), choices=CHILD_AGE_YEARS, required=False
+    )
+    child5_month = forms.ChoiceField(
+        label=_("Monat"), choices=CHILD_AGE_MONTHS, required=False
+    )
+    child5_day = forms.ChoiceField(
+        label=_("Tag"), choices=CHILD_AGE_DAYS, required=False
+    )
+    child6_year = forms.ChoiceField(
+        label=_("Jahr"), choices=CHILD_AGE_YEARS, required=False
+    )
+    child6_month = forms.ChoiceField(
+        label=_("Monat"), choices=CHILD_AGE_MONTHS, required=False
+    )
+    child6_day = forms.ChoiceField(
+        label=_("Tag"), choices=CHILD_AGE_DAYS, required=False
+    )
+
     message = forms.CharField(label=_("Ihre Wünsche"), widget=forms.Textarea)
+    agb = forms.BooleanField(
+        label=_("Ich akzeptiere die AGB und die Datenschutzerklärung.")
+    )
 
     def clean(self):
+        data = self.cleaned_data
         cd = self.cleaned_data
         arr = cd["arrival"]
         dep = cd["departure"]
+        data["child_ages"] = []
+        for agefield in ("child1", "child2", "child3", "child4", "child5", "child6"):
+
+            year, month, day = (
+                "%s_year" % agefield,
+                "%s_month" % agefield,
+                "%s_day" % agefield,
+            )
+            if data.get(year):
+                try:
+                    date = datetime.date(
+                        year=int(data.get(year)),
+                        month=int(data.get(month)),
+                        day=int(data.get(day)),
+                    )
+                    data["child_ages"].append(date)
+                except ValueError:
+                    if data.get(year) is None:
+                        field = "_year"
+                    elif data.get(month) is None:
+                        field = "_month"
+                    else:
+                        field = "_day"
+                    self.add_error(f"{agefield}{field}", _("Bitte Fehler korrigieren"))
         if dep <= arr:
             self.add_error(
-                "departure", _(u"Das Abreisedatum muss nach dem Anreisedatum liegen.")
+                "departure", _("Das Abreisedatum muss nach dem Anreisedatum liegen.")
             )
-
 
 def inquiry_form(request):
     form = InquiryForm()
