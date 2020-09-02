@@ -46,7 +46,7 @@
 
         {% raw %}{% block fonts %}{% endraw %}
                 <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Ubuntu:400,400i,700,700i&amp;display=swap" rel="stylesheet">
-        {% raw %}{% endblock fonts %}{% endraw %}        
+        {% raw %}{% endblock fonts %}{% endraw %}
 
         {% raw %}{% compress css inline %}{% endraw %}
             <link type="text/x-scss" href="{% raw %}{%{% endraw %} static '{{ project_name }}/scss/preloader.scss'{% raw %}%}{% endraw %}" rel="stylesheet" />
@@ -181,7 +181,7 @@
                 <link type="text/x-scss" href="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/slick/slick.scss' {% raw %}%}{% endraw %}" rel="stylesheet" />
                 <link type="text/x-scss" href="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/slick/slick-theme.scss' {% raw %}%}{% endraw %}" rel="stylesheet" />
                 <link type="text/x-scss" href="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/select/select.scss' {% raw %}%}{% endraw %}" rel="stylesheet" />
-                <link type="text/x-scss" href="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/plyr/scss/plyr.scss' {% raw %}%}{% endraw %}" rel="stylesheet" />
+                <!--link type="text/x-scss" href="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/plyr/scss/plyr.scss' {% raw %}%}{% endraw %}" rel="stylesheet" /-->
                 <link type="text/x-scss" href="{% raw %}{%{% endraw %} static '{{ project_name }}/scss/main.scss' {% raw %}%}{% endraw %}" rel="stylesheet" />
             {% raw %}{% endcompress %}{% endraw %}
         {% raw %}{% endblock css %}{% endraw %}
@@ -196,7 +196,7 @@
                 <script src="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/fancybox/jquery.fancybox.js' {% raw %}%}{% endraw %}"></script>
                 <script src="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/objectfit/ofi.js' {% raw %}%}{% endraw %}"></script>
                 <script src="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/select/bootstrap-select.js' {% raw %}%}{% endraw %}"></script>
-                <script src="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/plyr/plyr.js' {% raw %}%}{% endraw %}"></script>
+                <!--script src="{% raw %}{%{% endraw %} static '{{ project_name }}/lib/plyr/plyr.js' {% raw %}%}{% endraw %}"></script-->
                 <script src="{% raw %}{%{% endraw %} static '{{ project_name }}/js/main.js' {% raw %}%}{% endraw %}"></script>
             {% raw %}{% endcompress %}{% endraw %}
         {% raw %}{% endblock js %}{% endraw %}
@@ -205,7 +205,7 @@
         {% raw %}{% render_block "css-bottom" %}{% endraw %}
         {% raw %}{% render_block "js-bottom" %}{% endraw %}
 
-        
+
 
         {% raw %}{% block cookies %}{% endraw %}
          {% raw %}{% comment %}{% endraw %}
@@ -266,7 +266,7 @@
             </script>
         {% raw %}{% endcomment %}{% endraw %}
         {% raw %}{% endblock analytics %}{% endraw %}
-        
+
         {% raw %}{% compress css inline %}{% endraw %}
             <style type="text/x-scss">
                 body #preloader {
@@ -286,4 +286,4 @@
             </style>
         {% raw %}{% endcompress %}{% endraw %}
     </body>
-</html> 
+</html>
