@@ -55,7 +55,7 @@ libsass==0.19.2
 mysqlclient==1.4.6
 paramiko==2.6.0
 phonenumbers==8.10.14
-Pillow==7.0.0
+Pillow==7.1.0
 polib==1.1.0
 pycparser==2.19
 pycrypto==2.6.1
