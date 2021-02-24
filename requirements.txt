@@ -9,7 +9,7 @@ beautifulsoup4==4.8.1
 certifi==2019.11.28
 cffi==1.12.3
 chardet==3.0.4
-cryptography==2.8
+cryptography==3.3.2
 csscompressor==0.9.5
 Django==3.0
 django-admin-shortcuts==2.0.0
