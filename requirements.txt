@@ -11,7 +11,7 @@ cffi==1.12.3
 chardet==3.0.4
 cryptography==2.8
 csscompressor==0.9.5
-Django==3.0
+Django==3.1.6
 django-admin-shortcuts==2.0.0
 django-appconf==1.0.3
 django-autoslug==1.9.4
